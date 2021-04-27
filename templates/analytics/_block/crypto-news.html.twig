@@ -1,0 +1,15 @@
+{% block crypto_news %}
+    <h5>Important news</h5>
+
+    {% set news_link = path('route_cryptofeed') %}
+    {% for item in crypto_news %}
+        <a href="{{ news_link }}" class="important_news-item">
+            <div class="important_news-item-bg"></div>
+            <div class="important_news-item-num">{{ loop.index }}</div>
+            <div class="important_news-item-info">
+                {{ item.title|raw }}
+                <span class="meta-info">{{ item.date|date('m.d.Y H:i') }}</span>
+            </div>
+        </a>
+    {% endfor %}
+{% endblock %}

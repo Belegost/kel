@@ -1,0 +1,246 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    <div class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="container">
+            <div class="big-digits-wrap">
+                <div class="big-digits">10791</div>
+            </div>
+            <h1>Trust Increase in this year<sup>*</sup></h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey">
+        <div class="container">
+            {{ ticker|raw }}
+        </div>
+    </div>
+
+    <div class="bg-light-grey rates-info">
+        <div class="container">
+            <div class="rates-content">
+                <div class="bg-white box-framed rates-charts-total_histogramm">
+                    <div class="rates-charts-total_histogramm-header">
+                        <div>
+                            <h5>ITC index histogram</h5>
+                            <p>Сlient equity and the current structure of crypto assets in the all purchased</p>
+                        </div>
+                        <div>
+                            <div class="big-digits rates-charts-total_histogramm-btc">17556</div>
+                            <div class="rates-charts-total_histogramm-btc-small">+5.556</div>
+                        </div>
+                    </div>
+                    <div class="rates-charts-total_histogramm-body">
+                        <div class="histogramm-menu">
+                            <span>1 D</span>
+                            <span>1 W</span>
+                            <span class="current">1 M</span>
+                            <span>3 M</span>
+                            <span>1 Y</span>
+                            {#<span>5 Y</span>#}
+                            {#<span>MAX</span>#}
+                            <div class="active-border"></div>
+                        </div>
+                        <canvas id="total_histogramm"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white box-framed rates-charts-polar_histogramm">
+                    <div class="rates-charts-polar_histogramm-header">
+                        <div>
+                            <h5>ITC index histogram</h5>
+                            <p>Сlient equity and the current structure of crypto assets in the all purchased</p>
+                        </div>
+                        <div>
+                            <div class="select">
+                                <fieldset>
+                                    <select>
+                                        <option>All time</option>
+                                        <option>Month</option>
+                                        <option>Week</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+                            <div class="specific-date">Specific date: <img
+                                        src="{{ asset('images/rates_datepicker_icon.png') }}"/></div>
+                        </div>
+                    </div>
+                    <div class="rates-charts-polar_histogramm-body">
+                        <canvas id="polar_histogramm"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="rates-news">
+                <h4>News & Analytics</h4>
+
+                {% for item in market_data %}
+                    <div class="rates-news-item">
+                        <h5>{{ item.title|raw }}</h5>
+                        {{ item.description|raw }}
+                        <div class="rates-news-item-meta"><span>Market Pulse</span> <span>{{ item.date|date('m.d.Y') }}</span></div>
+                    </div>
+                {% endfor %}
+
+                <style>
+                    .rates-news-item:hover p {
+                        text-decoration: none;
+                    }
+                </style>
+
+                <div class="rates-news-more">
+                    <a href="{{ path('route_newsfeed') }}">Read More News <span></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-dark rates-instruments">
+        <div class="container">
+            <div class="rates-instruments-col">
+                <div class="histogramm-menu">
+                    <span class="current">1 D</span>
+                    <span>1 W</span>
+                    <span>1 M</span>
+                    <span>3 M</span>
+                    <span>1 Y</span>
+                    <span>5 Y</span>
+                    <span>MAX</span>
+                    <div class="active-border"></div>
+                </div>
+                <div class="crypto-market-graph">
+                    <canvas id="crypto-market-graph"></canvas>
+                </div>
+            </div>
+            <div class="rates-instruments-col">
+
+                <div class="dashboard-charts-cryptoassets-row" asset="BTC">
+                    <div>
+                        <h6>BTC/USD</h6>
+                        <small>Bitcoin / Dollar</small>
+                    </div>
+                    <div class="dashboard-charts-cryptoassets-row-value">14269.80</div>
+                    <div class="dashboard-charts-cryptoassets-row-diff">
+                        <span class="icon-color-arrow icon-color-arrow-down"></span>
+                        -1094.88<br>
+                        <small>-7.13%</small>
+                    </div>
+                </div>
+                <div class="dashboard-charts-cryptoassets-row" asset="ETH">
+                    <div>
+                        <h6>ETH/USD</h6>
+                        <small>Ethereum / Dollar</small>
+                    </div>
+                    <div class="dashboard-charts-cryptoassets-row-value">708.80</div>
+                    <div class="dashboard-charts-cryptoassets-row-diff">
+                        <span class="icon-color-arrow icon-color-arrow-up"></span>
+                        +30.71<br>
+                        <small>+4.16%</small>
+                    </div>
+                </div>
+                <div class="dashboard-charts-cryptoassets-row" asset="BCH">
+                    <div>
+                        <h6>BCH/USD</h6>
+                        <small>Bitcoin Cash / Dollar</small>
+                    </div>
+                    <div class="dashboard-charts-cryptoassets-row-value">2370.21</div>
+                    <div class="dashboard-charts-cryptoassets-row-diff">
+                        <span class="icon-color-arrow icon-color-arrow-down"></span>
+                        -364.55<br>
+                        <small>-12.64%</small>
+                    </div>
+                </div>
+                <div class="dashboard-charts-cryptoassets-row" asset="LTC">
+                    <div>
+                        <h6>LTC/USD</h6>
+                        <small>Litcoin / Dollar</small>
+                    </div>
+                    <div class="dashboard-charts-cryptoassets-row-value">226.23</div>
+                    <div class="dashboard-charts-cryptoassets-row-diff">
+                        <span class="icon-color-arrow icon-color-arrow-up"></span>
+                        +37.66<br>
+                        <small>+13.09%</small>
+                    </div>
+                </div>
+                <div class="dashboard-charts-cryptoassets-row" asset="ETC">
+                    <div>
+                        <h6>ETC/USD</h6>
+                        <small>Ethereum / Dollar</small>
+                    </div>
+                    <div class="dashboard-charts-cryptoassets-row-value">25.077</div>
+                    <div class="dashboard-charts-cryptoassets-row-diff">
+                        <span class="icon-color-arrow icon-color-arrow-up"></span>
+                        +3.585<br>
+                        <small>+11.28%</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-spesial_service">
+        <h4>See our Special Services for Investors</h4>
+        <div class="container">
+            <a href="{{ path('route_product_item', {'name':'conservative'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service1.jpg') }}"/>
+                <h6>Conservative Trust</h6>
+                <p>TOP-5 cryptocurrencies and classic money market fixed income instruments</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'classic'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service2.jpg') }}"/>
+                <h6>Classic Trust</h6>
+                <p>TOP-10 cryptocurrencies and most prospect ICO tokens</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'confident'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service3.jpg') }}"/>
+                <h6>Confident Trust</h6>
+                <p>Risky ICO of utility tokens and top-10 cryptocurrencies</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'individual'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service4.jpg') }}"/>
+                <h6>Individual Portfolio</h6>
+                <p>Combined ESP with some exclusive tokens carefully selected by our analysts</p>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/pages/rates.min.js') }}"></script>
+    {#<script src="{{ asset('js/libs/papafeed-client.js') }}"></script>#}
+    {#<script>#}
+        {#(function ($) {#}
+            {#var currencies = [];#}
+            {#$('div.rates-informer-item').each(function () {#}
+                {#currencies.push($(this).attr('asset'));#}
+            {#});#}
+
+            {#$.papafeed('get-rates', {#}
+                {#//interval: 1000 * 60,#}
+                {#currencies: currencies,#}
+                {#autoRun: true,#}
+                {#response: function (responce) {#}
+                    {#if (!$.isEmptyObject(responce.data)) {#}
+                        {#for (var asset in responce.data) {#}
+                            {#var _data = responce.data[asset],#}
+                                {#_sign = (_data.direct === 'up') ? '+' : '-',#}
+                                {#_context = $('.rates-informer-item[asset="' + asset + '"]'),#}
+                                {#_content = '<span class="rates-informer-arrow-' + _data.direct + '"></span> ' + parseFloat(_data.diff_pct).toFixed(4) + '% <small>' + parseFloat(_data.diff_val).toFixed(4) + '</small>';#}
+
+                            {#$('.rates-informer-item-title', _context).find('span').text(parseFloat(_data.close_val).toFixed(2));#}
+                            {#$('.rates-informer-item-body', _context).html(_content);#}
+
+                            {#_context = $('.dashboard-charts-cryptoassets-row[asset="' + asset + '"]');#}
+                            {#_content = '<span class="icon-color-arrow icon-color-arrow-' + _data.direct + '"></span> ' + _sign + parseFloat(_data.diff_val).toFixed(4) + '<br><small>' + _sign + parseFloat(_data.diff_pct).toFixed(4) + '%</small>';#}
+
+                            {#$('.dashboard-charts-cryptoassets-row-value', _context).text(parseFloat(_data.close_val).toFixed(2));#}
+                            {#$('.dashboard-charts-cryptoassets-row-diff', _context).html(_content);#}
+                        {#}#}
+                    {#}#}
+                {#}#}
+            {#});#}
+        {#})(jQuery);#}
+    {#</script>#}
+{% endblock %}

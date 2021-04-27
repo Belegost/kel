@@ -1,0 +1,238 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    {{ include('controller/page/dashboard-header.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey usersettings">
+        <div style="width: 100%; text-align: center; margin-bottom: 20px;">
+            <a class="btn btn_red" href="{{ path('route_user_verification') }}" style="margin: 0 auto; ">Verify Account</a>
+        </div>
+
+        <div class="bg-white box-framed">
+            <div class="container">
+                {{ form_start(form_settings) }}
+                <fieldset class="usersettings-firstname">
+                    {{ form_label(form_settings.first_name) }}
+                    {{ form_widget(form_settings.first_name, {attr: {'disabled': auth.isViewMode()}}) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                    <!--Please type your first name-->
+                </fieldset>
+
+                <fieldset class="usersettings-lastname">
+                    {{ form_label(form_settings.last_name) }}
+                    {{ form_widget(form_settings.last_name, {attr: {'disabled': auth.isViewMode()}}) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                    <!--Please type your last name-->
+                </fieldset>
+
+                <fieldset class="usersettings-email">
+                    {{ form_label(form_settings.email) }}
+                    {{ form_widget(form_settings.email) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+{#                <fieldset class="usersettings-receivealerts">#}
+{#                    <label for="{{ form_settings.email_notify.vars.id }}"#}
+{#                           class="checkbox checked">{{ form_widget(form_settings.email_notify) }}{{ form_settings.email_notify.vars.label }}</label>#}
+{#                </fieldset>#}
+
+                <fieldset class="usersettings-phone">
+                    {{ form_label(form_settings.phone) }}
+                    {{ form_widget(form_settings.phone, {attr: {'disabled': auth.isViewMode()}}) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+{#                <fieldset class="usersettings-receivealerts">#}
+{#                    <label for="{{ form_settings.phone_notify.vars.id }}"#}
+{#                           class="checkbox checked">{{ form_widget(form_settings.phone_notify, {attr: {'disabled': auth.isViewMode()}}) }}{{ form_settings.phone_notify.vars.label }}</label>#}
+{#                </fieldset>#}
+
+                <fieldset class="usersettings-country">
+                    {{ form_label(form_settings.country) }}
+                    {{ form_widget(form_settings.country, {attr: {'disabled': auth.isViewMode()}}) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+                <fieldset class="usersettings-city">
+                    {{ form_label(form_settings.city) }}
+                    {{ form_widget(form_settings.city, {attr: {'disabled': auth.isViewMode()}}) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+                <fieldset class="usersettings-state">
+                    {{ form_label(form_settings.state) }}
+                    {{ form_widget(form_settings.state, {attr: {'disabled': auth.isViewMode()}}) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+                <fieldset class="usersettings-zip">
+                    {{ form_label(form_settings.zip_code) }}
+                    {{ form_widget(form_settings.zip_code, {attr: {'disabled': auth.isViewMode()}}) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+                <fieldset class="usersettings-address">
+                    {{ form_label(form_settings.address) }}
+                    {{ form_widget(form_settings.address, {attr: {'disabled': auth.isViewMode()}}) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+                <fieldset class="edit-avatar">
+                    <div class="edit-avatar-current">
+                        <div class="edit-avatar-current-img"
+                             style="background-image: url({{ asset(avatar_url) }});">
+                            {% if not auth.isViewMode() %}
+                                <div class="edit-avatar-current-delete"><span></span><span></span></div>
+                            {% endif %}
+                        </div>
+                        <h5>Avatar</h5>
+                        <p>JPG, GIF or PNG < 5 MB</p>
+                    </div>
+                    {% if not auth.isViewMode() %}
+                        <div class="edit-avatar-add">
+                            {{ form_widget(form_settings.avatar) }}
+                            <input type="file"
+                                   name="{{ form_settings.vars.name }}[{{ form_settings.upload_file.vars.name }}]"
+                                   id="{{ form_settings.upload_file.vars.id }}" class="inputfile inputfile-2"
+                                   data-multiple-caption="{count} files selected" multiple="">
+{#                            <label for="{{ form_settings.upload_file.vars.id }}"><span>Choose a file…</span></label>#}
+                        </div>
+                    {% endif %}
+                    <div class="edit-avatar-error">
+                        <div></div>
+                    </div>
+                    <div></div>
+                    <div class="avatars-set">
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_01.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_02.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_03.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_04.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_05.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_06.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_07.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_08.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_09.jpg') }}"/></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_10.jpg') }}"/></div>
+                    </div>
+                </fieldset>
+
+                {{ form_row(form_settings._token) }}
+                {{ form_widget(form_settings.submit, {'attr' : {'class': 'btn btn_blue', 'disabled': auth.isViewMode()}}) }}
+                {{ form_end(form_settings, {'render_rest': false}) }}
+            </div>
+        </div>
+        {% if not auth.isViewMode() %}
+            <div class="container usersettings-password">
+                <h4>Change Password</h4>
+                {{ form_start(form_password) }}
+                <fieldset>
+                    {{ form_label(form_password.current_password) }}
+                    {{ form_widget(form_password.current_password) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+                <fieldset>
+                    {{ form_label(form_password.password) }}
+                    {{ form_widget(form_password.password) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+                <fieldset class="usersettings-confirmpassword">
+                    {{ form_label(form_password.repeatPassword) }}
+                    {{ form_widget(form_password.repeatPassword) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+                {{ form_row(form_password._token) }}
+                {{ form_widget(form_password.submit, {'attr' : {'class': 'btn btn_blue'}}) }}
+                {{ form_end(form_password, {'render_rest': false}) }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/libs/intlTelInput.min.js') }}"></script>
+    <script src="{{ asset('js/libs/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('js/libs/avatar-upload.js') }}"></script>
+    <script src="{{ asset('js/pages/user-settings.min.js') }}"></script>
+    <script src="{{ asset('js/pages/add/user-settings.add.js') }}"></script>
+    <script type="text/javascript">
+
+        var formSettingsName = 'user_settings';
+        var formPasswordName = 'change_password';
+
+        var formSettings = $("form[name=" + formSettingsName + "]");
+        var formPassword = $("form[name=" + formPasswordName + "]");
+
+        formSettings.submit(function (event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajaxSetup({
+                url: "{{ path('route_user_settings',{ 'do': 'save-changes' }) }}",
+                global: false,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (responce) {
+                    showFromError(formSettingsName, responce);
+                    if (responce === true) {
+                        showPopup('Your changes was saved successfully.');
+                    }
+                },
+                error: function (responce) {
+                    showPopup('Failed during save your changes. Please try again later or contact us.');
+                }
+            });
+            $.ajax({data: formData});
+
+        });
+
+        formPassword.submit(function (event) {
+            event.preventDefault();
+
+            var formData = new FormData(this);
+
+            $.ajaxSetup({
+                url: "{{ path('route_user_settings',{ 'do': 'save-password' }) }}",
+                global: false,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (responce) {
+                    showFromError(formPasswordName, responce);
+                    if (responce === true) {
+                        showPopup('Your current password was changed successfully.');
+                    }
+                },
+                error: function (responce) {
+                    showPopup('Failed during change your current password. Please try again later or contact us.');
+                }
+            });
+            $.ajax({data: formData});
+
+        });
+
+        function showPopup(message) {
+            var popupBody = $("[name='popup_body']");
+            var popupTextArea = $(".popup-msg-info");
+            popupBody.attr('class', 'box-framed bg-white popup popup-msg visible');
+            popupTextArea.html(message);
+        }
+
+    </script>
+{% endblock %}

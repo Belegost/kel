@@ -1,0 +1,48 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    <div class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="title-wrap animate-visible"><h1>Login for Integrity System</h1></div>
+        <div class="title-description-wrap animate-visible"></div>
+        <div class="title-link-wrap animate-visible">
+            <a href="{{ path('route_product_list') }}" class="btn btn_lg btn_blue">For Investors <span class="hidden-arrow-right"></span></a>
+            <a href="{{ path('route_portfolio') }}" class="btn btn_lg">For Advisors <span class="hidden-arrow-right"></span></a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey">
+        <br>
+        <br>
+        <div class="container bg-white box-framed">
+            {{ form_start(form) }}
+            {% if form.vars.errors|length > 0 %}
+                <div style="color: #AA3333; padding: 20px; margin: 10px 0; background-color: lightpink; border-radius: 3px;">
+                    {{ form_errors(form) }}
+                </div>
+            {% endif %}
+
+            <fieldset>
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+                <div class="field-border"></div>
+                <div class="field-error">Please type your email</div>
+            </fieldset>
+
+            <fieldset>
+                {{ form_label(form.password) }}
+                {{ form_widget(form.password) }}
+                <div class="field-border"></div>
+                <div class="field-error">Please type your password</div>
+            </fieldset>
+
+            <fieldset>
+                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-action btn_blue'}}) }}
+                <a href="{{ path('route_password_reset') }}" class="btn">Forgot password</a>
+            </fieldset>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

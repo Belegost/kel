@@ -1,0 +1,158 @@
+{% extends "ift-base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/add/style.add.css') }}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="page-header">
+        <div class="container">
+            <a href="{{ referer_link }}" class="full-pricing-back"><span><img src="{{ asset('images/icon_arrow-right-white.png') }}" /></span> Back</a>
+            <h1>Full Comparative Pricing Tables</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey">
+        <div class="container full-pricing-plans-wrap">
+            <div class="full-pricing-plans">
+                <div class="full-pricing-plans-titles">
+                    <h6>&nbsp;</h6>
+                    <table>
+                        <tr><td>Terms (in month)</td></tr>
+                        <tr><td>Cost ($)</td></tr>
+                        <tr><td>Setup fee (%&nbsp;of cost)</td></tr>
+                        <tr><td>Closing on time (%&nbsp;of cost)</td></tr>
+                        <tr><td>Penalty for closing early (%&nbsp;of cost)</td></tr>
+                        <tr><td>Share of the fund in profit (%&nbsp;of the increase in value)</td></tr>
+                    </table>
+                </div>
+
+                {% for product, data in pricingTable %}
+                    <div class="full-pricing-plans-item">
+                        <h6>{{ product }}</h6>
+                        <div class="full-pricing-plans-item-wrapper">
+                            <table>
+                                <tr>
+                                    <td>{{ data.period.month_12 }}</td>
+                                    <td>{{ data.period.month_6 }}</td>
+                                    <td>{{ data.period.month_3 }}</td>
+                                    <td>{{ data.period.month_1 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ data.price.month_12 }}</td>
+                                    <td>{{ data.price.month_6 }}</td>
+                                    <td>{{ data.price.month_3 }}</td>
+                                    <td>{{ data.price.month_1 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ data.setup_fee.month_12 }}</td>
+                                    <td>{{ data.setup_fee.month_6 }}</td>
+                                    <td>{{ data.setup_fee.month_3 }}</td>
+                                    <td>{{ data.setup_fee.month_1 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ data.closing_fee.month_12 }}</td>
+                                    <td>{{ data.closing_fee.month_6 }}</td>
+                                    <td>{{ data.closing_fee.month_3 }}</td>
+                                    <td>{{ data.closing_fee.month_1 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ data.penalty.month_12 }}</td>
+                                    <td>{{ data.penalty.month_6 }}</td>
+                                    <td>{{ data.penalty.month_3 }}</td>
+                                    <td>{{ data.penalty.month_1 }}</td>
+                                </tr>
+                                <tr>
+                                    <td>{{ data.share_profit.month_12 }}</td>
+                                    <td>{{ data.share_profit.month_6 }}</td>
+                                    <td>{{ data.share_profit.month_3 }}</td>
+                                    <td>{{ data.share_profit.month_1 }}</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="full-pricing-plans-item-shadow"></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="bg-light-grey block-anyquetions block-investnow">
+        <div class="container">
+            <h2>Invest Now</h2>
+            <div class="bg-white box-framed">
+                <div class="container">
+                    <fieldset class="block-investnow-select">
+                        <label for="product">Product</label>
+                        <div class="select">
+                            <select id="productCode" name="product">
+                                <option value="CONSERVATIVE">Conservative Trust</option>
+                                <option value="CLASSIC">Classic Trust</option>
+                                <option value="CONFIDENT">Confident Trust</option>
+                                <!--option value="INDIVIDUAL_PORTFOLIO">Individual Portfolio</option-->
+                            </select>
+                        </div>
+                        <div class="field-border"></div>
+                    </fieldset>
+                    <fieldset class="block-investnow-select">
+                        <label for="term">Term</label>
+                        <div class="select">
+                            <select id="productTerm" name="term">
+                                <option value="12MO">12 Months</option>
+                                <option value="6MO">6 Months</option>
+                                <option value="3MO">3 Months</option>
+                                <option value="1MO">1 Month</option>
+                            </select>
+                        </div>
+                        <div class="field-border"></div>
+                    </fieldset>
+                    <button class="popup-toggle btn btn_blue btn-invest"
+                            data-target="{{ popup_target }}">Invest
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+    <div id="popupProductOrder" class="box-framed bg-white popup popup-product-order popup-sm">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <h4 id="popupProductName"></h4>
+
+        <div id="popupProductRequest">
+            <p>Please enter quantity of the selected product</p>
+
+            <div id="popupRequestErrors" class="dn flash-error"></div>
+            <fieldset>
+                <label for="fieldProductQuantity" class="required">Quantity</label>
+                <input id="fieldProductQuantity" name="product_quantity" type="number" min="1" required>
+                <div class="field-border"></div>
+                <div class="field-error">The filed Quantity is required</div>
+            </fieldset>
+            <fieldset>
+                <input id="fieldProductCode" name="product_code" type="hidden">
+            </fieldset>
+            <button id="popupButtonContinue" class="btn btn_blue btn_md">Continue</button>
+        </div>
+
+        <div id="popupProductResponse" class="dn">
+            <p>Your order was successfully submitted. You can check the status of your order in your personal cabinet <a href="{{ path('route_myproducts') }}">My Products</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/pages/fullpricing.min.js') }}" ></script>
+    <script src="{{ asset('js/pages/add/product.add.js') }}"></script>
+    <script src="{{ asset('js/pages/add/fullpricing.add.js') }}" ></script>
+{% endblock %}

@@ -1,0 +1,7 @@
+parameters:
+    integrity_contacts:
+        email: 'noreply@integrityfund.io'
+
+framework:
+    mailer:
+        dsn: '%env(resolve:MAILER_DSN)%'

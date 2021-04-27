@@ -1,0 +1,257 @@
+{% extends "ift-base.html.twig" %}
+
+{% use "analytics/_block/crypto-news.html.twig" %}
+
+{% block page_header %}
+    <div class="page-header short-header">
+        <div class="page-header-bg"></div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="dashboard-menu-tabs">
+        <div class="container">
+            {% for item in analytics %}
+                {% set href = path('route_analytics_current', {'id': item.id}) %}
+                <a href="{{ href }}" class="dashboard-menu-tabs-item">Bitfinex {{ loop.index }}</a>
+            {% endfor %}
+            <a href="javascript:void(0);" class="dashboard-menu-tabs-item current">All</a>
+            <div class="btn btn_blue popup-toggle" data-target="popup-addaccount">Add Account</div>
+        </div>
+    </div>
+
+    <div class="dashboard-body bg-light-grey">
+
+        <div class="container dashboard-charts">
+            <br>
+
+            <div class="bg-white box-framed bg-white dashboard-charts-cryptoassets">
+
+                <div class="dashboard-charts-cryptoassets-header">
+                    <div class="dashboard-charts-cryptoassets-title">
+                        <h5>Returns by Products</h5>
+                        <p>Current structure of crypto assets in the all purchased Structure Product Structure Product</p>
+                    </div>
+                </div>
+                {#<div class="cabinet-product-title-digits">#}
+                    {#<div class="cabinet-product-title-digits-funds">#}
+                        {#<div class="big-digits">12.4536742</div>#}
+                        {#<p>Funds invested in Product</p>#}
+                    {#</div>#}
+                    {#<div class="cabinet-product-title-digits-btc">#}
+                        {#<div class="big-digits">24.4536742</div>#}
+                        {#<p>Product Current Equity (BTC)</p>#}
+                    {#</div>#}
+                    {#<div class="cabinet-product-title-digits-percent">#}
+                        {#<div class="big-digits">240.42</div>#}
+                        {#<p>Product Current Equity (%)</p>#}
+                    {#</div>#}
+                {#</div>#}
+                <div class="cabinet-product-title-digits">
+                    <div class="cabinet-product-title-digits-funds">
+                        <div class="big-digits">{{ total_usd }}</div>
+                        <p>Portfolio Balance (USD)</p>
+                    </div>
+                    <div class="cabinet-product-title-digits-btc">
+                        <div class="big-digits">{{ total_btc }}</div>
+                        <p>Portfolio Balance (BTC)</p>
+                    </div>
+                    {#<div class="cabinet-product-title-digits-percent">#}
+                    {#<div class="big-digits">94.42%</div>#}
+                    {#<p>Current Equity (%)</p>#}
+                    {#</div>#}
+                    <style>
+                        .cabinet-product-title-digits>div {
+                            width: 50%;
+                        }
+                    </style>
+                </div>
+                <br>
+                <div class="analytics-title">
+                    <div class="analytics-row-title">Account</div>
+                    <div class="analytics-row-value">Current price</div>
+                    <div class="analytics-row-diff">Delta/%</div>
+                    <div class="analytics-row-value">Middle price</div>
+                    <div class="analytics-row-value">Amount</div>
+                    <div class="analytics-row-show"></div>
+                </div>
+                <div class="analytics-row analytics-all-row">
+                    <div class="analytics-row-title">
+                        <h6>Bitfinex</h6>
+                        <small>Account 1</small>
+                    </div>
+                    <div class="analytics-row-value"></div>
+                    <div class="analytics-row-diff">
+                        {#<span class="icon-color-arrow icon-color-arrow-down"></span>#}
+
+                        <small></small>
+                    </div>
+                    <div class="analytics-row-value"></div>
+                    <div class="analytics-row-value"></div>
+                    <div class="analytics-row-show"><div><span></span><span></span></div></div>
+                    <div class="analytics-row-more">
+                        {#<div class="analytics-row">#}
+                            {#<div class="analytics-row-title">#}
+                                {#<h6>BTC/USD</h6>#}
+                                {#<small>Bitcoin / Dollar</small>#}
+                            {#</div>#}
+                            {#<div class="analytics-row-value">{{ current_price }}</div>#}
+                            {#<div class="analytics-row-diff">#}
+                                {#<span class="icon-color-arrow icon-color-arrow-down"></span>#}
+                                {#{{ delta|number_format(2, '.', '') }}#}
+                                {#<small>{{ delta_percent|number_format(2, '.', '') }}</small>#}
+                            {#</div>#}
+                            {#<div class="analytics-row-value">{{ middle_price|number_format(2, '.', '') }}</div>#}
+                            {#<div class="analytics-row-value">{{ amount }}</div>#}
+                        {#</div>#}
+                        {% if data|length > 0 %}
+                            {% for key, stats in data %}
+                                <div class="analytics-row">
+                                    <div class="analytics-row-title">
+                                        <h6>{{ key }}</h6>
+                                        {#<small>Ethereum / Dollar</small>#}
+                                        <small>{{ key }}</small>
+                                    </div>
+                                    <div class="analytics-row-value">{{ stats.current_price }}</div>
+                                    <div class="analytics-row-diff">
+                                        <span class="icon-color-arrow icon-color-arrow-{{ stats.arrow }}"></span>
+                                        {{ stats.delta|number_format(stats.pow, '.', '') }}
+                                        <small>{{ stats.delta_percent|number_format(2, '.', '') }}%</small>
+                                    </div>
+                                    <div class="analytics-row-value">{{ stats.middle_price|number_format(stats.pow, '.', '') }}</div>
+                                    <div class="analytics-row-value">{{ stats.amount }}</div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            Request limit is over. Wait a minute..
+                        {% endif %}
+                        {#<div class="analytics-row">#}
+                            {#<div class="analytics-row-title">#}
+                                {#<h6>BCH/USD</h6>#}
+                                {#<small>Bitcoin Cash / Dollar</small>#}
+                            {#</div>#}
+                            {#<div class="analytics-row-value">2370.21</div>#}
+                            {#<div class="analytics-row-diff">#}
+                                {#<span class="icon-color-arrow icon-color-arrow-down"></span>#}
+                                {#-364.55#}
+                                {#<small>-0.00345</small>#}
+                            {#</div>#}
+                            {#<div class="analytics-row-value">226.23</div>#}
+                            {#<div class="analytics-row-value">226.23</div>#}
+                        {#</div>#}
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="dashboard-footer">
+            <div class="container important_news">
+                {{ block('crypto_news') }}
+            </div>
+            <div class="support-block">
+                <div class="support-block-bg"></div>
+                <div class="support-block-subtitle animate-visible"><b>Do you have any Question?</b></div>
+                <div class="support-block-title animate-visible"><h2>Contact Your Account Manager</h2></div>
+                <div class="support-block-description animate-visible"><h5>Please, click to Request Button and your Personal Manager call to your phone imidiallity.</h5></div>
+                <div class="support-block-link animate-visible">
+                    <a onclick='$("#zsiq_agtpic").click();' class="btn btn_lg">Send Request <span class="hidden-arrow-right"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+
+    <div class="popup-shadow"><div>Loading assets. . .</div></div>
+
+    <div class="box-framed bg-white popup popup-addaccount">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <h4>New Аccount</h4>
+        {{ form_start(form_account, { 'attr': {'action': path('route_analytics_add_acount')} }) }}
+        <fieldset class="popup-addaccount-name">
+            {{ form_label(form_account.APIkey) }}
+            {{ form_widget(form_account.APIkey) }}
+        </fieldset>
+        <br>
+        <fieldset class="popup-addaccount-address">
+            {{ form_label(form_account.APIsecret) }}
+            {{ form_widget(form_account.APIsecret) }}
+        </fieldset>
+        <div class="field-error" style="color: red;"></div>
+        <br>
+        <br>
+        {{ form_widget(form_account.submit, { 'attr': {'class': 'btn btn_md btn_blue'} }) }}
+        {{ form_end(form_account) }}
+    </div>
+
+    {#{% include "analytics/_modal/add-account.html.twig" %}#}
+
+    <div class="box-framed bg-white popup popup-bitfinex">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <h4>Аccount 1</h4>
+        <div class="popupbitfinexform-wrapper"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="{{ asset('js/_src/datasets/datasets_analytics.js') }}"></script>#}
+    {#{{ block('js_data') }}#}
+    <script src="{{ asset('js/libs/jquery.datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/pages/analytics.min.js') }}"></script>
+
+    <script>
+        $(".popup-addaccount form").on("submit", function (t) {
+            t.preventDefault();
+            var a = $(".popup-addaccount .btn"), o = $("#accountname").val(), e = $("#accountaddress").val();
+            $(".popup-shadow div").show(), $(".popup").removeClass("visible"), $(".popup-shadow").fadeIn(300),
+                $.ajax({
+                    url: "{{ path('route_analytics_add_acount') }}",
+                    type: "POST",
+                    cache: !1,
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    // success: function (t) {
+                    //     "success" == t.status ? (a.prop("disabled", !1), $(".popup.popup-bitfinex h4").text(o), $(".popup.popup-bitfinex .popupbitfinexform-wrapper").html(t.data), $(".popup-bitfinex input[type=checkbox]").on({
+                    //         change: function () {
+                    //             $(this).closest("label").toggleClass("checked")
+                    //         }
+                    //     }), $(".popup-shadow div").hide(), $(".popup.popup-bitfinex").addClass("visible")) : displayPopupMsg(t.error)
+                    // },
+                    success: function (response) {
+                        if (response.view) {
+                            // @todo resolve
+                            $(".popup-shadow div").hide();
+                            $(".popup.popup-bitfinex > .popupbitfinexform-wrapper").html(response.view);
+                            $(".popup.popup-bitfinex").addClass("visible");
+                        } else if (response.message) {
+                            $(".popup-shadow div").hide(), $(".popup-addaccount").addClass("visible");
+                            $(".popup-addaccount").find(".field-error").html(response.message);
+                        }
+                        // "success" == t.status ? (a.prop("disabled", !1), $(".popup.popup-bitfinex h4").text(o), $(".popup.popup-bitfinex .popupbitfinexform-wrapper").html(t.data), $(".popup-bitfinex input[type=checkbox]").on({
+                        //     change: function () {
+                        //         $(this).closest("label").toggleClass("checked")
+                        //     }
+                        // }), $(".popup-shadow div").hide(), $(".popup.popup-bitfinex").addClass("visible")) : displayPopupMsg(t.error)
+                    },
+                    complete: function () {
+                        // a.prop("disabled", !1)
+                    }
+                })
+        })
+    </script>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'ift-base.html.twig' %}
+
+{% block page_header %}
+    {{ include('controller/page/dashboard-header.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+<div class="bg-light-grey usersettings">
+    <div class="box-framed bg-white">
+        <div class="container">
+            <h4>Current balance:</h4>
+            <p style="font-size: 16px;">BTC: {% if currentBalance.BTC is defined %}{{ (currentBalance.BTC.free)|number_format(8, '.', '') }} {% else %}0.000000{% endif %}</p>
+            <p style="font-size: 16px;">USDT: {% if currentBalance.USDT is defined %} {{ (currentBalance.USDT.free)|number_format(2, '.', '') }} {% else %}0.00{% endif %}</p>
+        </div>
+        <div class="container">
+            {{ form_start(converter_form) }}
+
+            <fieldset class="block-anyquetions-name">
+                {{ form_label(converter_form.from) }}
+                {{ form_widget(converter_form.from) }}
+                <div class="field-border"></div>
+                <div class="field-error">{{ form_errors(converter_form.from) }}</div>
+            </fieldset>
+
+            <fieldset class="block-anyquetions-email">
+                {{ form_label(converter_form.to) }}
+                {{ form_widget(converter_form.to) }}
+                <div class="field-border"></div>
+                <div class="field-error">{{ form_errors(converter_form.to) }}</div>
+            </fieldset>
+
+            <fieldset class="block-anyquetions-subject">
+                {{ form_label(converter_form.amount) }}
+                {{ form_widget(converter_form.amount) }}
+                <div class="field-border"></div>
+                <div class="field-error">{{ form_errors(converter_form.amount) }}</div>
+            </fieldset>
+
+
+            {{ form_widget(converter_form.save) }}
+            {{ form_end(converter_form) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        let converterFormName = 'converter',
+            $form = $("form[name=" + converterFormName + "]");
+
+        let showPopup = (message) => {
+            let popupBody = $("[name='popup_body']");
+            let popupTextArea = $(".popup-msg-info");
+            popupBody.attr('class', 'box-framed bg-white popup popup-msg visible');
+            popupTextArea.html(message);
+            // $form.reset();
+        }
+
+        $form.submit(event => {
+            event.preventDefault();
+
+            let formData = new FormData(event.target);
+
+            $.ajaxSetup({
+                url: "{{ path('route_convert',{ 'action': 'submit' }) }}",
+                global: false,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: (response) => {
+                    showFromError(converterFormName, response);
+                    if (response === true) {
+                        showPopup('Your changes was saved successfully.');
+                    }
+                },
+                error: (response) => {
+                    showPopup('Failed during save your changes. Please try again later or contact us.');
+                }
+            });
+            $.ajax({data: formData});
+
+        });
+    </script>
+{% endblock %}

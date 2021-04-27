@@ -1,0 +1,73 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
+
+    #server_name beta1.integrityfund.io;
+
+    root /app/public;
+    server_tokens off;
+
+    access_log off;
+
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+
+    index index.html index.htm index.php;
+
+    client_max_body_size 20M;
+
+    charset utf-8;
+
+    ssl_certificate /etc/nginx/ssl/cert.pem;
+    ssl_certificate_key /etc/nginx/ssl/privkey.pem;
+    include /etc/nginx/ssl/options-ssl-nginx.conf;
+    ssl_dhparam /etc/nginx/ssl/ssl-dhparams.pem;
+
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+         fastcgi_pass php:9000;
+         fastcgi_index index.php;
+         fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+         include fastcgi_params;
+    }
+
+    location ~* ^.+\.(jpg|jpeg|gif|png|ico|swf|pdf|ttf|woff|svg|eot|doc|docx|pdf|mp4|woff2|otf|xls|xlsx|webm|txt|avi)$  {
+        add_header Cache-Control public;
+        access_log  off;
+        add_header 'Access-Control-Allow-Origin' '*';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS';
+        add_header 'Access-Control-Allow-Headers' 'DNT,X-CustomHeader,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type';
+        expires modified +7d;
+    }
+
+
+    location ~* ^.+.(js|css)$  {
+        access_log  off;
+        expires modified +7d;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /robots.txt  { access_log off; log_not_found off; }
+
+    location ~ \/.ht {
+        deny all;
+    }
+
+
+}

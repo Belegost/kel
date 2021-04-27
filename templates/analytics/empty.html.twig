@@ -1,0 +1,155 @@
+{% extends "ift-base.html.twig" %}
+
+{% use "analytics/_block/crypto-news.html.twig" %}
+{% use "analytics/_block/data.js.twig" %}
+
+{% block page_header %}
+    <div class="page-header short-header">
+        <div class="page-header-bg"></div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="dashboard-menu-tabs">
+        <div class="container">
+            {#<a href="{{ path('route_analytics_all') }}" class="dashboard-menu-tabs-item">All</a>#}
+            {#<a href="javascript:void(0);" class="dashboard-menu-tabs-item current">Bitfinex 1</a>#}
+            <div class="btn btn_blue popup-toggle" data-target="popup-addaccount" style="float: left;">Add Account</div>
+        </div>
+    </div>
+
+    <div class="dashboard-body bg-light-grey">
+
+        <div class="container dashboard-charts">
+            <br>
+
+            <div class="bg-white box-framed bg-white dashboard-charts-cryptoassets">
+
+                <div class="dashboard-charts-cryptoassets-header">
+                    <div class="dashboard-charts-cryptoassets-title">
+                        <h5>No accounts added</h5>
+                        <p><a class="popup-toggle" data-target="popup-addaccount"><u style="cursor: pointer;">Click</u> to import Bitfinex account data</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+            {#<div class="bg-white box-framed bg-white analytics-total_pie">#}
+                {#<h5>Instrument List</h5>#}
+                {#<canvas id="total_pie"></canvas>#}
+            {#</div>#}
+            {#<div class="bg-white box-framed bg-white analytics-total_cap">#}
+                {#<h5>Market Cap</h5>#}
+                {#<canvas id="total_cap"></canvas>#}
+            {#</div>#}
+
+        </div>
+
+        <div class="dashboard-footer">
+            <div class="container important_news">
+                {{ block('crypto_news') }}
+            </div>
+            <div class="support-block">
+                <div class="support-block-bg"></div>
+                <div class="support-block-subtitle animate-visible"><b>Do you have any Question?</b></div>
+                <div class="support-block-title animate-visible"><h2>Contact Your Account Manager</h2></div>
+                <div class="support-block-description animate-visible"><h5>Please, click to Request Button and your
+                        Personal Manager call to your phone immediately.</h5></div>
+                <div class="support-block-link animate-visible">
+                    <a onclick='$("#zsiq_agtpic").click();' class="btn btn_lg">Send Request <span class="hidden-arrow-right"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+
+    <div class="popup-shadow"><div>Loading assets. . .</div></div>
+
+    <div class="box-framed bg-white popup popup-addaccount">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <h4>New Аccount</h4>
+        {{ form_start(form_account, { 'attr': {'action': path('route_analytics_add_acount')} }) }}
+        <fieldset class="popup-addaccount-name">
+            {{ form_label(form_account.APIkey) }}
+            {{ form_widget(form_account.APIkey) }}
+        </fieldset>
+        <br>
+        <fieldset class="popup-addaccount-address">
+            {{ form_label(form_account.APIsecret) }}
+            {{ form_widget(form_account.APIsecret) }}
+        </fieldset>
+        <div class="field-error" style="color: red;"></div>
+        <br>
+        <br>
+        {{ form_widget(form_account.submit, { 'attr': {'class': 'btn btn_md btn_blue'} }) }}
+        {{ form_end(form_account) }}
+    </div>
+
+    {#{% include "analytics/_modal/add-account.html.twig" %}#}
+
+    <div class="box-framed bg-white popup popup-bitfinex">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <h4>Аccount 1</h4>
+        <div class="popupbitfinexform-wrapper"></div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {#<script src="{{ asset('js/_src/datasets/datasets_analytics.js') }}"></script>#}
+    <script src="{{ asset('js/libs/jquery.datepicker.min.js') }}"></script>
+    <script src="{{ asset('js/pages/analytics.min.js') }}"></script>
+
+    <script>
+        $(".popup-addaccount form").on("submit", function (t) {
+            t.preventDefault();
+            var a = $(".popup-addaccount .btn"), o = $("#accountname").val(), e = $("#accountaddress").val();
+            $(".popup-shadow div").show(), $(".popup").removeClass("visible"), $(".popup-shadow").fadeIn(300), $.ajax({
+                url: "{{ path('route_analytics_add_acount') }}",
+                type: "POST",
+                cache: !1,
+                data: $(this).serialize(),
+                dataType: "json",
+                // success: function (t) {
+                //     "success" == t.status ? (a.prop("disabled", !1), $(".popup.popup-bitfinex h4").text(o), $(".popup.popup-bitfinex .popupbitfinexform-wrapper").html(t.data), $(".popup-bitfinex input[type=checkbox]").on({
+                //         change: function () {
+                //             $(this).closest("label").toggleClass("checked")
+                //         }
+                //     }), $(".popup-shadow div").hide(), $(".popup.popup-bitfinex").addClass("visible")) : displayPopupMsg(t.error)
+                // },
+                success: function (response) {
+                    if (response.view) {
+                        // @todo resolve
+                        $(".popup-shadow div").hide();
+                        $(".popup.popup-bitfinex > .popupbitfinexform-wrapper").html(response.view);
+                        $(".popup.popup-bitfinex").addClass("visible");
+                    } else if (response.message) {
+                        $(".popup-shadow div").hide(), $(".popup-addaccount").addClass("visible");
+                        $(".popup-addaccount").find(".field-error").html(response.message);
+                    }
+                    // "success" == t.status ? (a.prop("disabled", !1), $(".popup.popup-bitfinex h4").text(o), $(".popup.popup-bitfinex .popupbitfinexform-wrapper").html(t.data), $(".popup-bitfinex input[type=checkbox]").on({
+                    //     change: function () {
+                    //         $(this).closest("label").toggleClass("checked")
+                    //     }
+                    // }), $(".popup-shadow div").hide(), $(".popup.popup-bitfinex").addClass("visible")) : displayPopupMsg(t.error)
+                },
+                complete: function () {
+                    a.prop("disabled", !1)
+                }
+            })
+        })
+    </script>
+{% endblock %}

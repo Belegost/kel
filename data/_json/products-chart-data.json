@@ -1,0 +1,29 @@
+{
+  "conservative": {
+    "datasets": [
+      {
+        "data": [],
+        "backgroundColor": []
+      }
+    ],
+    "labels": []
+  },
+  "classic": {
+    "datasets": [
+      {
+        "data": [],
+        "backgroundColor": []
+      }
+    ],
+    "labels": []
+  },
+  "confident": {
+    "datasets": [
+      {
+        "data": [],
+        "backgroundColor": []
+      }
+    ],
+    "labels": []
+  }
+}

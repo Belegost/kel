@@ -1,0 +1,160 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    <div class="page-header short-header">
+        <div class="page-header-bg"></div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey userregistration">
+        <div class="bg-white box-framed">
+            <div class="container">
+                <h1>Create New Account</h1>
+                <div id="flash-error"></div>
+                {{ form_start(form_signup) }}
+                <fieldset class="userregistration-username">
+                    {{ form_label(form_signup.username) }}
+                    {{ form_widget(form_signup.username) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+                <fieldset class="userregistration-password">
+                    {{ form_label(form_signup.password) }}
+                    {{ form_widget(form_signup.password) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+                <fieldset class="userregistration-confirmpassword">
+                    {{ form_label(form_signup.repeatPassword) }}
+                    {{ form_widget(form_signup.repeatPassword) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+{#                <fieldset class="userregistration-firstname">#}
+{#                    {{ form_label(form_signup.first_name) }}#}
+{#                    {{ form_widget(form_signup.first_name) }}#}
+{#                    <div class="field-border"></div>#}
+{#                    <div class="field-error"></div>#}
+{#                </fieldset>#}
+
+{#                <fieldset class="userregistration-lastname">#}
+{#                    {{ form_label(form_signup.last_name) }}#}
+{#                    {{ form_widget(form_signup.last_name) }}#}
+{#                    <div class="field-border"></div>#}
+{#                    <div class="field-error"></div>#}
+{#                    <!--Please type your last name-->#}
+{#                </fieldset>#}
+
+                <fieldset class="userregistration-email">
+                    {{ form_label(form_signup.email) }}
+                    {{ form_widget(form_signup.email) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+{#                <fieldset class="userregistration-receivealerts">#}
+{#                    <label for="{{ form_signup.email_notify.vars.id }}"#}
+{#                           class="checkbox">{{ form_widget(form_signup.email_notify) }}{{ form_signup.email_notify.vars.label }}</label>#}
+{#                </fieldset>#}
+
+                <fieldset
+                        class="userregistration-phone">
+                    {{ form_label(form_signup.phone) }}
+                    {{ form_widget(form_signup.phone) }}
+                    <div class="field-border"></div>
+                    <div class="field-error"></div>
+                </fieldset>
+
+{#                <fieldset class="userregistration-receivealerts">#}
+{#                    <label for="{{ form_signup.phone_notify.vars.id }}"#}
+{#                           class="checkbox">{{ form_widget(form_signup.phone_notify) }}{{ form_signup.phone_notify.vars.label }}</label>#}
+{#                </fieldset>#}
+
+                <fieldset class="edit-avatar">
+                    <div class="edit-avatar-current">
+                        <div class="edit-avatar-current-img"
+                             style="background-image: url({{ asset(avatar_url) }});">
+                            <div class="edit-avatar-current-delete"><span></span><span></span></div>
+                        </div>
+                        <h5>Avatar</h5>
+{#                        <p>JPG, GIF or PNG < 5 MB</p>#}
+                    </div>
+                    <div class="edit-avatar-add">
+                        {{ form_widget(form_signup.avatar) }}
+{#                        <input type="file" name="{{ form_signup.vars.name }}[{{ form_signup.upload_file.vars.name }}]" id="{{ form_signup.upload_file.vars.id }}" class="inputfile inputfile-2"#}
+{#                               data-multiple-caption="{count} files selected" multiple="" >#}
+{#                        <label for="{{ form_signup.upload_file.vars.id }}"><span>Choose a file…</span></label>#}
+                    </div>
+                    <div class="edit-avatar-error"><div>{{ form_errors(form_signup.upload_file) }}</div></div>
+                    <div></div>
+                    <div class="avatars-set">
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_01.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_02.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_03.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_04.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_05.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_06.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_07.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_08.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_09.jpg') }}" /></div>
+                        <div class="avatars-set-item"><img src="{{ asset('images/avatars/avatar_10.jpg') }}" /></div>
+                    </div>
+                </fieldset>
+
+                {{ form_row(form_signup._token) }}
+                {{ form_widget(form_signup.submit, {'attr' : {'class': 'btn btn_blue'}}) }}
+                {{ form_end(form_signup, {'render_rest': false}) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/libs/intlTelInput.min.js') }}"></script>
+    <script src="{{ asset('js/libs/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('js/libs/avatar-upload.js') }}"></script>
+    <script src="{{ asset('js/pages/user-registration.min.js') }}"></script>
+    <script src="{{ asset('js/pages/add/user-registration.add.js') }}"></script>
+
+    <script type="text/javascript">
+        window.onload = () => {
+            $("#sign_up_phone").intlTelInput('setCountry', '{{ country_code|lower }}');
+        };
+
+        let signupFormName = 'sign_up';
+        let signupFieldAlert = $("#flash-error");
+
+        let signupForm = $("form[name=" + signupFormName + "]");
+        signupForm.submit(function (event) {
+            event.preventDefault();
+
+            let formData = new FormData(this);
+
+            $.ajaxSetup({
+                url: "{{ path('route_signup') }}",
+                global: false,
+                type: "POST",
+                processData: false,
+                contentType: false,
+                success: function (responce) {
+                    signupFieldAlert.attr('class', '');
+                    showFromError(signupFormName, responce);
+                    if (responce === true) {
+                        window.location.href = '{{ path('route_home') }}';
+                    }
+                },
+                error: function (responce) {
+                    signupFieldAlert.attr('class', 'flash-error');
+                    signupFieldAlert.html('something is broken');
+                }
+            });
+            $.ajax({data: formData});
+
+        });
+    </script>
+{% endblock %}

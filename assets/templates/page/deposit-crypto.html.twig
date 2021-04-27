@@ -1,0 +1,257 @@
+{% set header_class = '' %}
+{% set body_class = 'deposit-cf' %}
+{% set isLogged = true %}
+{% set isRateUSD = true %}
+
+{% set submenu = true %}
+{% set page = 'deposit' %}
+
+{% set freeze_popup = false %}
+
+{% extends 'ift-base.html.twig' %}
+
+{% block page_header %}
+    {{ include('page/dashboard-header.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey">
+        <div class="container">
+            <br>
+            <div class="bg-white box-framed">
+
+                <div class="dashboard-menu-tabs">
+                    <div class="container">
+                        <a href="/front.php?page=deposit-crypto" class="dashboard-menu-tabs-item current">Crypto</a>
+                        <a href="/front.php?page=deposit-fiat" class="dashboard-menu-tabs-item">Fiat</a>
+                        <div class="dashboard-menu-tabs-help">Need help?</div>
+                    </div>
+                </div>
+
+
+                <div class="deposit-cf-crypto">
+                    <div class="deposit-cf-crypto-col">
+                        <fieldset class="crypto-coin">
+                            <label for="crypto-coin" class="focused">Coin</label>
+                            <div class="select-cf deposit-cf-select">
+                                <div></div>
+                                <ul>
+                                    <li data-value="BTC"><img src="/images/wallet_icon_bitcoin.png" loading="lazy" decoding="async"> BTC <small>Bitcoin</small></li>
+                                    <li data-value="ETH"><img src="/images/wallet_icon_ethereum.png" loading="lazy" decoding="async"> ETH <small>Ethereum</small></li>
+                                </ul>
+                                <input type="hidden" name="crypto-coin" id="crypto-coin" value="" />
+                            </div>
+                        </fieldset>
+
+                        <div class="deposit-cf-crypto-balance" data-coin="BTC">
+                            <small>Total balance:</small> 0.000000000
+                        </div>
+                    </div>
+
+                    <div class="deposit-cf-crypto-col deposit-cf-crypto-payinfo">
+                        <div class="deposit-cf-crypto-payinfo-title">Deposit network</div>
+                        <div class="deposit-cf-crypto-networks">
+                            <div class="deposit-cf-crypto-network" id="crypto-BTC">
+                                <div class="dashboard-menu-tabs">
+                                    <div class="container">
+                                        <a href="#" class="dashboard-menu-tabs-item current" data-tab="1">BTC</a>
+                                        <a href="#" class="dashboard-menu-tabs-item" data-tab="2">BEP2</a>
+                                        <a href="#" class="dashboard-menu-tabs-item" data-tab="3">BEP20 (BSG)</a>
+                                        <a href="#" class="dashboard-menu-tabs-item" data-tab="4">ERC20</a>
+                                    </div>
+                                </div>
+                                <small>Average arrival time: 1 minutes</small>
+                                <div class="deposit-cf-crypto-addresses">
+                                    <div class="deposit-cf-crypto-addresses-container">
+                                        <div class="deposit-cf-crypto-address">
+                                            <h3 class="deposit-cf-crypto-address-title">BTC Address</h3>
+                                            <img src="/images/icon_qrcode.svg" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">asdas12312asdFcd123dawHHawdsdDF23Ikl</div>
+                                        </div>
+                                        <div class="deposit-cf-crypto-address">
+                                            <h3 class="deposit-cf-crypto-address-title">BEP2 Address</h3>
+                                            <img src="/images/icon_qrcode.svg" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">1hjawdawHHawd234Dada123asdDDF21jnkOP</div>
+                                        </div>
+                                        <div class="deposit-cf-crypto-address">
+                                            <h3 class="deposit-cf-crypto-address-title">BEP20 (BSG) Address</h3>
+                                            <img src="/images/icon_qrcode.svg" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">qwerty-123-sdfsd-83sd-123-fsdf-DJK12</div>
+                                        </div>
+                                        <div class="deposit-cf-crypto-address">
+                                            <h3 class="deposit-cf-crypto-address-title">ERC20 Address</h3>
+                                            <img src="/images/icon_qrcode.svg" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">kjjknsd13sdfDs123DSFvfdLL123LLMNNMSD</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="deposit-cf-crypto-payinfo-desc">
+                                    <b>Send only BTC to this deposit address</b>
+                                    <p>Sending coin or token other than BTC to this address may result in the loss of your deposit.</p>
+                                </div>
+                                <div class="deposit-cf-crypto-payinfo-icon"><img src="/images/wallet_icon_bitcoin.png" loading="lazy" decoding="async"></div>
+                            </div>
+
+                            <div class="deposit-cf-crypto-network" id="crypto-ETH">
+                                <div class="dashboard-menu-tabs">
+                                    <div class="container">
+                                        <a href="#" class="dashboard-menu-tabs-item current" data-tab="1">ETH</a>
+                                        <a href="#" class="dashboard-menu-tabs-item" data-tab="2">ETH2</a>
+                                        <a href="#" class="dashboard-menu-tabs-item" data-tab="3">ETH3</a>
+                                    </div>
+                                </div>
+                                <small>Average arrival time: 1 minutes</small>
+                                <div class="deposit-cf-crypto-addresses">
+                                    <div class="deposit-cf-crypto-addresses-container">
+                                        <div class="deposit-cf-crypto-address">
+                                            <h3 class="deposit-cf-crypto-address-title">ETH Address</h3>
+                                            <img src="/images/icon_qrcode.svg" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">asdas12312asdFcd123dawHHawdsdDF23Ikl</div>
+                                        </div>
+                                        <div class="deposit-cf-crypto-address">
+                                            <h3 class="deposit-cf-crypto-address-title">ETH2 Address</h3>
+                                            <img src="/images/icon_qrcode.svg" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">1hjawdawHHawd234Dada123asdDDF21jnkOP</div>
+                                        </div>
+                                        <div class="deposit-cf-crypto-address">
+                                            <h3 class="deposit-cf-crypto-address-title">ETH3 (BSG) Address</h3>
+                                            <img src="/images/icon_qrcode.svg" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">qwerty-123-sdfsd-83sd-123-fsdf-DJK12</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="deposit-cf-crypto-payinfo-desc">
+                                    <b>Send only ETH to this deposit address</b>
+                                    <p>Sending coin or token other than ETH to this address may result in the loss of your deposit.</p>
+                                </div>
+                                <div class="deposit-cf-crypto-payinfo-icon"><img src="/images/wallet_icon_ethereum.png" loading="lazy" decoding="async"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="deposit-cf-crypto-col">
+                        <div class="deposit-cf-tips">
+                            <b class="deposit-cf-tips-title">Tips:</b>
+                            <ul>
+                                <li>If you have deposited, please pay attention to the text messages, site letters and emails we send to you.</li>
+                                <li>Coins will be deposited after 1 network confirmations.</li>
+                                <li>Until 2 confirmations are made, an equivalent amount of your assets will be temporarily unavailable for withdrawals.</li>
+                            </ul>
+                        </div>
+
+                        <div class="deposit-cf-gotrade">
+                            <small>Go to Trade:</small>
+                            <a href="">BTC/AUD</a>
+                            <a href="">BTC/BIDR</a>
+                            <a href="">BTC/BRL</a>
+                            <a href="">BTC/BUSD</a>
+                            <a href="">BTC/DAI</a>
+                            <a href="">BTC/EUR</a>
+                            <a href="">BTC/GBP</a>
+                            <a href="">BTC/IDRT</a>
+                            <a href="">BTC/NGN</a>
+                            <a href="">BTC/PAX</a>
+                            <a href="">BTC/RUB</a>
+                            <a href="">BTC/TRY</a>
+                            <a href="">BTC/TUSD</a>
+                            <a href="">BTC/UAH</a>
+                            <a href="">BTC/USDC</a>
+                            <a href="">BTC/USDT</a>
+                            <a href="">BTC/VAI</a>
+                            <a href="">BTC/ZAR</a>
+                        </div>
+                    </div>
+
+                </div>
+
+{#                                <div class="btc-address visible">#}
+{#                                    <fieldset>#}
+{#                                        <input id="btc-link" name="wallet_address_hash" type="text" readonly />#}
+{#                                        <input id="btc-link-memo" name="wallet_address_hash_memo" type="text" readonly />#}
+{#                                        <div class="field-border"></div>#}
+{#                                        <div class="field-error">Please input BTC address</div>#}
+{#                                    </fieldset>#}
+{#                                    <p>or use QR code for transfer of BTC to fund</p>#}
+{#                                    <div class="deposit-qr"><img src="" /></div>#}
+
+{#                                    <fieldset>#}
+{#                                        <label for="usdt-link">USDT address</label>#}
+{#                                        <input id="usdt-link" name="wallet_address_hash_usdt" type="text" readonly />#}
+{#                                        <input id="usdt-link-memo" name="wallet_address_hash_usdt_memo" type="text" readonly />#}
+{#                                        <div class="field-border"></div>#}
+{#                                        <div class="field-error">Please input USDT address</div>#}
+{#                                    </fieldset>#}
+{#                                    <p>or use QR code for transfer of USDT to fund</p>#}
+{#                                    <div class="deposit-qr"><img src="" /></div>#}
+
+{#                                </div>#}
+            </div>
+        </div>
+        <div class="container">
+            {# @todo patch: move to stylesheet #}
+            <style>
+                .withdrawal-history {
+                    clear: both;
+                }
+            </style>
+            <div class="deposit-history">
+                <div class="deposit-history-title">
+                    <h3>Recent Deposit History</h3>
+                    <a href="#" class="deposit-history-title-help">Deposit didn't arrive?</a>
+                </div>
+                <div class="deposit-history-thead">
+                    <div class="deposit-history-coin">Type</div>
+                    <div class="deposit-history-status">Status</div>
+                    <div class="deposit-history-amount">Amount</div>
+                    <div class="deposit-history-date">Date</div>
+                    <div class="deposit-history-info">Information</div>
+                </div>
+                <div class="deposit-history-tbody">
+                    <div class="deposit-history-row">
+                        <div class="deposit-history-coin">USDT</div>
+                        <div class="deposit-history-status"><span class="deposit-status-complete">Complete</span></div>
+                        <div class="deposit-history-amount">10.00456689</div>
+                        <div class="deposit-history-date">25.03.2021 15:32</div>
+                        <div class="deposit-history-info"><p><span>Address:</span> 1hjawdawHHawd234Dada123asdDDF21jnkOP</p></div>
+                    </div>
+                    <div class="deposit-history-row">
+                        <div class="deposit-history-coin">BNB</div>
+                        <div class="deposit-history-status"><span class="deposit-status-complete">Complete</span></div>
+                        <div class="deposit-history-amount">10.0045</div>
+                        <div class="deposit-history-date">22.03.2021 09:54</div>
+                        <div class="deposit-history-info"><p><span>Address:</span> 1hjawdaasd23asdas34Dada123asdDDF21jnkOP</p></div>
+                    </div>
+                    {#<div class="withdrawal-history-row">#}
+                    {#<div class="withdrawal-history-amount">1.1008887 BTC#}
+                    {#<small>$10.00 transaction fee</small>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-wallet">My main BTC Wallet</div>#}
+                    {#<div class="withdrawal-history-status"><span class="withdrawal-status-complete">Complete</span>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-date">13 JAN, 2018#}
+                    {#<small>13:31</small>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-row">#}
+                    {#<div class="withdrawal-history-amount">567.8769 ETH#}
+                    {#<small>no fee</small>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-wallet">Ethereum</div>#}
+                    {#<div class="withdrawal-history-status"><span class="withdrawal-status-complete">Complete</span>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-date">30 DEC, 2017#}
+                    {#<small>13:31</small>#}
+                    {#</div>#}
+                    {#</div>#}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/js/libs/radialIndicator.min.js" ></script>
+    <script src="/js/libs/jquery.mask.min.js" ></script>
+    <script src="/js/src/pages/deposit-cf.js"></script>
+{% endblock %}

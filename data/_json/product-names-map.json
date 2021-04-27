@@ -1,0 +1,18 @@
+{
+  "CONSERVATIVE_1MO": "Conservative Trust",
+  "CONSERVATIVE_3MO": "Conservative Trust",
+  "CONSERVATIVE_6MO": "Conservative Trust",
+  "CONSERVATIVE_12MO": "Conservative Trust",
+  "CLASSIC_1MO": "Classic Trust",
+  "CLASSIC_3MO": "Classic Trust",
+  "CLASSIC_6MO": "Classic Trust",
+  "CLASSIC_12MO": "Classic Trust",
+  "CONFIDENT_1MO": "Confident Trust",
+  "CONFIDENT_3MO": "Confident Trust",
+  "CONFIDENT_6MO": "Confident Trust",
+  "CONFIDENT_12MO": "Confident Trust",
+  "INDIVIDUAL_1MO": "Individual Portfolio",
+  "INDIVIDUAL_3MO": "Individual Portfolio",
+  "INDIVIDUAL_6MO": "Individual Portfolio",
+  "INDIVIDUAL_12MO": "Individual Portfolio"
+}

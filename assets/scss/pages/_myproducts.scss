@@ -1,0 +1,363 @@
+.myproducts {
+  clear: both;
+  overflow: hidden;
+  > .container {
+    padding-top: 45px;
+  }
+  > .container > .box-framed {
+    margin-top: 0;
+  }
+  .block-spesial_service-item img {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 14px rgba(0,0,0,.2);
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%);
+    &.animate-visible {
+      transform: translateY(0);
+      box-shadow: none;
+      -webkit-filter: grayscale(90%);
+      filter: grayscale(90%);
+    }
+  }
+  .box-framed {
+    margin-bottom: 2rem;
+  }
+  .charts-tooltip-pointer {
+    background: #f1f1f1!important;
+  }
+}
+.myproducts + .myproducts {
+  margin-top: 5rem;
+  padding-top: 3rem;
+}
+.myproducts-gallery-non_invested_funds {
+  margin-top: 180px;
+  p {
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .big-digits {
+    position: relative;
+    padding-left: 30px;
+    color: $color-blue;
+    &:before {
+      top: 5px;
+      left: 0;
+      content: '$';
+      position: absolute;
+      font-size: 2rem;
+      line-height: 2rem;
+      display: block;
+    }
+  }
+}
+.cabinet-product {
+  border-radius: 4px;
+  &-title {
+    .block-spesial_service-item {
+      float: left;
+      padding: 1rem 0 2rem 30px;
+      h6 {
+        font-size: calculateRem(24px);
+        font-weight: 600;
+        line-height: 30px;
+        color: #000;
+      }
+    }
+    .btn {
+      float: right;
+      display: block;
+      margin-top: 24px;
+    }
+    .cabinet-product-show {
+      float: right;
+      position: relative;
+      margin-top: 25px;
+      width: 34px;
+      height: 34px;
+      border: 2px solid lighten($color-text-grey, 20%);
+      border-radius: 50%;
+      cursor: pointer;
+      span {
+        position: absolute;
+        display: block;
+        width: 2px;
+        height: 16px;
+        left: 50%;
+        top: 50%;
+        margin-left: -1px;
+        margin-top: -8px;
+        background: lighten($color-text-grey, 20%);
+        transition: transform .3s;
+        transform-origin: 50% 50%;
+        &:first-of-type {
+          transform: rotate(90deg);
+        }
+      }
+      &:hover {
+        span {
+          transform: rotate(90deg);
+          &:first-of-type {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    &-digits {
+      clear: both;
+      margin-top: 30px;
+      margin-left: -30px;
+      margin-right: -30px;
+      padding: 30px 30px 15px;
+      border-top: 1px solid darken(#f1f1f1, 15%);
+      border-bottom: 1px solid darken(#f1f1f1, 15%);
+      background: darken(#f1f1f1, 3%);
+      font-size: 0;
+      > div {
+        display: inline-block;
+        width: 33.33%;
+        padding-left: 45px;
+        box-sizing: border-box;
+        font-size: 1rem;
+        &:before {
+          content: '';
+          position: absolute;
+          display: block;
+          width: 1px;
+          height: 65px;
+          margin-left: -60px;
+          margin-top: 5px;
+          background: darken(#f1f1f1, 15%);
+        }
+        &:first-of-type {
+          &:before {
+            display: none;
+          }
+        }
+      }
+      .big-digits {
+        line-height: calculateRem(40px);
+        font-size: calculateRem(40px);
+        font-weight: 500;
+      }
+      .cabinet-product-title-digits-funds .big-digits {
+        color: #1fbad6;
+      }
+      .cabinet-product-title-digits-btc .big-digits {
+        color: #0195e8;
+      }
+      .cabinet-product-title-digits-percent .big-digits {
+        color: #03324c;
+      }
+      p {
+        padding-top: .5rem;
+        font-size: calculateRem(14px);
+      }
+    }
+  }
+
+  &.active {
+    .cabinet-product-title .cabinet-product-show {
+      border-color: $color-blue;
+      span {
+        background: $color-blue;
+        transform: rotate(90deg)!important;
+      }
+    }
+  }
+
+  &-body {
+    display: none;
+    &-section {
+      margin-left: -30px;
+      margin-right: -30px;
+      padding: 30px;
+      overflow: hidden;
+      border-bottom: 1px solid darken(#f1f1f1,15%);
+      h5 {
+        padding-bottom: 1rem;
+        padding-right: 30px;
+        font-size: calculateRem(18px);
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        line-height: calculateRem(24px);
+        color: $color-blue;
+      }
+      .cabinet-bar-wrapper {
+        height: 320px;
+        canvas {
+          margin-top: 20px;
+          height: 320px;
+        }
+      }
+      &:last-of-type {
+        border-bottom-color: transparent;
+      }
+      > div {
+        display: block;
+        float: left;
+        width: 50%;
+      }
+      &:first-of-type {
+        > div:last-of-type {
+          padding-left: 60px;
+        }
+      }
+      &:last-of-type {
+        > div:first-of-type {
+          padding-right: 30px;
+        }
+        > div:last-of-type {
+          padding-left: 30px;
+        }
+      }
+
+      .cabinet-product-close {
+        position: relative;
+        width: 100%;
+        .btn {
+          float: right;
+        }
+      }
+    }
+  }
+  .cabinet-product-body-pie {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: 420px;
+  }
+}
+.myproducts .cabinet-product-body-section .dashboard-charts-cryptoassets-row-diff {
+  padding-right: 0!important;
+}
+@media (max-width: 1139px) {
+  .cabinet-product {
+    &-body {
+      &-section {
+        &:first-of-type {
+          > div:first-of-type {
+            width: 35%;
+          }
+          > div:last-of-type {
+            width: 65%;
+          }
+        }
+      }
+    }
+    .cabinet-product-body-pie {
+      height: 350px;
+    }
+  }
+  .cabinet-product-title-digits>div:before {
+    margin-left: -40px;
+  }
+}
+@media (max-width: 979px) {
+  .cabinet-product-title .block-spesial_service-item {
+    max-width: 400px;
+  }
+  .cabinet-product-title-digits>div {
+    padding-left: 0;
+    .big-digits {
+      line-height: 2rem;
+      font-size: 2rem;
+    }
+  }
+  .cabinet-product-title-digits>div:before {
+    margin-left: -15px;
+  }
+  .cabinet-product .cabinet-product-body-pie {
+    height: 300px;
+  }
+  .cabinet-product {
+    &-body {
+      &-section {
+        &:last-of-type {
+          > div {
+            width: 100%;
+            padding-bottom: 30px;
+            &:first-of-type {
+              padding-right: 0;
+            }
+            &:last-of-type {
+              padding-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .cabinet-product {
+    &-body {
+      &-section {
+        &:first-of-type {
+          > div {
+            width: 100%!important;
+            padding-bottom: 30px;
+            &:first-of-type {
+              padding-right: 0;
+            }
+            &:last-of-type {
+              padding-left: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+  .cabinet-product-title-digits>div {
+    width: 100%;
+    text-align: center;
+  }
+  .cabinet-product-title-digits>div:before {
+    display: none;
+  }
+  .cabinet-product-title .block-spesial_service-item {
+    max-width: 330px;
+  }
+  .cabinet-product-title .btn {
+    float: none;
+    clear: both;
+  }
+}
+@media (max-width: 600px) {
+  .crypto-overview .crypto-overview-leftcol {
+    float: none;
+    width: 100%;
+    padding-bottom: 2rem;
+  }
+  .myproducts-gallery-non_invested_funds {
+    margin-top: 1rem;
+  }
+  .crypto-overview .crypto-overview-main {
+    margin-left: 0;
+    padding-left: 0;
+    .crypto-overview-gallery {
+      width: 100%;
+    }
+  }
+}
+@media (max-width: 479px) {
+  .cabinet-product-title .block-spesial_service-item {
+    max-width: 270px;
+  }
+  .cabinet-product-body-section,
+  .cabinet-product-title-digits {
+    margin-left: -20px;
+    margin-right: -20px;
+  }
+  .myproducts .block-spesial_service-item img {
+    float: none;
+    margin-bottom: 10px;
+  }
+  .cabinet-product-title .block-spesial_service-item {
+    max-width: 210px;
+    padding-left: 0;
+  }
+  .myproducts .block-spesial_service-item h6,
+  .myproducts .block-spesial_service-item p {
+    margin-left: 0;
+  }
+}

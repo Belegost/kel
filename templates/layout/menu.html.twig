@@ -1,0 +1,15 @@
+{% if siteNavBars.subMenu is defined and siteNavBars.subMenu is not empty %}
+    <div class="dashboard-menu-tabs">
+        <div class="container">
+            {% for item in siteNavBars.subMenu %}
+            {#{% if item.view_mode %}
+                    <span class="dashboard-menu-tabs-item">{{ item.name }}</span>
+                {% else %}
+                    <a href="{{ item.href }}" class="dashboard-menu-tabs-item {{ item.current }}">{{ item.name }}</a>
+                {% endif %}#}
+
+                <a href="{{ item.link }}" class="dashboard-menu-tabs-item {{ item.selected ? 'current' : '' }}" {{ item.attributes|raw }}>{{ item.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endif %}

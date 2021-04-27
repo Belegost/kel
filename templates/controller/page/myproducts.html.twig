@@ -1,0 +1,281 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    {{ include('controller/page/dashboard-header.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+    <div class="myproducts bg-light-grey">
+        <div class="container">
+            {% for product in myProducts %}
+                {% if product.status == 'Processing' %}
+                    <div class="bg-white box-framed cabinet-product cabinet-classic_trust">
+                        <div class="cabinet-product-title">
+                            <div class="block-spesial_service-item animate-visible">
+                                <img class="block-spesial_service-item-img" src="{{ product.img }}"/>
+                                <h6>{{ product.name }}</h6>
+                                <p>Ready Structured product of Integrity Fundation</p>
+                            </div>
+                            <button class="btn btn_red">Processing</button>
+                            <div class="cabinet-product-title-digits">
+                                <div class="cabinet-product-title-digits-funds">
+                                    <div class="big-digits">{{ product.investAmountBtc|number_format(8, '.', '') }}</div>
+                                    <p>Funds invested in Product</p>
+                                </div>
+                                <div class="cabinet-product-title-digits-btc">
+                                    <div class="big-digits">0.00000000</div>
+                                    <p>Product Current Equity (BTC)</p>
+                                </div>
+                                <div class="cabinet-product-title-digits-percent">
+                                    <div class="big-digits">0.00</div>
+                                    <p>Product Current Equity (%)</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+
+            {% for id, product in myProducts %}
+                {% if product.status == 'Active' %}
+                    <div class="bg-white box-framed cabinet-product cabinet-classic_trust" data-productid="{{ id }}"
+                         id="product-{{ id }}">
+                        <div class="cabinet-product-title">
+                            <div class="block-spesial_service-item animate-visible">
+                                <img class="block-spesial_service-item-img"
+                                     src="{{ product.img }}"/>
+                                <h6>{{ product.name }}</h6>
+                                <p>Ready Structured product of Integrity Fundation</p>
+                            </div>
+                            <div class="cabinet-product-show"><span></span><span></span></div>
+                            <div class="cabinet-product-title-digits">
+                                <div class="cabinet-product-title-digits-funds">
+                                    <div class="big-digits">{{ (product.price * product.quantity)|number_format(2, '.', '') }}</div>
+                                    <p>Funds invested in Product</p>
+                                </div>
+                                <div class="cabinet-product-title-digits-btc">
+                                    <div class="big-digits">{{ product.currentEquityUsd|number_format(2, '.', '') }}</div>
+                                    <p>Product Current Equity (USDT)</p>
+                                </div>
+                                <div class="cabinet-product-title-digits-percent">
+                                    <div class="big-digits">{{ product.currentEquityPct|number_format(2, '.', '') }}</div>
+                                    <p>Product Current Equity (%)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cabinet-product-body">
+                            <div class="cabinet-product-body-section">
+                                <div class="cabinet-product-body-line">
+                                    <div class="histogramm-menu" style="display: none!important;">
+                                        <span class="current">1 D</span>
+                                        <span>1 W</span>
+                                        <span>1 M</span>
+                                        <span>3 M</span>
+                                        <span>1 Y</span>
+                                        <span>5 Y</span>
+                                        <span>MAX</span>
+                                        <div class="active-border"></div>
+                                    </div>
+                                    <h5>Total equity</h5>
+                                    <br>
+                                    <canvas></canvas>
+                                </div>
+                                <div class="cabinet-product-body-pie">
+                                    <canvas></canvas>
+                                </div>
+                            </div>
+                            <div class="cabinet-product-body-section">
+                                <div>
+                                    <h5>Instruments current rates</h5>
+                                    {% for asset in product.currentPoint.assets %}
+                                        <div class="dashboard-charts-cryptoassets-row">
+                                            <div>
+                                                <h6>{{ asset.pair }}</h6>
+                                                <small>{{ asset.label }}</small>
+                                            </div>
+                                            <div class="dashboard-charts-cryptoassets-row-value">{{ asset.price }}</div>
+                                            <div class="dashboard-charts-cryptoassets-row-diff">
+                                                <span class="icon-color-arrow icon-color-arrow-{{ asset.direction }}"></span>{{ asset.direction == 'up' ? '+' : '' }}{{ asset.change|number_format(2, '.', '') }}
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <div class="cabinet-bar-wrapper">
+                                    <h5>All time equity by instruments</h5>
+                                    <canvas></canvas>
+                                </div>
+                            </div>
+                            <div class="cabinet-product-body-section">
+                                <div class="cabinet-product-close">
+                                    <button type="button" class="btn btn_red">
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <br><br>
+    </div>
+
+    <div class="myproducts">
+        <div class="crypto-overview">
+            <div class="container">
+                <div class="crypto-overview-leftcol">
+                    <h5 class="label-blue">Do you want more products?</h5>
+                    <h4>We check the crypto currency for the most important parameters.</h4>
+                    <div class="myproducts-gallery-non_invested_funds">
+                        <p>You have non invested funds:</p>
+                        <div class="big-digits">{% if nonInvestedFunds is defined %}{{ nonInvestedFunds }}{% else %}0.00{% endif %}</div>
+                    </div>
+                </div>
+                <div class="crypto-overview-main">
+                    <div class="crypto-overview-gallery-wrap">
+                        <div class="crypto-overview-gallery owl-carousel">
+
+                            <div class="crypto-overview-gallery-item item1">
+                                <div class="hover panel">
+                                    <div class="front">
+                                        <div class="side1">
+                                            <h5>We provide</h5>
+                                            <p>You regular and systematic portfolio monitoring that allows You thorough
+                                                risk and quality control</p>
+                                        </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="side2">
+                                            <p>Together we analyse Your individual situation.<br> Based on the above
+                                                risk profile we will implement the appropriate investment strategy,
+                                                monitoring Your investments amd respond quickly and flexible to market
+                                                changes.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-overview-gallery-item item2">
+                                <div class="hover panel">
+                                    <div class="front">
+                                        <div class="side1">
+                                            <h5>We provide</h5>
+                                            <p>You a dedicated advisory specialist to support Your investment decisions
+                                                with customized and timely investments proposals</p>
+                                        </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="side2">
+                                            <p>Together we analyse Your individual situation by focusing on:<br>
+                                                &bull; Your risk appetite<br>
+                                                &bull; Your return expectations<br>
+                                                &bull; Your investment goal<br>
+                                                &bull; Your investment horizon<br>
+                                                &bull; The structure of Your actual wealth<br>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-overview-gallery-item item3">
+                                <div class="hover panel">
+                                    <div class="front">
+                                        <div class="side1">
+                                            <h5>We provide</h5>
+                                            Your individual situation
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="side2">
+                                            <p>Together we analyse Your individual situation by focusing on:<br>
+                                                &bull; Your risk appetite<br>
+                                                &bull; Your return expectations<br>
+                                                &bull; Your investment goal<br>
+                                                &bull; Your investment horizon<br>
+                                                &bull; The structure of Your actual wealth<br>
+                                                Based on the above risk profile we will implement the appropriate
+                                                investment strategy, monitoring Your investments amd respond quickly and
+                                                flexible to market changes.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-overview-gallery-item item4">
+                                <div class="hover panel">
+                                    <div class="front">
+                                        <div class="side1">
+                                            <h5>We provide</h5>
+                                            <p>You a periodic and high-quality portfolio analysis and reporting</p>
+                                        </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="side2">
+                                            <p>Together we analyse Your individual situation by focusing on:<br>
+                                                &bull; Your investment horizon<br>
+                                                &bull; The structure of Your actual wealth<br>
+                                                Based on the above risk profile we will implement the appropriate
+                                                investment strategy, monitoring Your investments amd respond quickly and
+                                                flexible to market changes.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="crypto-overview-gallery-item item5">
+                                <div class="hover panel">
+                                    <div class="front">
+                                        <div class="side1">
+                                            <h5>We provide</h5>
+                                            <p>You a solution where You take the investment decision with the support of
+                                                our investment specialists</p>
+                                        </div>
+                                    </div>
+                                    <div class="back">
+                                        <div class="side2">
+                                            <p>Together we analyse Your individual situation by focusing on:<br>
+                                                &bull; Your risk appetite<br>
+                                                &bull; Your return expectations<br>
+                                                &bull; Your investment goal<br>
+                                                &bull; Your investment horizon<br>
+                                                &bull; The structure of Your actual wealth<br>
+                                                Based on the above risk profile we will implement the appropriate
+                                                investment strategy, monitoring Your investments amd respond quickly and
+                                                flexible to market changes.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dashboard-footer">
+        <div class="support-block">
+            <div class="support-block-bg"></div>
+            <div class="support-block-subtitle animate-visible"><b>Do you have any Question?</b></div>
+            <div class="support-block-title animate-visible"><h2>Contact Your Account Manager</h2></div>
+            <div class="support-block-description animate-visible"><h5>Please, click to Request Button and your Personal
+                    Manager call to your phone imidiallity.</h5></div>
+            <div class="support-block-link animate-visible">
+                <a onclick='$("#zsiq_agtpic").click();' class="btn btn_lg">Send Request <span class="hidden-arrow-right"></span></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/pages/myproducts.min.js') }}"></script>
+{% endblock %}

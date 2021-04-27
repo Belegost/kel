@@ -1,0 +1,32 @@
+snc_redis:
+    clients:
+       default:
+            type: predis
+            alias: default
+            dsn: '%env(REDIS_DSN)%'
+       cache:
+            type: predis
+            alias: cache
+            dsn: '%env(REDIS_DSN)%'
+            options:
+#                 profile: 6.0
+                 connection_timeout: 10
+                 read_write_timeout: 30
+
+#    doctrine:
+#        metadata_cache:
+#            client: cache
+#            entity_manager: [integrity,mrm]
+#            document_manager: default
+#        result_cache:
+#            client: cache
+#            entity_manager: [integrity,mrm]
+#            document_manager: [default]
+#            namespace: "dcrc:"
+#        query_cache:
+#            client: cache
+#            entity_manager: [integrity,mrm]
+#        second_level_cache:
+#            client: cache
+#            entity_manager: [integrity,mrm]
+

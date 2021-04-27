@@ -1,0 +1,204 @@
+{% extends "ift-base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/add/style.add.css') }}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="page-header-icon page-header-icon-classic animate-visible"></div>
+        <div class="title-wrap animate-visible"><h1>Classic Structured Product</h1></div>
+        <div class="title-description-wrap animate-visible"><h5>Distribution among carefully selected TOP-5
+                cryptocurrencies and classic money market fixed income instruments</h5></div>
+        <div class="title-link-wrap animate-visible">
+            {% if auth.isLogged() %}
+                <a href="{{ path('route_user_dashboard') }}" class="btn btn_transparent btn_lg">Invest Now <span
+                            class="hidden-arrow-right"></span></a>
+            {% else %}
+                <button class="btn btn_transparent btn_lg popup-toggle" data-target="popup-login">Invest Now <span
+                            class="hidden-arrow-right"></span></button>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="productpage-supercharge">
+        <div class="container">
+            <div class="cascading-img-box animate-visible">
+                <img src="{{ asset('images/productpage_cascadingimg_classic3.png') }}"/>
+                <img src="{{ asset('images/productpage_cascadingimg_classic1.png') }}"/>
+                <img src="{{ asset('images/productpage_cascadingimg_classic2.png') }}"/>
+            </div>
+            <div class="productpage-supercharge-info">
+                <div class="label-blue">First of all</div>
+                <h3>Supercharge Your Investment Strategy</h3>
+                <p>Whether You are an experienced investor or trader with deep expertise in traditional markets looking
+                    for new opportunities or novice person on investment stage who needs some guidance in just born
+                    crypto world - Integrity Crypto Trust has something to offer You.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light-grey productpage-increase">
+        <div class="container">
+            <div class="productpage-increase-persent">
+                <div class="big-digits">10.791</div>
+            </div>
+            <div class="productpage-increase-persent-text">
+                <h3>Trust Increase in this year<sup>*</sup></h3>
+                <p>Cumulative Return of investments into ICT profucts.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="productpage-truststructure">
+        <div class="container">
+            <div class="productpage-truststructure-title">
+                <h3>Trust structure</h3>
+                <p>Monthly distribution of fund allocation in different products offered by ICT during last year</p>
+            </div>
+            <div class="productpage-truststructure-text animate-visible">
+                <div>
+                    <p>Domain knowledge, specific understanding of the client’s investment goals and expectations are the key factors in the art of making right allocation of client’s funds.</p>
+                    <p>Asset management by ICT will give You the opportunity to concentrate yourself on other important topics, whereas we manage Your investments with high accuracy and professional competence.</p>
+                </div>
+                <div>
+                    <div><canvas id="product-structure"></canvas></div>
+                </div>
+                <div id="productpage-truststructure-info"></div>
+            </div>
+            <div class="productpage-truststructure-bars animate-visible">
+                <div>
+                    <div class="productpage-truststructure-bars-info">
+                        <div class="indicator_crypto"></div>
+                        <h5>Crypto investitions</h5>
+                        <p>Investments in crypto-currencies</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="productpage-truststructure-bars-info">
+                        <div class="indicator_forex"></div>
+                        <h5>Forex portfolios</h5>
+                        <p>Investments in most prospective ICO tokens</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="productpage-truststructure-bars-info">
+                        <div class="indicator_cfd"></div>
+                        <h5>CFD’s portfolios</h5>
+                        <p>Investments in traditional money market instruments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-light-grey">
+        {{ include('controller/page/_block/product-pricing-table.html.twig') }}
+    </div>
+    <div class="bg-light-grey pricing-plans-showall">
+        <a href="{{ path('route_full_pricing') }}">View full comparative table for all trust's products <span><img src="{{ asset('images/icon_arrow-right-white.png') }}" /></span></a><br><br>
+        <a href="{{ path('route_product_list') }}">Back to products list <span><img src="{{ asset('images/icon_arrow-right-white.png') }}" /></span></a>
+    </div>
+
+    {% if not auth.isLogged() %}
+        <div class="productpage-cryptotrust">
+            <div class="productpage-cryptotrust-bg"></div>
+            <h2 class="animate-visible">Integrity Crypto Trust keeps You calm and confident</h2>
+            <a href="{{ path('route_signup') }}" class="btn btn_transparent btn_lg animate-visible">Open Account <span
+                        class="hidden-arrow-right"></span></a>
+        </div>
+    {% endif %}
+
+    <div class="bg-light-grey block-anyquetions">
+        <div class="container">
+            <h2>Have any quetions about <span>our product?</span></h2>
+            <div class="bg-white box-framed">
+                <div class="container">
+                    {% include 'forms/contact-type.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="block-spesial_service">
+        <h4>See our other Products</h4>
+        <div class="container">
+            <a href="{{ path('route_product_item', {'name':'conservative'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service1.jpg') }}"/>
+                <h6>Conservative Trust</h6>
+                <p>TOP-5 cryptocurrencies and classic money market fixed income instruments</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'confident'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service3.jpg') }}"/>
+                <h6>Confident Trust</h6>
+                <p>Risky ICO of utility tokens and top-10 cryptocurrencies</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'individual'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service4.jpg') }}"/>
+                <h6>Individual Portfolio</h6>
+                <p>Combined ESP with some exclusive tokens carefully selected by our analysts</p>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+    <div id="popupProductOrder" class="box-framed bg-white popup popup-product-order popup-sm">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <h4 id="popupProductName"></h4>
+
+        <div id="popupProductRequest">
+            <p>Please enter quantity of the selected product</p>
+
+            <div id="popupRequestErrors" class="dn flash-error"></div>
+            <fieldset>
+                <label for="fieldProductQuantity" class="required">Quantity</label>
+                <input id="fieldProductQuantity" name="product_quantity" type="number" min="1" required>
+                <div class="field-border"></div>
+                <div class="field-error">The filed Quantity is required</div>
+            </fieldset>
+            <fieldset>
+                <input id="fieldProductCode" name="product_code" type="hidden">
+            </fieldset>
+            <button id="popupButtonContinue" class="btn btn_blue btn_md">Continue</button>
+        </div>
+
+        <div id="popupProductResponse" class="dn">
+            <p>Your order was successfully submitted. You can check the status of your order in your personal cabinet <a href="{{ path('route_myproducts') }}">My Products</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        var integrityEnv = {
+            "productPie":{
+                "datasets":[{
+                    "data": [15, 15, 15, 5, 5, 5, 5, 5, 5, 25]
+                }],
+                "labels":["IOT","EOS","ZEC","TRX","MANA","XLM","BAT","SPK","YOYOW","BTC"],
+                "labelNames": ["IOTA","EOS","Zcash","TRON","Decentraland","Stellar","Basic Attention Token","Sparks","YOYOW","Bitcoin"]
+            },
+            "productRadial": {
+                "crypto": 78,
+                "forex": 73,
+                "cfd": 67,
+            }
+        }
+    </script>
+
+    {{ parent() }}
+    <script src="{{ asset('js/libs/radialIndicator.min.js') }}"></script>
+    <script src="{{ asset('js/pages/product.min.js') }}"></script>
+    <script src="{{ asset('js/pages/add/product.add.js') }}"></script>
+{% endblock %}

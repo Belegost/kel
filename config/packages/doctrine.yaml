@@ -1,0 +1,51 @@
+parameters:
+    # Adds a fallback DATABASE_URL if the env var is not set.
+    # This allows you to run cache:warmup even if your
+    # environment variables are not available yet.
+    # You should not need to change this value.
+    env(DATABASE_URL): ''
+
+doctrine:
+    dbal:
+        default_connection: integrity
+        connections:
+            integrity:
+                schema_filter: '~^(?!messenger_messages)~'
+                driver:   pdo_mysql
+                host:     '%env(DATABASE_INTEGRITY_HOST)%'
+                port:     '%env(DATABASE_INTEGRITY_PORT)%'
+                dbname:   '%env(DATABASE_INTEGRITY_DBNAME)%'
+                user:     '%env(DATABASE_INTEGRITY_USER)%'
+                password: '%env(DATABASE_INTEGRITY_PASSWORD)%'
+                charset:  UTF8
+            mrm:
+                driver:   pdo_mysql
+                host:     '%env(DATABASE_MRM_HOST)%'
+                port:     '%env(DATABASE_MRM_PORT)%'
+                dbname:   '%env(DATABASE_MRM_DBNAME)%'
+                user:     '%env(DATABASE_MRM_USER)%'
+                password: '%env(DATABASE_MRM_PASSWORD)%'
+                charset:  UTF8
+
+    orm:
+        default_entity_manager: integrity
+        entity_managers:
+            integrity:
+                connection: integrity
+                mappings:
+                    Integrity:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/Integrity'
+                        prefix: 'App\Entity\Integrity'
+                        alias: Integrity
+            mrm:
+                connection: mrm
+                mappings:
+                    MRM:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity/MRM'
+                        prefix: 'App\Entity\MRM'
+                        alias: MRM
+

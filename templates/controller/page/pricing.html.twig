@@ -1,0 +1,195 @@
+{% extends "ift-base.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/add/style.add.css') }}">
+{% endblock %}
+
+{% block page_header %}
+    <div class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="title-wrap animate-visible"><h1>Pricing Tables</h1></div>
+        <div class="title-description-wrap animate-visible"><h5>Structured products1 are investment vehicles based on or derived from a single security, a basket of securities, an index</h5></div>
+        <div class="pricing-periods">
+            <div class="pricing-periods-indicator"></div>
+            <div class="pricing-periods-item" data-period="12m">1 Year</div>
+            <div class="pricing-periods-item active" data-period="6m">6 Months</div>
+            <div class="pricing-periods-item" data-period="3m">3 Months</div>
+            <div class="pricing-periods-item" data-period="1m">1 Month</div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="pricing-plans">
+        <div class="container pricing-plans-wrap rotate">
+            <div class="pricing-plans-item pricing-plans-item-conservative">
+                <div class="pricing-plans-item-side-1">
+                    <div class="label-grey">Good Value</div>
+                    <h2>Conservative <span>Trust</span></h2>
+                    <div class="big-digits">3,000</div>
+                    <div class="big-digits-label">Cost</div>
+                    <ul>
+                        <li><span>2%</span> Setup fee</li>
+                        <li><span>0.3%</span> Closing on time</li>
+                        <li><span>15%</span> Penalty for closing early</li>
+                        <li><span>25%</span> Share of the fund in profit</li>
+                    </ul>
+                    <button class="popup-toggle btn btn_md btn_blue btn-invest"
+                            data-product-code="CONSERVATIVE"
+                            data-product-name="Conservative Trust"
+                            data-target="{{ popup_target }}">INVEST <span class="hidden-arrow-right arrow-white"></span>
+                    </button>
+                </div>
+                <div class="pricing-plans-item-side-2">
+                    <div class="label-grey">Good Value</div>
+                    <h2>Conservative <span>Trust</span></h2>
+                    <div class="big-digits">2,000</div>
+                    <div class="big-digits-label">Cost</div>
+                    <ul>
+                        <li><span>2%</span> Setup fee</li>
+                        <li><span>0.3%</span> Closing on time</li>
+                        <li><span>15%</span> Penalty for closing early</li>
+                        <li><span>25%</span> Share of the fund in profit</li>
+                    </ul>
+                    <button class="popup-toggle btn btn_md btn_blue btn-invest"
+                            data-product-code="CONSERVATIVE"
+                            data-product-name="Conservative Trust"
+                            data-target="{{ popup_target }}">INVEST <span class="hidden-arrow-right arrow-white"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="pricing-plans-item pricing-plans-item-confident">
+                <div class="pricing-plans-item-side-1">
+                    <div class="label-grey">Good Value</div>
+                    <h2>Confident <span>Trust</span></h2>
+                    <div class="big-digits">10,000</div>
+                    <div class="big-digits-label">Cost</div>
+                    <ul>
+                        <li><span>2%</span> Setup fee</li>
+                        <li><span>0.5%</span> Closing on time</li>
+                        <li><span>15%</span> Penalty for closing early</li>
+                        <li><span>15%</span> Share of the fund in profit</li>
+                    </ul>
+                    <button class="popup-toggle btn btn_md btn_blue btn-invest"
+                            data-product-code="CONFIDENT"
+                            data-product-name="Confident Trust"
+                            data-target="{{ popup_target }}">INVEST <span class="hidden-arrow-right arrow-white"></span>
+                    </button>
+                </div>
+                <div class="pricing-plans-item-side-2">
+                    <div class="label-grey">Good Value</div>
+                    <h2>Confident <span>Trust</span></h2>
+                    <div class="big-digits">10,000</div>
+                    <div class="big-digits-label">Cost</div>
+                    <ul>
+                        <li><span>2%</span> Setup fee</li>
+                        <li><span>0.5%</span> Closing on time</li>
+                        <li><span>15%</span> Penalty for closing early</li>
+                        <li><span>15%</span> Share of the fund in profit</li>
+                    </ul>
+                    <button class="popup-toggle btn btn_md btn_blue btn-invest"
+                            data-product-code="CONFIDENT"
+                            data-product-name="Confident Trust"
+                            data-target="{{ popup_target }}">INVEST <span class="hidden-arrow-right arrow-white"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="pricing-plans-item pricing-plans-item-classic">
+                <div class="pricing-plans-item-side-1">
+                    <div class="label-grey">Most Popular</div>
+                    <h2>Classic <span>Trust</span></h2>
+                    <div class="big-digits">5,000</div>
+                    <div class="big-digits-label">Cost</div>
+                    <ul>
+                        <li><span>2%</span> Setup fee</li>
+                        <li><span>0.5%</span> Closing on time</li>
+                        <li><span>15%</span> Penalty for closing early</li>
+                        <li><span>20%</span> Share of the fund in profit</li>
+                    </ul>
+                    <button class="popup-toggle btn btn_md btn_blue btn-invest"
+                            data-product-code="CLASSIC"
+                            data-product-name="Classic Trust"
+                            data-target="{{ popup_target }}">INVEST <span class="hidden-arrow-right arrow-white"></span>
+                    </button>
+                </div>
+                <div class="pricing-plans-item-side-2">
+                    <div class="label-grey">Most Popular</div>
+                    <h2>Classic <span>Trust</span></h2>
+                    <div class="big-digits">5,000</div>
+                    <div class="big-digits-label">Cost</div>
+                    <ul>
+                        <li><span>2%</span> Setup fee</li>
+                        <li><span>0.5%</span> Closing on time</li>
+                        <li><span>15%</span> Penalty for closing early</li>
+                        <li><span>20%</span> Share of the fund in profit</li>
+                    </ul>
+                    <button class="popup-toggle btn btn_md btn_blue btn-invest"
+                            data-product-code="CLASSIC"
+                            data-product-name="Classic Trust"
+                            data-target="{{ popup_target }}">INVEST <span class="hidden-arrow-right arrow-white"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-light-grey pricing-plans-showall">
+        <a href="{{ path('route_full_pricing') }}">View full comparative table <span><img src="{{ asset('images/icon_arrow-right-white.png') }}" /></span></a>
+    </div>
+    <div class="bg-light-grey block-anyquetions">
+        <div class="container">
+            <h2>Have any question about <span>Structured Products?</span></h2>
+            <div class="bg-white box-framed">
+                <div class="container">
+                    {% include 'forms/contact-type.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+    <div id="popupProductOrder" class="box-framed bg-white popup popup-product-order popup-sm">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <h4 id="popupProductName"></h4>
+
+        <div id="popupProductRequest">
+            <p>Please enter quantity of the selected product</p>
+
+            <div id="popupRequestErrors" class="dn flash-error"></div>
+            <fieldset>
+                <label for="fieldProductQuantity" class="required">Quantity</label>
+                <input id="fieldProductQuantity" name="product_quantity" type="number" min="1" required>
+                <div class="field-border"></div>
+                <div class="field-error">The filed Quantity is required</div>
+            </fieldset>
+            <fieldset>
+                <input id="fieldProductCode" name="product_code" type="hidden">
+            </fieldset>
+            <button id="popupButtonContinue" class="btn btn_blue btn_md">Continue</button>
+        </div>
+
+        <div id="popupProductResponse" class="dn">
+            <p>Your order was successfully submitted. You can check the status of your order in your personal cabinet <a href="{{ path('route_myproducts') }}">My Products</a></p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        Window.Page = {
+            pricing: JSON.parse('{{ productsPricing|raw }}')
+        };
+    </script>
+
+    <script src="{{ asset('js/pages/pricing.min.js') }}" ></script>
+    <script src="{{ asset('js/pages/add/product.add.js') }}"></script>
+    <script src="{{ asset('js/pages/add/pricing.add.js') }}" ></script>
+{% endblock %}

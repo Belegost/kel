@@ -1,0 +1,14 @@
+{
+  "CONSERVATIVE_1MO": "conservative",
+  "CONSERVATIVE_3MO": "conservative",
+  "CONSERVATIVE_6MO": "conservative",
+  "CONSERVATIVE_12MO": "conservative",
+  "CLASSIC_1MO": "classic",
+  "CLASSIC_3MO": "classic",
+  "CLASSIC_6MO": "classic",
+  "CLASSIC_12MO": "classic",
+  "CONFIDENT_1MO": "confident",
+  "CONFIDENT_3MO": "confident",
+  "CONFIDENT_6MO": "confident",
+  "CONFIDENT_12MO": "confident"
+}

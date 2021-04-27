@@ -1,0 +1,70 @@
+{
+  "m12": {
+    "datasets": [
+      {
+        "label": " Conservative",
+        "data": []
+      },
+      {
+        "label": " Classic",
+        "data": []
+      },
+      {
+        "label": " Confident",
+        "data": []
+      }
+    ],
+    "labels": []
+  },
+  "m6": {
+    "datasets": [
+      {
+        "label": " Conservative",
+        "data": []
+      },
+      {
+        "label": " Classic",
+        "data": []
+      },
+      {
+        "label": " Confident",
+        "data": []
+      }
+    ],
+    "labels": []
+  },
+  "m3": {
+    "datasets": [
+      {
+        "label": " Conservative",
+        "data": []
+      },
+      {
+        "label": " Classic",
+        "data": []
+      },
+      {
+        "label": " Confident",
+        "data": []
+      }
+    ],
+    "labels": []
+  },
+  "m1": {
+    "datasets": [
+      {
+        "label": " Conservative",
+        "data": []
+      },
+      {
+        "label": " Classic",
+        "data": []
+      },
+      {
+        "label": " Confident",
+        "data": []
+      }
+    ],
+    "labels": []
+  }
+}

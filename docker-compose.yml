@@ -1,0 +1,118 @@
+version: "3.3"
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: "${APP_NAME}-nginx"
+    restart: always
+    volumes:
+      - ./:/app
+      - ./.box/nginx/ssl:/etc/nginx/ssl
+      - ./.box/nginx/local-app.conf:/etc/nginx/conf.d/default.conf
+      - ./.box/certbot/www:/var/www/certbot
+      - ./.box/certbot/conf:/etc/letsencrypt
+    working_dir: /app
+    links:
+      - php
+    depends_on:
+      - php
+    expose:
+      - 80
+      - 443
+    ports:
+      - 80:80
+      - 443:443
+
+  php:
+    build: ./.box/php/
+    container_name: "${APP_NAME}-php"
+    restart: always
+    volumes:
+      - ./:/app:delegated
+      - ./.box/php/local-php.ini:/usr/local/etc/php/conf.d/php.custom.ini
+    working_dir: /app
+    expose:
+      - 9000
+    links:
+      - redis
+      - rabbitmq
+    depends_on:
+      - rabbitmq
+      - redis
+
+  queue:
+    build: ./.box/queue/
+    container_name: "${APP_NAME}-queue"
+    restart: always
+    volumes:
+      - ./:/app:delegated
+      - ./.box/queue/local-php.ini:/usr/local/etc/php/conf.d/php.custom.ini
+    working_dir: /app
+    links:
+      - redis
+      - rabbitmq
+    depends_on:
+      - rabbitmq
+      - redis
+
+  redis:
+    image: redis:latest
+    container_name: "${APP_NAME}-redis"
+    restart: always
+    ports:
+      - 6379:6379
+    volumes:
+      - redis-data:/data
+
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: "${APP_NAME}-rabbitmq"
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+      RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_HOST}
+
+
+#  maria-db:
+#    image: mariadb:latest
+#    container_name: "${APP_NAME}-mariadb"
+#    restart: always
+#    environment:
+#      MYSQL_ROOT_PASSWORD: 'fb191e246a9c'
+#      MYSQL_DATABASE: ${DATABASE_INTEGRITY_DBNAME}
+#      MYSQL_USER: ${DATABASE_INTEGRITY_USER}
+#      MYSQL_PASSWORD: ${DATABASE_INTEGRITY_PASSWORD}
+#    ports:
+#      - 3306:3306
+#      - 3307:3307
+#    volumes:
+#      - mariadb-data:/var/lib/mysql
+#      - ./.box/mariadb/local-my.cnf:/etc/mysql/my.cnf
+#
+#  adminer:
+#    image: adminer:latest
+#    container_name: "${APP_NAME}-adminer"
+#    ports:
+#      - 8080:8080
+#    expose:
+#      - 8080
+#    links:
+#      - maria-db
+
+
+#  certbot:
+#    image: certbot/certbot
+#    container_name: "${APP_NAME}-certbot"
+#    volumes:
+#      - ./.box/certbot/conf:/etc/letsencrypt
+#      - ./.box/certbot/www:/var/www/certbot
+#    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+volumes:
+  redis-data:
+  mariadb-data:
+  rabbitmq-data:

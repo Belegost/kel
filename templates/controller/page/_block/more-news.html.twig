@@ -1,0 +1,8 @@
+{% for item in market_news %}
+    <div class="crypto-resourses-feed">
+        <div class="crypto-resourses-feed-date">{{ item.date|date('m.d.Y') }}</div>
+        <h4>{{ item.title|raw }}</h4>
+        {{ item.description|raw }}
+        <div class="crypto-resourses-feed-sourse">Market Pulse</div>
+    </div>
+{% endfor %}

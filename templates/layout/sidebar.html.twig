@@ -1,0 +1,38 @@
+<div class="sidebar-menu">
+    <div class="smenu">
+        {% if siteNavBars.sidebarMenu is not empty %}
+            {% for parentItem in siteNavBars.sidebarMenu %}
+                <div {{ parentItem.attributes|raw }}>
+                    <label>{{ parentItem.title }}</label>
+                    <ul>
+                        {% for item in parentItem.items %}
+                            <li><a href="{{ item.link }}">{{ item.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+
+    {% if auth.isLogged() %}
+        <div class="header-user-menu-switcher-wrap">
+            <div>View all Rates in USD</div>
+            <div class="header-user-menu-switcher {{ auth.isRateUSD() ? 'active' : '' }}" data-rate-usd="{{ auth.isRateUSD() ? 'on' : 'off' }}">
+                <div></div>
+            </div>
+        </div>
+    {% endif %}
+    <div class="sidebar-menu-contacts">
+        <label>Call us directly</label>
+        <a href="tel:+442036085823">+44 20 3608 5823</a>
+        <label>Contact e-mail</label>
+        <a href="mailto:support@integrityfund.io">support@integrityfund.io</a>
+    </div>
+
+</div>
+<div class="switch-sidebar-menu">
+    <span class="close-wrap">
+        <span class="close-line close-line1"></span>
+        <span class="close-line close-line2"></span>
+    </span>
+</div>

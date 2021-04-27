@@ -1,0 +1,98 @@
+{{ form_start(form) }}
+{% if form.vars.errors|length > 0 %}
+    <div style="color: #AA3333; padding: 20px; margin: 10px 0; background-color: lightpink; border-radius: 3px;">
+        {{ form_errors(form) }}
+    </div>
+{% endif %}
+
+<fieldset class="usersettings-firstname has_error">
+    {{ form_label(form.first_name) }}
+    {{ form_widget(form.first_name) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.first_name) }}</div>
+    <!--Please type your first name-->
+</fieldset>
+<fieldset class="usersettings-lastname">
+    {{ form_label(form.last_name) }}
+    {{ form_widget(form.last_name) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.last_name) }}</div>
+    <!--Please type your last name-->
+</fieldset>
+<fieldset class="usersettings-email">
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.email) }}</div>
+</fieldset>
+{#
+<fieldset class="usersettings-receivealerts">
+    <label for="{{ form.email_notify.vars.id }}" class="checkbox">{{ form_widget(form.email_notify) }}{{ form.email_notify.vars.label }}</label>
+</fieldset>
+#}
+<fieldset class="usersettings-timezone">
+    {{ form_label(form.timezone) }}
+    <div class="select">
+        {{ form_widget(form.timezone) }}
+    </div>
+</fieldset>
+<fieldset class="usersettings-phone">
+    {{ form_label(form.phone) }}
+    {{ form_widget(form.phone) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.email) }}</div>
+    <div class="select">
+        {{ form_widget(form.phone_code) }}
+    </div>
+</fieldset>
+{#
+<fieldset class="usersettings-receivealerts">
+    <label for="{{ form.phone_notify.vars.id }}" class="checkbox">{{ form_widget(form.phone_notify) }}{{ form.phone_notify.vars.label }}</label>
+</fieldset>
+#}
+<fieldset class="usersettings-country">
+    {{ form_label(form.country) }}
+    {{ form_widget(form.country) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.country) }}</div>
+</fieldset>
+<fieldset class="usersettings-city">
+    {{ form_label(form.city) }}
+    {{ form_widget(form.city) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.city) }}</div>
+</fieldset>
+<fieldset class="usersettings-state">
+    {{ form_label(form.state) }}
+    {{ form_widget(form.state) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.state) }}</div>
+</fieldset>
+<fieldset class="usersettings-zip">
+    {{ form_label(form.zip_code) }}
+    {{ form_widget(form.zip_code) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.zip_code) }}</div>
+</fieldset>
+<fieldset class="usersettings-address">
+    {{ form_label(form.address) }}
+    {{ form_widget(form.address) }}
+    <div class="field-border"></div>
+    <div class="field-error">{{ form_errors(form.address) }}</div>
+</fieldset>
+<fieldset class="usersettings-avatar">
+    <div class="usersettings-avatar-current">
+        <div class="usersettings-avatar-current-img" style="background-image: url({{ asset(avatar_url) }});">
+            <div class="usersettings-avatar-current-delete"><span></span><span></span></div>
+        </div>
+        <h5>Avatar</h5>
+        <p>JPG, GIF or PNG < 5 MB</p>
+    </div>
+{#    <div class="usersettings-avatar-add">#}
+{#        <input type="file" name="user[avatar]" id="user_avatar" class="inputfile inputfile-2" data-multiple-caption="{count} files selected" multiple="">#}
+{#        <label for="user_avatar"><span>Choose a file…</span></label>#}
+{#    </div>#}
+</fieldset>
+{{ form_row(form._token) }}
+{{ form_widget(form.submit, {'attr' : {'class': 'btn btn_blue'}}) }}
+{{ form_end(form, {'render_rest': false}) }}

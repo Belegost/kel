@@ -1,0 +1,120 @@
+.userregistration {
+  padding: 0 0 60px;
+  > div {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+  .box-framed {
+    position: relative;
+    transform: translateY(-60px);
+  }
+  .container {
+    margin: 1rem auto;
+    max-width: 580px;
+    font-size: 0;
+  }
+  h1 {
+    padding-bottom: 1.5rem;
+    line-height: calculateRem(30px);
+    font-size: calculateRem(30px);
+    font-weight: 600;
+    font-family: 'Open Sans', sans-serif;
+  }
+  fieldset {
+    display: inline-block;
+    width: 100%;
+    text-align: left;
+    font-size: 1rem;
+  }
+  &-firstname,
+  &-lastname,
+  &-password,
+  &-confirmpassword {
+    width: 45%!important;
+  }
+  &-firstname,
+  &-password {
+    margin-right: 10%!important;
+  }
+  &-email {}
+  &-receivealerts {
+    padding-top: 0;
+  }
+  &-phone {
+    margin-top: 15px;
+    label {
+      text-indent: 1px;
+      transform: translateY(12px) scale(.9);
+    }
+    input {
+      padding-left: 60px!important;
+      :before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 15px;
+        left: 70px;
+        background: #c5c5c5;
+      }
+    }
+    .intl-tel-input {
+      width: 100%;
+    }
+    .selected-flag {
+      &:before {
+        content: '';
+        position: absolute;
+        width: 1px;
+        height: 15px;
+        top: 7px;
+        right: -3px;
+        background: #c5c5c5;
+      }
+    }
+    .select {
+      position: absolute;
+      top: 35px;
+      height: 18px!important;
+      width: 60px;
+      border: 0;
+      border-right: thin solid #c5c5c5;
+      border-radius: 0!important;
+      background-position: 96% -10px;
+      vertical-align: top;
+      span.customSelect {
+        height: 18px;
+        font-size: 14px;
+        line-height: 18px;
+        vertical-align: top;
+        background-position: 98% -10px;
+      }
+    }
+  }
+  button {
+    display: block;
+    height: 50px;
+    width: 150px;
+    margin: 40px auto 30px;
+    line-height: 48px;
+  }
+}
+@media (max-width: 1139px) {
+  .usersettings {
+  }
+}
+@media (max-width: 979px) {
+  .usersettings {
+  }
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 600px) {
+  .usersettings-city, .usersettings-country, .usersettings-firstname, .usersettings-lastname, .usersettings-state, .usersettings-zip {
+    width: 100% !important;
+  }
+  .usersettings-country, .usersettings-firstname, .usersettings-state {
+    margin-right: 0!important;
+  }
+}
+@media (max-width: 479px) {
+}

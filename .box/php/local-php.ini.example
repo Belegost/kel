@@ -1,0 +1,8 @@
+short_open_tag      = On
+include_path        = ".:/usr/local/lib/php"
+error_log           = /var/log/php-7.4/error.log
+date.timezone       = 'UTC'
+memory_limit        = 256M
+#curl.cainfo         = "/usr/local/etc/curl/cacert.pem"
+#openssl.cafile      = "/usr/local/etc/curl/cacert.pem"
+upload_max_filesize = 16m

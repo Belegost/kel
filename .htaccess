@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^ift-demo.ipcloud.org.ua$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.ift-demo.ipcloud.org.ua$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /public/$1 [L]

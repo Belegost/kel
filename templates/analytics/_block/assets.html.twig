@@ -1,0 +1,118 @@
+
+{% form_theme assets_form _self %}
+
+    {{ form_start(assets_form) }}
+    {{ form_label(assets_form.instruments) }}
+    <div class="popupbitfinex-list">
+        {% for child in assets_form.instruments.children %}
+            <div class="popupbitfinex-row">
+                <div>
+                    <h6>{{ child.vars.label }}</h6>
+                    <small>{{ child.vars.label }}</small>
+                </div>
+                <div>
+                    <fieldset>
+                        {#<label class="checkbox" for="{{ child.vars.id }}">#}
+                        <label class="checkbox checked" for="{{ child.vars.id }}">
+                            {{ form_widget(child) }}
+                        </label>
+                    </fieldset>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {{ form_widget(assets_form.submit, { 'attr': {'class': 'btn btn_md btn_blue'} }) }}
+    {{ form_end(assets_form) }}
+
+{# ---JavaScript--- #}
+{% block javascripts %}
+    <script src="{{ asset('js/libs/jquery.min.js') }}"></script>
+
+    <script>
+        // $("input[type=checkbox]").on({
+        $(".popupbitfinexform-wrapper").on("change", "input[type=checkbox]", function (t) {
+            $(this).closest("label").toggleClass("checked");
+        });
+
+        $(".popupbitfinexform-wrapper").on("submit", "form", function (t) {
+            t.preventDefault();
+            var a = $(".popupbitfinexform-wrapper .btn");
+            // console.log($(this));
+            a.prop("disabled", 1);
+            // , o = $("#accountname").val(), e = $("#accountaddress").val();
+            // $(".popup-shadow div").show(), $(".popup").removeClass("visible"), $(".popup-shadow").fadeIn(300),
+            $.ajax({
+                url: "{{ path('route_analytics_add_instruments', {'analytics_id': analytics_id}) }}",
+                type: "POST",
+                cache: !1,
+                data: $(this).serialize(),
+                dataType: "json",
+                // success: function (t) {
+                //     "success" == t.status ? (a.prop("disabled", !1), $(".popup.popup-bitfinex h4").text(o), $(".popup.popup-bitfinex .popupbitfinexform-wrapper").html(t.data), $(".popup-bitfinex input[type=checkbox]").on({
+                //         change: function () {
+                //             $(this).closest("label").toggleClass("checked")
+                //         }
+                //     }), $(".popup-shadow div").hide(), $(".popup.popup-bitfinex").addClass("visible")) : displayPopupMsg(t.error)
+                // },
+                success: function (response) {
+                    if (response.account_id) {
+                        // // @todo resolve
+                        // $(".popup-shadow div").hide();
+                        // $(".popup.popup-bitfinex").html(response.view).addClass("visible");
+                        {#window.location.assign("{{ path('route_analytics_index') }}");#}
+                        window.location.reload();
+                    } else {
+                        console.log('something went wrong');
+                    }
+                    // "success" == t.status ? (a.prop("disabled", !1), $(".popup.popup-bitfinex h4").text(o), $(".popup.popup-bitfinex .popupbitfinexform-wrapper").html(t.data), $(".popup-bitfinex input[type=checkbox]").on({
+                    //     change: function () {
+                    //         $(this).closest("label").toggleClass("checked")
+                    //     }
+                    // }), $(".popup-shadow div").hide(), $(".popup.popup-bitfinex").addClass("visible")) : displayPopupMsg(t.error)
+                },
+                complete: function () {
+                    // a.prop("disabled", !1)
+                }
+            })
+        })
+    </script>
+{% endblock %}
+
+{#
+{% block _assets_form_instruments_row %}
+
+    <fieldset class="m-b-0 p-b-0">
+
+        {# {% for instrument in assets_form %}
+             <div class="radio radio-complete">
+                 {{ form_widget(instrument) }}
+                 <label for="{{ instrument.vars.id }}">{{ instrument.vars.label }}</label>
+             </div>
+             <div class="popupbitfinex-row">
+                 <div>
+                     <h6>{{ instrument.vars.label }}</h6>
+                     <small>{{ instrument.vars.label }}</small>
+                 </div>
+                 <div>
+                     <fieldset>
+                         <label for="{{ instrument.vars.id }}" class="checkbox">{{ form_widget(instrument) }}</label>
+                     </fieldset>
+                 </div>
+             </div>
+         {% endfor %}
+
+
+        {{ form_widget(assets_form) }}
+
+        {% for child in assets_form.children %}
+            <div class="radio">
+                <label class="checkbox" for="{{ child.vars.id }}">
+                    {{ form_widget(child) }}
+                    {{ child.vars.label }}
+                </label>
+            </div>
+        {% endfor %}
+    </fieldset>
+
+{% endblock _assets_form_instruments_row %}
+#}

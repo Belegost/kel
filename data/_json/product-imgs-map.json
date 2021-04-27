@@ -1,0 +1,24 @@
+{
+  "conservative": "/images/special_service1.jpg",
+  "classic": "/images/special_service2.jpg",
+  "confident": "/images/special_service3.jpg",
+  "individual": "/images/special_service4.jpg",
+
+
+  "CONSERVATIVE_1MO": "/images/special_service1.jpg",
+  "CONSERVATIVE_3MO": "/images/special_service1.jpg",
+  "CONSERVATIVE_6MO": "/images/special_service1.jpg",
+  "CONSERVATIVE_12MO": "/images/special_service1.jpg",
+  "CLASSIC_1MO": "/images/special_service2.jpg",
+  "CLASSIC_3MO": "/images/special_service2.jpg",
+  "CLASSIC_6MO": "/images/special_service2.jpg",
+  "CLASSIC_12MO": "/images/special_service2.jpg",
+  "CONFIDENT_1MO": "/images/special_service3.jpg",
+  "CONFIDENT_3MO": "/images/special_service3.jpg",
+  "CONFIDENT_6MO": "/images/special_service3.jpg",
+  "CONFIDENT_12MO": "/images/special_service3.jpg",
+  "INDIVIDUAL_1MO": "/images/special_service4.jpg",
+  "INDIVIDUAL_3MO": "/images/special_service4.jpg",
+  "INDIVIDUAL_6MO": "/images/special_service4.jpg",
+  "INDIVIDUAL_12MO": "/images/special_service4.jpg"
+}

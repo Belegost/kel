@@ -1,0 +1,151 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    <div class="page-header">
+        <div class="page-header-bg"></div>
+        <div class="title-wrap animate-visible"><h1>Express Structured Products</h1></div>
+        <div class="title-description-wrap animate-visible"><h5>Each Express Structured Product (ESP) is a portfolio of passive and active investment strategies and crypto-currency assets. Integrity crypto trust offers  number of ESP so every investor is able to find the most suitable investment vehicle for him.</h5></div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-white product-structured">
+        <div class="container product-structured-term">
+            <div class="product-structured-num">1.</div>
+            <div class="product-structured-title"><h4>Our Flagship Investment Products</h4></div>
+            <div class="product-structured-description">
+                <p>Integrity crypto trust engineered investment products to suit investors expectations  of  risk levels and  returns.</p>
+                <p>We offer variety  of products for both  passive  and active investors willing to participate in creation of their investment portfolios. Our experts hand pick investment instruments for portfolio formation based on careful analysis of crypto markets.</p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-light-grey product-structured">
+        <div class="container">
+            <div class="product-structured-products">
+                <div class="product-slides">
+                    <div class="product-slides-item">
+                        <div class="product-slides-item-wrap">
+                            <a href="{{ path('route_product_item', {'name':'conservative'}) }}">
+                                <div class="product-slides-item-bg">
+                                    <div></div>
+                                </div>
+                                <div class="product-slides-item-info">
+                                    <div class="product-slides-item-icon"></div>
+                                    <h3>Conservative <span>ESP</span></h3>
+                                    <p>TOP-5 cryptocurrencies and classic money market fixed income instruments</p>
+                                    <div class="product-slides-item-read_more">Read More <span></span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-slides-item">
+                        <div class="product-slides-item-wrap">
+                            <a href="{{ path('route_product_item', {'name':'classic'}) }}">
+                                <div class="product-slides-item-bg">
+                                    <div></div>
+                                </div>
+                                <div class="product-slides-item-info">
+                                    <div class="product-slides-item-icon"></div>
+                                    <h3>Classic <span>ESP</span></h3>
+                                    <p>TOP-10 cryptocurrencies and most prospect ICO tokens</p>
+                                    <div class="product-slides-item-read_more">Read More <span></span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="product-slides-item">
+                        <div class="product-slides-item-wrap">
+                            <a href="{{ path('route_product_item', {'name':'confident'}) }}">
+                                <div class="product-slides-item-bg">
+                                    <div></div>
+                                </div>
+                                <div class="product-slides-item-info">
+                                    <div class="product-slides-item-icon"></div>
+                                    <h3>Confident <span>ESP</span></h3>
+                                    <p>Risky ICO of utility tokens and top-10 cryptocurrencies</p>
+                                    <div class="product-slides-item-read_more">Read More <span></span></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pricing-plans-showall">
+                    <a href="{{ path('route_full_pricing') }}">View full comparative table for all trust's products <span><img src="{{ asset('images/icon_arrow-right-white.png') }}" /></span></a>
+                </div>
+
+                <div class="product-structured-products-title"><h4>Our mission is to meet Your highest ambitions.</h4></div>
+                <div class="product-structured-products-description">
+                    <p>We are here to create best opportunities for You to increase Your wealth. We would like to become most reliable partner for You in the volatile crypto ocean because we are eager to create best possible investment environment for our clients and partners.</p>
+                </div>
+                <div class="product-structured-products-pluses animate-visible">
+                    <div class="product-structured-products-pluses-bg"></div>
+                    <div class="product-structured-products-pluses-item product-structured-products-pluses-item-first">
+                        <div>
+                            <label>1</label>
+                            <p>User Friendly interface</p>
+                        </div>
+                        <div>
+                            <label>2</label>
+                            <p>Experienced traders’ team</p>
+                        </div>
+                        <div>
+                            <label>3</label>
+                            <p>Detailed reporting</p>
+                        </div>
+                    </div>
+                    <div class="product-structured-products-pluses-item product-structured-products-pluses-item-second">
+                        <div>
+                            <label>4</label>
+                            <p>Wide range of instruments</p>
+                        </div>
+                        <div>
+                            <label>5</label>
+                            <p>Comfortable working environment</p>
+                        </div>
+                        <div>
+                            <label>6</label>
+                            <p>Professional support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bg-white product-structured">
+        <div class="container product-structured-managed">
+            <div class="product-structured-num">2.</div>
+            <div class="product-structured-title"><h4>Customized Express Structured Products</h4></div>
+            <div class="product-structured-description">
+                <p>Special offer for sophisticated investors who are willing to actively participate in managing of own wealth. We offer our deep expertise and our infrastructure to assist to investors to achieve their financial goals by most effective way. Flexible structure and term of the ESP, exclusive negotiable conditions of deposit/withdrawal, customized commission rates etc. Become the kapellmeister of Your own crypto orchestra and play unrepeatable symphony of Your investment way.</p>
+            </div>
+        </div>
+    </div>
+    <div class="product-structured">
+        <div class="container">
+            <div class="product-structured-individual">
+                <div class="product-structured-individual-bg"></div>
+                <img src="{{ asset('images/productList_individualPortfolio_icon.png') }}" />
+                <h3>Customized investment strategies</h3>
+                <p>Customized investment strategies     For a sophisticated investor with an individual approach to the formation of an investment portfolio.</p>
+                <a href="{{ path('route_portfolio') }}" class="btn btn_md btn_blue">CUSTOMIZE</a>
+            </div>
+        </div>
+    </div>
+    <div class="bg-light-grey block-anyquetions">
+        <div class="container">
+            <h2>Do You need more information? <span> Ask the expert!</span></h2>
+            <div class="bg-white box-framed">
+                <div class="container">
+                    {% include 'forms/contact-type.html.twig' %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/libs/jquery.scrollTo.min.js') }}" ></script>
+    <script src="{{ asset('js/pages/product-list.min.js') }}" ></script>
+{% endblock %}

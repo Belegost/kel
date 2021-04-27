@@ -1,0 +1,53 @@
+{#<div class="box-framed bg-white popup popup-addaccount">#}
+    {#<div class="popup-close">#}
+        {#<span class="close-wrap">#}
+            {#<span class="close-line close-line1"></span>#}
+            {#<span class="close-line close-line2"></span>#}
+        {#</span>#}
+    {#</div>#}
+    {#<h4>New Аccount</h4>#}
+    {#{{ form_start(form_account, { 'attr': {'action': path('route_analytics_add_acount')} }) }}#}
+        {#<fieldset class="popup-addaccount-name">#}
+            {#{{ form_label(form_account.APIkey) }}#}
+            {#{{ form_widget(form_account.APIkey) }}#}
+        {#</fieldset>#}
+        {#<br>#}
+        {#<fieldset class="popup-addaccount-address">#}
+            {#{{ form_label(form_account.APIsecret) }}#}
+            {#{{ form_widget(form_account.APIsecret) }}#}
+        {#</fieldset>#}
+        {#<br>#}
+        {#<br>#}
+        {#{{ form_widget(form_account.submit, { 'attr': {'class': 'btn btn_md btn_blue'} }) }}#}
+    {#{{ form_end(form_account) }}#}
+{#</div>#}
+
+{#{% block javascripts %}#}
+    {#{{ parent() }}#}
+    {#<script type="text/javascript">#}
+
+        {#var formAccount = 'account';#}
+        {#var form = $("form[name=" + formAccount + "]");#}
+
+        {#form.submit(function (event) {#}
+            {#event.preventDefault();#}
+            {#var formData = $(this).serialize();#}
+            {#$.ajaxSetup({#}
+                {#url: form.attr('action'),#}
+                {#global: false,#}
+                {#type: "POST",#}
+                {#success: function (response) {#}
+                    {#if (response === true) {#}
+                        {#$(".popup-addaccount > div > .close-wrap").click();#}
+                    {#}#}
+                    {#showFromError(formAccount, response);#}
+                {#},#}
+                {#error: function (response) {#}
+                {#}#}
+            {#});#}
+            {#$.ajax({data: formData});#}
+
+        {#});#}
+
+    {#</script>#}
+{#{% endblock %}#}

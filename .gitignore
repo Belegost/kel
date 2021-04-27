@@ -1,0 +1,16 @@
+/.DS_Store
+/.idea
+/public/bundles/
+/public/upload/avatar/*.jpeg
+/public/upload/avatar/*.gif
+/public/upload/avatar/*.png
+/public/qr/*.png
+/var/
+/vendor/
+.env
+/assets/node_modules/
+/assets/*.lock
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###

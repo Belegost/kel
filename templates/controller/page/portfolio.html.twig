@@ -1,0 +1,257 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    {% if auth.isLogged %}
+        {{ include('controller/page/dashboard-header.html.twig') }}
+    {% else %}
+        <div class="dashboard-header page-header">
+            <div class="page-header-bg">
+                <div class="kaleydoskop selfmove">
+                    <div class="kaleydoskop-wrapper">
+                        <div class="ks s1">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s2">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s3">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s4">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s5">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s6">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s7">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s8">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s9">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s10">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s11">
+                            <div class="ksc"></div>
+                        </div>
+                        <div class="ks s12">
+                            <div class="ksc"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block page_content %}
+    <div class="myproducts bg-light-grey">
+        <div class="container">
+            <div class="bg-white box-framed portfolio-product">
+                <div class="portfolio-product-title">
+                    <h6>Add Instrument to Portfolio</h6>
+                    <p>Сlient equity and the current structure of crypto assets in the all purchased Structure Product</p>
+                    <button class="btn btn_light_grey">Create Portfolio Item</button>
+                    <div class="portfolio-product-title-digits">
+                        <a href="{{ path('route_deposit') }}" class="portfolio-product-title-digits-add"><span></span><span></span></a>
+                        <div class="portfolio-product-title-digits-free">
+                            <div class="big-digits">{% if nonInvestedFunds is defined %}{{ (nonInvestedFunds)|number_format(2, '.', '') }}{% else %}0.00000000{% endif %}</div>
+                            <p>Free Funds to invest (BTC)</p>
+                        </div>
+                        <div class="portfolio-product-title-digits-funds">
+                            <div class="big-digits">{% if fundsInInstrumentsBTC is defined %}{{ (fundsInInstrumentsBTC)|number_format(8, '.', '') }}{% else %}0.00000000{% endif %}</div>
+                            <p>Funds in Instruments (BTC)</p>
+                        </div>
+                        <div class="portfolio-product-title-digits-create">
+                            <div class="big-digits">{% if fundsAfterInvestBTC is defined %}{{ (fundsAfterInvestBTC)|number_format(8, '.', '') }}{% else %}0.00000000{% endif %}</div>
+                            <p>Funds after Create Investition</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="portfolio-product-body">
+                    <div class="portfolio-product-body-section">
+                        <br><br>
+                        <div class="portfolio-product-body-graphs">
+                            <div class="portfolio-product-body-graph">
+                                <div class="histogramm-menu">
+                                    <span data-period="d1">1 D</span>
+                                    <span data-period="w1">1 W</span>
+                                    <span data-period="m1" class="current">1 M</span>
+                                    <span data-period="m3">3 M</span>
+                                    <span data-period="m6">6 M</span>
+                                    <span data-period="m12">1 Y</span>
+                                    <div class="active-border"></div>
+                                </div>
+                                <br>
+                                <canvas id="total_histogramm"></canvas>
+                            </div>
+                            <div class="portfolio-product-body-pie">
+                                <canvas id="portfolio-product-pie"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="portfolio-instruments">
+                            <div class="portfolio-list-shadow portfolio-list-shadow-top"></div>
+                            <div class="portfolio-list">
+                                {% for code, instrument in instruments %}
+                                    <div class="portfolio-row" id="{{ code }}">
+                                        <div class="portfolio-row-title">
+                                            <h6>{{ instrument.code }}/USDT</h6>
+                                            <small>{{ instrument.fullname }}</small>
+                                        </div>
+                                        <div class="portfolio-row-value">{{ instrument.price }}</div>
+                                        <div class="portfolio-row-diff">
+                                            <span class="icon-color-arrow icon-color-arrow-{{ instrument.direct }}"></span>{{ instrument.diff }}
+                                        </div>
+                                        <div class="portfolio-row-graph"><canvas id="portfolio-row-btc"></canvas></div>
+                                        <div class="portfolio-row-percent">
+                                            <div class="portfolio-row-percent-edit">
+                                                <input type="text" placeholder="Enter %" />
+                                                <button>Ok</button>
+                                                <div class="portfolio-row-percent-error"></div>
+                                            </div>
+                                            <div class="portfolio-row-show"><span></span><span></span></div>
+                                            <span>0%</span>
+                                        </div>
+                                        <div class="portfolio-row-more"><canvas></canvas></div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="portfolio-list-shadow portfolio-list-shadow-bottom"></div>
+                            <!--
+                            <div class="portfolio-row-ready_products">
+                                <h5>Ready ITC Products</h5>
+                                <small>Add any our products to your Portfolio</small>
+                            </div>
+
+                            <div class="portfolio-row" id="conservative">
+                                <div class="portfolio-row-product_title">
+                                    <img src="/images/special_service1.jpg">
+                                    <h6>Conservative Trust</h6>
+                                    <small>TOP-5 cryptocurrencies and classic money market fixed income instruments</small>
+                                </div>
+                                <div class="portfolio-row-diff">
+                                    <span class="icon-color-arrow icon-color-arrow-up"></span>+30.71345678
+                                </div>
+                                <div class="portfolio-row-graph"><canvas id="portfolio-row-ltc"></canvas></div>
+                                <div class="portfolio-row-percent">
+                                    <div class="portfolio-row-percent-edit">
+                                        <input type="text" placeholder="Enter %" />
+                                        <button>Ok</button>
+                                        <div class="portfolio-row-percent-error"></div>
+                                    </div>
+                                    <div class="portfolio-row-show"><span></span><span></span></div>
+                                    <span>0%</span>
+                                </div>
+                                <div class="portfolio-row-more"><canvas></canvas></div>
+                            </div>
+
+                            <div class="portfolio-row-ready_products-add popup-toggle" data-target="popup-portfolio">
+                                <div class="circle-blue-plus"><span></span><span></span></div>&nbsp;Add&nbsp;ITC&nbsp;Product
+                            </div>
+                            -->
+                            <div class="portfolio-total">
+                                <div class="portfolio-total-set"><b>You already choose:</b> no instruments</div>
+                                <div class="portfolio-total-percent">Place 100% by instruments</div>
+                                <div class="portfolio-total-btn">
+                                    <button class="btn btn_lg btn_green" id="portfolio-create-product" data-link="{{ path('route_pct_buy') }}" disabled>Create Product</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br><br><br>
+    </div>
+
+    <div class="block-spesial_service">
+        <h4>See our Special Services for Investors</h4>
+        <div class="container">
+            <a href="{{ path('route_product_item', {'name':'careful'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service1.jpg') }}"/>
+                <h6>Conservative Trust</h6>
+                <p>TOP-5 cryptocurrencies and classic money market fixed income instruments</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'classic'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service2.jpg') }}"/>
+                <h6>Classic Trust</h6>
+                <p>TOP-10 cryptocurrencies and most prospect ICO tokens</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'confident'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service3.jpg') }}"/>
+                <h6>Confident Trust</h6>
+                <p>Risky ICO of utility tokens and top-10 cryptocurrencies</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'individual'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service4.jpg') }}"/>
+                <h6>Individual Portfolio</h6>
+                <p>Combined ESP with some exclusive tokens carefully selected by our analysts</p>
+            </a>
+        </div>
+    </div>
+
+    <div class="dashboard-footer">
+        <div class="support-block">
+            <div class="support-block-bg"></div>
+            <div class="support-block-subtitle animate-visible"><b>Do you have any Question?</b></div>
+            <div class="support-block-title animate-visible"><h2>Contact Your Account Manager</h2></div>
+            <div class="support-block-description animate-visible"><h5>Please, click to Request Button and your Personal Manager call to your phone imidiallity.</h5></div>
+            <div class="support-block-link animate-visible">
+                <a onclick='$("#zsiq_agtpic").click();' class="btn btn_lg">Send Request <span class="hidden-arrow-right"></span></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+    <div class="box-framed bg-white popup popup-portfolio">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <div class="popup-portfolio-info">
+            <h3>Add Ready ITC Product</h3>
+            <div>
+                {% for code, product in products %}
+                    <div class="popup-portfolio-product" data-id="{{ code }}">
+                        <div class="popup-portfolio-product-img"><img src="{{ product.imgUrl }}" /></div>
+                        <div class="popup-portfolio-product-title">
+                            <h6>{{ product.name }}</h6>
+                            <small>Investition from<br> ${{ product.priceUSD }}</small>
+                        </div>
+                        <div class="popup-portfolio-product-graph">
+                            <canvas id="popup-portfolio-product-carefull"></canvas>
+                        </div>
+                        <div class="popup-portfolio-product-value">{{ product.direct == 'up' ? '+' : '' }}{{ product.diff }}</div>
+                        <button class="btn btn_green popup-portfolio-product-btn" data-code="{{ code }}">Add</button>
+                        <div class="popup-portfolio-product-params">
+                            <div class="popup-portfolio-product-params-img"><img
+                                        src="{{ asset('images/portfolio-popup-product-param.png') }}"/></div>
+                            {% for symbol, wieght in product.assets %}
+                                <div class="popup-portfolio-product-params-btc">{{ symbol }} {{ wieght }}%</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/libs/jquery.scrollTo.min.js') }}?v={{ auth.getVersion() }}"></script>
+    <script src="{{ asset('js/pages/portfolio.min.js') }}?v={{ auth.getVersion() }}"></script>
+{% endblock %}

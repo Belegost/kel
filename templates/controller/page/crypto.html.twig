@@ -1,0 +1,348 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    <div class="crypto-header homepage-stats page-header">
+        <div class="page-header-bg"></div>
+        <div class="container">
+            <div class="homepage-stats-twocol-item">
+                <div class="homepage-stats-twocol-item">
+                    <div class="label-grey">Last Quarter return</div>
+                    <div class="big-digits big-digits-trust">87</div>
+                </div>
+                <div class="homepage-stats-twocol-item">
+                    <div class="label-grey">Funds allocated (BTC)</div>
+                    <div class="big-digits big-digits-strategies">157</div>
+                </div>
+            </div>
+            <div class="homepage-stats-twocol-item">
+                <div class="label-grey">Most profitable product in last quarter</div>
+                <h2>Customized portfolio</h2>
+                <p>combining High Yield Express Structured Product with some exclusive tokens carefully selected by our analysts</p>
+                <a href="{{ path('route_product_list') }}" class="btn btn_lg btn_blue">For Investors  <span class="hidden-arrow-right"></span></a>
+                <a href="{{ path('route_portfolio') }}" class="btn btn_lg">For Advisors  <span class="hidden-arrow-right"></span></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="dashboard-menu-tabs">
+        <div class="container">
+            <div class="dashboard-menu-tabs-item current" data-target="tab1">Overview</div>
+            <div class="dashboard-menu-tabs-item" data-target="tab2">Market performance</div>
+            <div class="dashboard-menu-tabs-item" data-target="tab3">News</div>
+        </div>
+    </div>
+
+    <div class="bg-light-grey">
+        <div class="crypto-tabs tab1">
+            <div class="crypto-overview">
+                <div class="container">
+                    <div class="crypto-overview-leftcol">
+                        <h4>The Bitcoin Investment Trust’s shares are the first publicly quoted* securities solely invested in and deriving value from the price of bitcoin.</h4>
+                        <p>*Publicly quoted on OTCQX® under the Alternative Reporting Standards</p>
+                    </div>
+                    <div class="crypto-overview-main">
+                        <table class="crypto-overview-table">
+                            <tr>
+                                <td><h6>Investment Objective</h6></td>
+                                <td>Shares track the Bitcoin market price, less fees and expenses<sup>*</sup></td>
+                            </tr>
+                            <tr>
+                                <td><h6>Benchmark Index</h6></td>
+                                <td>TradeBlock XBX Index 24-hour VWAP</td>
+                            </tr>
+                            <tr>
+                                <td><h6>Symbol</h6></td>
+                                <td>GBTC</td>
+                            </tr>
+                            <tr>
+                                <td><h6>CUSIP</h6></td>
+                                <td>09173T108</td>
+                            </tr>
+                            <tr>
+                                <td><h6>ISIN</h6></td>
+                                <td>US09173T1088</td>
+                            </tr>
+                            <tr>
+                                <td><h6>Bloomberg</h6></td>
+                                <td>XBTFUND<sup>**</sup></td>
+                            </tr>
+                            <tr>
+                                <td><h6>Inception Date</h6></td>
+                                <td>9/25/2013</td>
+                            </tr>
+                            <tr>
+                                <td><h6>Shares Outstanding</h6></td>
+                                <td>1,868,700‡</td>
+                            </tr>
+                            <tr>
+                                <td><h6>Bitcoin per Share</h6></td>
+                                <td>Bitcoin per Share</td>
+                            </tr>
+                        </table>
+
+                        <p>*The Bitcoin Investment Trust does not currently operate a redemption program and may halt creations from time to time. There can be no assurance that the value of the shares will approximate the value of the Bitcoin held by the Trust and the shares may trade at a substantial premium over or discount to the value of the Trust's Bitcoin. The Trust may, but will not be required to, seek regulatory approval to operate a redemption program.</p>
+                        <p>**Valuation represents the Bitcoin Holdings of BIT shares</p>
+
+                    </div>
+
+                    <div class="crypto-overview-leftcol">
+                        <h5 class="label-blue">How ITC Can Help You</h5>
+                        <h4>We leverage our expertise to offer our clients turnkey solutions with best service and return.</h4>
+                    </div>
+                    <div class="crypto-overview-main">
+                        <div class="crypto-overview-gallery-wrap">
+                            <div class="crypto-overview-gallery owl-carousel">
+
+                                <div class="crypto-overview-gallery-item item1 hover">
+                                    <div class="panel">
+                                        <div class="front">
+                                            <div class="side1">
+                                                <h5>We provide</h5>
+                                                <p>You regular and systematic portfolio monitoring that allows You thorough risk and quality control</p>
+                                            </div>
+                                        </div>
+                                        <div class="back">
+                                            <div class="side2">
+                                                <p>Together we analyse Your individual situation.<br> Based on the above risk profile we will implement the appropriate investment strategy, monitoring Your investments amd respond quickly and flexible to market changes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="crypto-overview-gallery-item item2 hover">
+                                    <div class="panel">
+                                        <div class="front">
+                                            <div class="side1">
+                                                <h5>We provide</h5>
+                                                <p>You a dedicated advisory specialist to support Your investment decisions with customized and timely investments proposals</p>
+                                            </div>
+                                        </div>
+                                        <div class="back">
+                                            <div class="side2">
+                                                <p>Together we analyse Your individual situation by focusing on:<br>
+                                                    &bull; Your risk appetite<br>
+                                                    &bull; Your return expectations<br>
+                                                    &bull; Your investment goal<br>
+                                                    &bull; Your investment horizon<br>
+                                                    &bull; The structure of Your actual wealth<br>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="crypto-overview-gallery-item item3 hover">
+                                    <div class="panel">
+                                        <div class="front">
+                                            <div class="side1">
+                                                <h5>We provide</h5>
+                                                Your individual situation
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                        <div class="back">
+                                            <div class="side2">
+                                                <p>Together we analyse Your individual situation by focusing on:<br>
+                                                    &bull; Your risk appetite<br>
+                                                    &bull; Your return expectations<br>
+                                                    &bull; Your investment goal<br>
+                                                    &bull; Your investment horizon<br>
+                                                    &bull; The structure of Your actual wealth<br>
+                                                    Based on the above risk profile we will implement the appropriate investment strategy, monitoring Your investments amd respond quickly and flexible to market changes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="crypto-overview-gallery-item item4 hover">
+                                    <div class="panel">
+                                        <div class="front">
+                                            <div class="side1">
+                                                <h5>We provide</h5>
+                                                <p>You a periodic and high-quality portfolio analysis and reporting</p>
+                                            </div>
+                                        </div>
+                                        <div class="back">
+                                            <div class="side2">
+                                                <p>Together we analyse Your individual situation by focusing on:<br>
+                                                    &bull; Your investment horizon<br>
+                                                    &bull; The structure of Your actual wealth<br>
+                                                    Based on the above risk profile we will implement the appropriate investment strategy, monitoring Your investments amd respond quickly and flexible to market changes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="crypto-overview-gallery-item item5 hover">
+                                    <div class="panel">
+                                        <div class="front">
+                                            <div class="side1">
+                                                <h5>We provide</h5>
+                                                <p>You a solution where You take the investment decision with the support of our investment specialists</p>
+                                            </div>
+                                        </div>
+                                        <div class="back">
+                                            <div class="side2">
+                                                <p>Together we analyse Your individual situation by focusing on:<br>
+                                                    &bull; Your risk appetite<br>
+                                                    &bull; Your return expectations<br>
+                                                    &bull; Your investment goal<br>
+                                                    &bull; Your investment horizon<br>
+                                                    &bull; The structure of Your actual wealth<br>
+                                                    Based on the above risk profile we will implement the appropriate investment strategy, monitoring Your investments amd respond quickly and flexible to market changes.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="crypto-market">
+                <div class="container">
+                    <div class="crypto-market-leftcol">
+                        <h4>The first publicly quoted bitcoin investment vehicle.</h4>
+                        <p>The Bitcoin Investment Trust provides a secure structure to gain exposure to the price performance of bitcoin.  Eligible shares are quoted on the OTCQX®, the top marketplace operated by OTC Markets under the Alternative Reporting Standards. Investors can buy and sell shares through most traditional brokerage accounts at prices dictated by the market.</p>
+
+                        <div class="bg-white box-framed bg-white crypto-market-infobox">
+                            <div class="crypto-market-infobox-header">
+                                <h5>Market Price per share*</h5>
+                                <p>At close as of 12/26/2017</p>
+                            </div>
+                            <div class="crypto-market-infobox-body">
+                                <div class="big-digits">12029.17</div>
+                                <p>Day Change: <span>18.34%</span></p>
+                            </div>
+                        </div>
+                        <div class="bg-white box-framed bg-white crypto-market-infobox">
+                            <div class="crypto-market-infobox-header">
+                                <h5>Bitcoin Holdings per Share**</h5>
+                                <p>At close as of 12/26/2017</p>
+                            </div>
+                            <div class="crypto-market-infobox-body">
+                                <div class="big-digits">1402.81</div>
+                                <p>Day Change: <span>12.61%</span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="crypto-market-main">
+                        <div class="crypto-market-graph">
+                            <canvas id="crypto-market-graph"></canvas>
+                        </div>
+                        <table class="crypto-market-table">
+                            <thead>
+                            <tr>
+                                <td>Returns‡</td>
+                                <td>1 Day</td>
+                                <td>1 Month</td>
+                                <td>3 Mohths</td>
+                                <td>1/2 Year</td>
+                                <td>1 Year</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>Market<br>Price<sup>*</sup></td>
+                                <td>18.34%</td>
+                                <td>119.38%</td>
+                                <td>238.86%</td>
+                                <td>1835.88%</td>
+                                <td>2027.37%</td>
+                            </tr>
+                            <tr>
+                                <td>Bitcoin<br>Holdings/<br>Share<sup>**</sup></td>
+                                <td>18.34%</td>
+                                <td>119.38%</td>
+                                <td>238.86%</td>
+                                <td>1835.88%</td>
+                                <td>2027.37%</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="bg-white box-framed crypto-market-inception">
+                            <div class="crypto-market-inception-desc">
+                                <h6>Since Inception</h6>
+                                Bitcoin Holdings / Share <sup>**</sup>
+                            </div>
+                            <div class="big-digits">+<span>10791.38</span>%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="crypto-resourses">
+                <div class="container">
+                    <div class="crypto-resourses-leftcol">
+                        <h5>Hot news</h5>
+                        <div class="important_news">
+                            {% for item in crypto_news %}
+                                <div class="important_news-item {% if loop.index == 1 %}important_news-item-black{% endif %}">
+                                    <div class="important_news-item-bg"></div>
+                                    <div class="important_news-item-num">{{ loop.index }}</div>
+                                    <div class="important_news-item-info">
+                                        {{ item.title|raw }}
+                                        <span class="meta-info">{{ item.date|date('m.d.Y H:i') }}</span>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="crypto-resourses-main">
+                        <h5>News Feed</h5>
+                        {% for item in crypto_news %}
+                           <div class="crypto-resourses-feed">
+                                <div class="crypto-resourses-feed-date">{{ item.date|date('m.d.Y') }}</div>
+                                <h4>{{ item.title|raw }}</h4>
+                                {{ item.description|raw }}
+                               <br><br>
+                                <div class="crypto-resourses-feed-sourse">Crypto news</div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-spesial_service">
+        <h4>See our Special Services for Investors</h4>
+        <div class="container">
+            <a href="{{ path('route_product_item', {'name':'conservative'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service1.jpg') }}" />
+                <h6>Careful Trust</h6>
+                <p>TOP-5 cryptocurrencies and classic money market fixed income instruments</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'classic'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service2.jpg') }}" />
+                <h6>Classic Trust</h6>
+                <p>TOP-10 cryptocurrencies and most prospect ICO tokens</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'confident'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service3.jpg') }}" />
+                <h6>Confident Trust</h6>
+                <p>Risky ICO of utility tokens and top-10 cryptocurrencies</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'individual'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service4.jpg') }}" />
+                <h6>Individual Portfolio</h6>
+                <p>Combined ESP with some exclusive tokens carefully selected by our analysts</p>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/pages/crypto.min.js') }}" ></script>
+{% endblock %}

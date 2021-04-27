@@ -1,0 +1,609 @@
+.rates {
+  .page-header {
+    position: relative;
+    height: 440px;
+    padding-top: 180px;
+    box-sizing: border-box;
+    overflow: hidden;
+    .page-header-bg {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: url("../images/rates_header_bg.jpg") no-repeat 50% 0;
+      background-size: cover;
+      z-index: -1;
+    }
+    .container {
+      font-size: 0;
+    }
+    .big-digits-wrap {
+      display: inline-block;
+      width: 50%;
+      padding-right: 2rem;
+      text-align: right;
+    }
+    .big-digits {
+      display: inline-block;
+      position: relative;
+      width: 450px;
+      text-align: left;
+      padding-right: 4.5rem;
+      color: $color-blue;
+      line-height: 6rem;
+      font-size: 7.5rem;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+      &:before {
+        content: '%';
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: 5rem;
+        font-weight: 700;
+        line-height: 4.5rem;
+      }
+    }
+    h1 {
+      display: inline-block;
+      max-width: 500px;
+      width: 50%;
+      padding-left: 2rem;
+      vertical-align: top;
+      color: #FFF;
+      font-size: calculateRem(52px);
+      font-weight: 500;
+      line-height: calculateRem(52px);
+    }
+  }
+  &-content {
+    width: 63%;
+    float: left;
+  }
+  &-news {
+    width: 30%;
+    float: right;
+    h4 {
+      padding-top: 1rem;
+      padding-bottom: 2rem;
+      font-weight: 700;
+      font-size: calculateRem(14px);
+      text-transform: uppercase;
+      color: #000;
+    }
+    &-item {
+      display: block;
+      margin-top: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: thin solid darken(#f1f1f1, 10%);
+      h5 {
+        padding-bottom: .5rem;
+        font-size: calculateRem(14px);
+        font-weight: 700;
+        line-height: calculateRem(20px);
+        color: #000;
+        transition: color .2s;
+      }
+      p {
+        line-height: calculateRem(20px);
+        font-size: calculateRem(14px);
+        color: $color-text-grey;
+      }
+      &-meta {
+        padding-top: .5rem;
+        font-size: calculateRem(12px);
+        color: lighten($color-text-grey, 5%);
+      }
+      &:hover {
+        h5 {
+          color: $color-blue;
+        }
+        p {
+          text-decoration: underline;
+        }
+      }
+    }
+    &-more {
+      padding-top: 2rem;
+      a {
+        font-family: 'Montserrat', sans-serif;
+        font-size: calculateRem(14px);
+        font-weight: 600;
+        color: $color-blue;
+        transition: color .2s;
+        span {
+          display: inline-block;
+          width: 30px;
+          height: 30px;
+          margin-left: 1rem;
+          vertical-align: top;
+          border-radius: 50%;
+          background: $color-blue url("../images/icon_arrow-right-white.png") no-repeat 50% 50%;
+          background-size: auto 12px;
+          box-shadow: 0 4px 5px -1px rgba(1, 125, 194, 0.5);
+          transition: .2s;
+        }
+        
+        &:hover {
+          color: darken($color-blue, 10%);
+          span {
+            background-color: darken($color-blue, 5%);
+          }
+        }
+      }
+    }
+  }
+  &-info {
+    padding-top: 2rem;
+    padding-bottom: 5rem;
+    overflow: hidden;
+  }
+}
+.rates-charts {
+  &-total_histogramm {
+    float: left;
+    height: 495px;
+    padding-top: calculateRem(35px);
+    &-header {
+      display: flex;
+      > div:first-of-type {
+        margin-right: calculateRem(110px);
+      }
+      > div:last-of-type {
+        text-align: right;
+        padding-right: 2rem;
+
+        .big-digits,
+        .rates-charts-total_histogramm-btc-small {
+          color: $color-blue;
+        }
+        .big-digits {
+          position: relative;
+          padding-right: 2.25rem;
+          font-weight: 600;
+          &:before {
+            content: '%';
+            position: absolute;
+            display: block;
+            right: 0;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 2.5rem;
+          }
+        }
+        .rates-charts-total_histogramm-btc-small {
+          padding-top: 5px;
+          font-size: calculateRem(18px);
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+        }
+      }
+      h5 {
+        padding-bottom: .875rem;
+        font-weight: 600;
+      }
+      p {
+        line-height: calculateRem(24px);
+        max-width: 400px;
+      }
+    }
+    &-body {
+      padding-top: 10px;
+      height: 335px;
+      canvas {
+        width: 100%!important;
+        height: 280px!important;
+      }
+    }
+  }
+  &-polar_histogramm {
+    float: left;
+    width: 100%;
+    height: 495px;
+    padding-top: calculateRem(35px);
+    &-header {
+      display: flex;
+      > div:first-of-type {
+        flex: 1 0 55%;
+      }
+      > div:last-of-type {
+        flex: 0 1 45%;
+        text-align: right;
+        padding-left: 2.5%;
+        padding-right: 2rem;
+
+        .big-digits,
+        .rates-charts-polar_histogramm-btc-small {
+          color: $color-blue;
+        }
+        .big-digits {
+          position: relative;
+          padding-right: 2.25rem;
+          font-weight: 600;
+          &:before {
+            content: '%';
+            position: absolute;
+            display: block;
+            right: 0;
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 2.5rem;
+          }
+        }
+        .rates-charts-polar_histogramm-btc-small {
+          padding-top: 5px;
+          font-size: calculateRem(18px);
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+        }
+      }
+      .select {
+        height: calculateRem(36px)!important;
+        width: 100px;
+        vertical-align: top;
+        select {
+          height: calculateRem(36px)!important;
+          color: #222;
+          font-family: 'Montserrat', sans-serif;
+          font-size: calculateRem(13px);
+          font-weight: 700;
+        }
+        .customSelect {
+          height: 2.25rem;
+          width: 100px;
+          padding-right: 1rem;
+          padding-left: 1rem;
+          border-radius: 4px;
+          color: #767676;
+          white-space: nowrap;
+          font-family: Montserrat, sans-serif;
+          font-size: .8125rem;
+          font-weight: 500;
+          vertical-align: baseline;
+          box-sizing: border-box;
+          border: thin solid #c5c5c5;
+          text-align: left;
+        }
+      }
+
+      .specific-date {
+        font-family: Montserrat, sans-serif;
+        font-size: .8125rem;
+        font-weight: 500;
+        line-height: calculateRem(22px);
+        vertical-align: top;
+        img {
+          display: inline-block;
+          margin-top: -2px;
+          margin-left: 6px;
+          vertical-align: top;
+        }
+      }
+
+      h5 {
+        padding-bottom: .875rem;
+        font-weight: 600;
+      }
+      p {
+        line-height: calculateRem(24px);
+        max-width: 400px;
+      }
+
+    }
+    &-body {
+      padding-top: 2rem;
+      height: 350px;
+      canvas {
+        width: 560px!important;
+        height: 280px!important;
+      }
+    }
+  }
+}
+.rates-instruments {
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+  .container {
+    font-size: 0;
+  }
+  &-col {
+    display: inline-block;
+    font-size: 1rem;
+    width: 50%;
+    vertical-align: top;
+    &:nth-of-type(1) {
+      padding-right: 2rem;
+    }
+    &:nth-of-type(2) {
+      padding-left: 2rem;
+    }
+  }
+  .crypto-market-graph {
+    padding-top: 2rem;
+  }
+  .histogramm-menu>span,
+  .histogramm-menu>span.current,
+  .histogramm-menu>span:active,
+  .histogramm-menu>span:hover {
+    color: #FFF;
+  }
+  .dashboard-charts-cryptoassets-row h6 {
+    color: #FFF;
+  }
+  .dashboard-charts-cryptoassets-row-diff {
+    flex: 0 0 140px!important;
+  }
+  .dashboard-charts-cryptoassets-row-diff,
+  .dashboard-charts-cryptoassets-row {
+    padding-top: .75rem;
+    padding-bottom: .75rem;
+    max-width: 550px;
+    color: #c5c5c5;
+    border-bottom-color: #333;
+  }
+  .dashboard-charts-cryptoassets-row>div:nth-of-type(2) {
+    padding-right: 60px;
+    text-align: right;
+  }
+  .dashboard-charts-cryptoassets-row>div:nth-of-type(3) {
+    line-height: calculateRem(20px);
+    padding-top: 6px;
+    padding-right: 0;
+    text-align: right;
+  }
+  .dashboard-charts-cryptoassets-row .icon-color-arrow {
+    margin-top: 8px;
+  }
+}
+
+.rates {
+  .rates-informer .owl-dots {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    .owl-dot {
+      margin-top: 2rem;
+    }
+  }
+  .rates-informer-wrap {
+    transform: translateY(-50%);
+    width: calc(100% + 6rem);
+    margin-left: -3rem;
+    margin-right: -3rem;
+    padding-right: 3rem;
+    padding-left: 3rem;
+  }
+}
+.rates-informer {
+}
+.rates-informer-wrap {
+  width: 100%;
+  background: #232323;
+  border-top: thin solid #444;
+}
+.rates-informer-item {
+  padding: 30px 10px;
+  font-family: 'Open Sans', sans-serif;
+  background: #232323;
+  border-left: thin solid transparent;
+}
+.rates-informer .owl-item.active + .owl-item.active .rates-informer-item {
+  border-left-color: #444!important;
+}
+.rates-informer-item > div {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.rates-informer-item-title {
+  margin-bottom: 7px;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #c5c5c5;
+}
+.rates-informer-item-title span {
+  display: block;
+  float: right;
+}
+.rates-informer-item-body {
+  color: #FFF;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 24px;
+}
+.rates-informer-item-body span {
+  display: inline-block;
+  margin-top: 2px;
+  margin-right: 4px;
+  width: 15px;
+  height: 20px;
+  vertical-align: top;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADwAAAAUCAYAAADRA14pAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA/FJREFUeNrkWM1LVUEUn3k+klDcubCVkAgK5sKlCoIUBuIH6UMFdeP/kNC2QP8MC0rUMEMwDMHQli4sMBSFt6qFGxOfUeSbfjNz7r0zc+fdd8W3CDxw3ny+OXM+5pzfe1wIwW4TZeUH/5XTI851CyOI0d0n6D0HD/HlrsNwjdbVODCW8T0at+NzHOM59M/C/cHZd5eS7hTKBR9eUx8tl7E58FlJhaPLS+Z6zFk9hvcwUReuu61rAH1WM8av0WsFN4GnMHcZ21ea6sFa7vWoGWzLZezS3ZSxPMNMT/ErfPwB/7W8GFCkoGmA++B3JPS38pYQL9HWWsZJJltuOorLZcyWaylskuvJoG+GrzmOFGjG2hbG8qIvwD/AzzD3GO0bcE14XmVJenaLDBTJZSySW1JhUwmOgNaKceuNumGpDSBD6D3aKrQD4K9k3SWy9iPwK6zXpPCwE26JpOUylizXUDpjhaUVulygzxW7yYlZ4wfgj+A7GEsBebS1dOE6fPcD2jG0g5hfBNenUJinUDiSqxXLk7Kc3r+Wy9ggeJFyg/OGLaWF7UUzUQnrTc+qczjvx/o3wzvCiIBV9EbAPehPVyiUZ+n+/eC4XE2RXMam7SztZlGhnazOMN+zG9pCzGPmJ9q8YQROa8Iw5ir6PWpvZWiezsqbqdR5FoHSodxsLHNGSmfkK4bSxRLlJ2j3vRnYTU76u3sp3nCGLlwss2//GsbZ89fhmKeNumzVaxbP2u4eX839D1CdesNidKdd5HYbnczruahCYB3gphi6spUvKksJkYkAjZMcI2TUmPKuHZSVk6hIYZ1JVBj0FPxJjOy0Gt4JXMkNuDmM47bBQ15YaZU17hQa4fOwkkuAIaksDYO3CW7e3MMQMaesw9m6yH1uoUvrWwc6SGUZW9GC+YKVuV3UFY5Nr/J45DCSy9g6uMUpS6ayJJctVERhvtL9Bc1DiAKkE5tQrhEiL5Rwzs5hhD60spatYfcYX+o8TXynEqyoDB2Cl3jp06Tlaii5SeF9QUqfg/uohq5RTT0to0+QeEQZD0Ov5e5jXGZAYVmu0EsbFqRw+VPqLc7ChfgklC2UzMSmYL0mLG/7k9YxoaQrQk1tpDTJVYaYBBdSONBXlkpgaaV05xG29qrsLYBHBWvAGcCnYgM8Hirre7c+AOMDjH46AvdS1ZA4uIFw8Qb93CtUNEtHGVaGd9cJ2iGMD2CvakxK704hAi5iGNqXqTVVYU5CzawDQ5NK0wklpQNwNXl3irydlqoIamaTFXZgI940LC4m0JdoZgaevYyVnuSaKt/ad+w5D2FokvdtT08Qiprx/Z4tQ1qufv/+mL9tf/H8E2AAaNjMw0mi/gsAAAAASUVORK5CYII=);
+  background-size: cover;
+}
+.rates-informer-item-body span.rates-informer-arrow-down {
+  background-position: 0 50%;
+}
+.rates-informer-item-body span.rates-informer-arrow-up {
+  background-position: -15px 50%;
+}
+.rates-informer-item-body small {
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 10px;
+  vertical-align: top;
+  font-size: 13px;
+  line-height: 14px;
+}
+
+@media (max-width: 1139px) {
+  .rates {
+    &-charts-polar_histogramm {
+      &-header {
+        > div:first-of-type {
+          flex: 1 0 45%;
+        }
+        > div:last-of-type {
+          flex: 1 1 55%;
+        }
+      }
+      &-body {
+        canvas {
+          width: 480px!important;
+          height: 240px!important;
+        }
+      }
+    }
+  }
+  .rates {
+    .rates-informer-wrap {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      padding-right: 3;
+      padding-left: 3;
+    }
+  }
+  .rates-instruments {
+    .dashboard-charts-cryptoassets-row>div:nth-of-type(2) {
+      padding-right: 20px;
+    }
+    .dashboard-charts-cryptoassets-row-diff {
+      flex: 0 0 120px!important;
+    }
+    .dashboard-charts-cryptoassets-row {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
+@media (max-width: 979px) {
+
+  .rates .page-header .big-digits {
+    width: 280px;
+    font-size: 5rem;
+  }
+  .rates .page-header .big-digits:before {
+    font-size: 3rem;
+  }
+  .rates {
+    &-charts-polar_histogramm {
+      &-header {
+        > div:first-of-type {
+          flex: 1 0 55%;
+        }
+        > div:last-of-type {
+          flex: 1 1 45%;
+        }
+      }
+      &-body {
+        canvas {
+          width: 560px!important;
+          height: 280px!important;
+        }
+      }
+    }
+  }
+  .rates-content,
+  .rates-news {
+    clear: both;
+    float: none;
+    width: 100%;
+  }
+  .rates-news {
+    padding-top: 2rem;
+  }
+}
+@media (max-width: 767px) {
+  .rates .page-header {
+    padding-top: 140px;
+  }
+  .rates .page-header h1,
+  .rates .page-header .big-digits-wrap {
+    width: 100%;
+  }
+  .rates .page-header .big-digits-wrap {
+    padding-right: 0;
+    text-align: center;
+  }
+  .rates .page-header .big-digits {
+    width: 280px;
+    font-size: 5rem;
+  }
+  .rates .page-header .big-digits:before {
+    font-size: 3rem;
+  }
+  .rates .page-header h1 {
+    font-size: 2.5rem;
+  }
+  .rates-charts-total_histogramm-header,
+  .rates-charts-polar_histogramm-header {
+    display: block;
+  }
+  .rates-charts-total_histogramm-header>div:first-of-type {}
+  .rates-charts-total_histogramm-header>div:last-of-type {
+    padding-top: 2rem;
+    text-align: left;
+  }
+  .rates-charts-polar_histogramm-header>div:last-of-type {
+    padding-left: 0;
+  }
+  .rates-charts-total_histogramm-header>div:last-of-type .big-digits {
+    width: 150px;
+  }
+  .rates-charts-total_histogramm,
+  .rates-charts-polar_histogramm {
+    height: auto;
+  }
+  .rates {
+    &-charts-polar_histogramm {
+      &-body {
+        height: auto;
+        canvas {
+          width: 320px!important;
+          height: 160px!important;
+        }
+      }
+    }
+  }
+  .rates-instruments-col {
+    width: 100%;
+    &:nth-of-type(1) {
+      padding-right: 0;
+    }
+    &:nth-of-type(2) {
+      padding-left: 0;
+    }
+  }
+  .rates-instruments .dashboard-charts-cryptoassets-row>div:nth-of-type(2) {
+    text-align: left;
+  }
+}
+@media (max-width: 479px) {
+
+  .rates {
+    &-charts-polar_histogramm {
+      &-body {
+        height: auto;
+        canvas {
+          width: 240px!important;
+          height: 120px!important;
+        }
+      }
+    }
+  }
+  .rates-charts-total_histogramm-body {
+    height: auto;
+  }
+  .rates-charts-total_histogramm-body canvas {
+    height: 150px!important;
+  }
+  .rates-charts-polar_histogramm {
+    display: none;
+  }
+}
+@media (max-width: 379px) {
+  .rates {
+  }
+}

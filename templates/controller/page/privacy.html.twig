@@ -1,0 +1,80 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    <div class="page-header"></div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="dashboard-menu-tabs">
+        <div class="container">
+            <a href="{{ path('route_terms') }}" class="dashboard-menu-tabs-item">Terms of Service</a>
+            <a href="{{ path('route_privacy') }}" class="dashboard-menu-tabs-item current">Privacy Police</a>
+        </div>
+    </div>
+
+    <div class="bg-light-grey">
+        <div class="container">
+            <div class="terms-nav">
+                <ul>
+                    <li class="current" data-target="introduction">Introduction</li>
+                    <li data-target="interpretation">Interpretation</li>
+                    <li data-target="licence">Licence to Use the Site</li>
+                </ul>
+            </div>
+            <div class="terms-content">
+                <div>
+                    <p class="term-content-introduction">Thank you for choosing Bitfinex.com (the "Site"). The following terms and conditions of service (these "Terms of Service") apply to customers of the Site. Some of these Terms of Service will apply only to U.S. Persons (as defined below) using the Site. Others apply to all users of the Site. You should read these Terms of Service carefully to determine which provisions apply to you. By using any of the services, functions, or features offered from time to time on the Site (collectively or individually, the "Services"), the customer (referred to herein as "you" or "your") agrees to these Terms of Service.</p>
+
+                    <p>These Terms of Service constitute the agreement and understanding with respect to the use of any or all of the Services, and any manner of accessing them, between: you and one of the following parties.</p>
+
+                    <p>By creating an account on the Site or by using any of the Services, you acknowledge that you have read, understand, and completely agree to these Terms of Service in effect from time to time. If you disagree with these Terms of Service or with any subsequent amendments, changes, or updates, you may not use any of the Services; your only recourse in the case of disagreement is to stop using all of the Services.</p>
+
+                    <p>These Terms of Service may be amended, changed, or updated by Bitfinex at any time and without prior notice to you. You should check back often to confirm that your copy and understanding of these Terms of Service is current and correct. Your non-termination or continued use of any Services after the effective date of any amendments, changes, or updates constitutes your acceptance of these Terms of Service, as modified by such amendments, changes, or updates.</p>
+
+                    <p>The use of the Site and any Services is void where prohibited by applicable law.</p>
+
+                    <ul>
+                        <li class="term-content-interpretation">1. Interpretation:
+                            <ul>
+                                <li>1.1. Definitions: In these Terms of Service and all documents incorporated herein by reference, the following words have the following meanings unless otherwise indicated:
+                                    <ul>
+                                        <li>1.1.1. "AML" means anti-money laundering;</li>
+                                        <li>1.1.2. "Associates" means BFXWW, BFXNA, iFinex, and each and every one of their respective shareholders, subsidiaries, employees, contractors, agents, directors, officers, partners, affiliates, insurers, and attorneys;</li>
+                                        <li>1.1.3. "BFXNA" means BFXNA Inc.;</li>
+                                        <li>1.1.4. "BFXWW" means BFXWW Inc.;</li>
+                                        <li>1.1.5. "Bitfinex" means:
+                                            <ul>
+                                                <li>1.1.5.1. where you are a U.S. Person, BFXNA; and,</li>
+                                                <li>1.1.5.2. where you are not a U.S. Person, BFXWW;</li>
+                                            </ul>
+                                        </li>
+                                        <li>1.1.6. "Bitfinex Marks" has the meaning set out in paragraph 14 of these Terms of Service;</li>
+                                    </ul>
+                                </li>
+                                <li>1.2 Headings: The headings and subheadings in these Terms of Service are for ease of reference only and are not to be taken into account in the construction or interpretation of any provision or provisions to which they refer.</li>
+                                <li>1.3 Extended Meanings: Unless otherwise specified in these Terms of Service, words importing the singular include the plural and vice versa and words importing gender include all genders.</li>
+                                <li>1.4 Governing Law: These Terms of Service shall be governed by and construed and enforced in accordance with the laws of the British Virgin Islands, and shall be interpreted in all respects as a British Virgin Islands contract. Any claim or action arising from or related to these Terms of Service shall be governed by and construed and enforced in accordance with the laws of the British Virgin Islands. For the avoidance of doubt, and without limiting the generality of the foregoing, this provision expressly applies to any tort claim against Bitfinex. The venue and forum for any claim or action against or involving Bitfinex shall be in the British Virgin Islands. You unconditionally attorn to the exclusive jurisdiction of the courts of the British Virgin Islands and all courts competent to hear appeals therefrom. You also unconditionally agree to the exclusive forum and venue of the British Virgin Islands in all claims or actions arising from or any dispute or question of any kind relating to these Terms of Service. The doctrine of forum non conveniens shall not apply in the selection of forum under these Terms of Service.</li>
+                            </ul>
+                        </li>
+                        <li class="term-content-licence">2. Licence to Use the Site: If you comply with these Terms of Service, Bitfinex grants you the limited right to use the Site and the Services. The right to use the Site and the Services is a personal, restricted, non-exclusive, non-transferable, revocable, limited licence, and it is subject to the limitations and obligations in these Terms of Service. Nothing in these Terms of Service gives you any licence (other than as set out in this paragraph), right, title, or ownership of, in, or to the Site or any of the Services.</li>
+                        <li>3. Trading & Financing Activities: The Site is a trading environment for the spot purchase and sale of Digital Tokens. The Site permits both unfinanced and financed transactions. Unfinanced purchases are fully funded by trading participants through funds deposited by you. For example, if you deposit $100.00 into your account on the Site, you may then purchase $100.00 worth of bitcoins in an unfinanced transaction. Purchases and sales of bitcoins on the Site, whether in an unfinanced transaction or a financed transaction, are settled by actual delivery of the full amount of the bitcoins or other Digital Tokens by the seller to the purchaser’s account against payment in full by the purchaser to the seller’s account.
+                            <p>Important: Financing is not allowed where prohibited by applicable law. U.S. Persons may not be Financing Recipients on the Site. Furthermore, the following persons are prohibited from depositing to, withdrawing from, or trading or providing or taking financing on the Site:</p>
+                            <ul>
+                                <li>3.1 persons resident in, and nationals of, Prohibited Jurisdictions;</li>
+                                <li>3.2 New York and Washington state residents; and,</li>
+                                <li>3.3 individual residents of the United States of America.</li>
+                            </ul>
+                        </li>
+                        <li>4. Financed transactions in Digital Tokens are permitted through the Site’s platform-enabled, peer-to-peer financing functionality. Financing Providers may offer financing from and on their own account if they so choose. Financing Recipients may accept financing from Financing Providers for up to 70% of the value of a Digital Token purchase. For example, if you deposit $30.00 to the Site, you may then obtain financing in an amount not exceeding $70.00 in order to buy $100.00 worth of bitcoins in a financed transaction. In other words, you may accept financing equal to a maximum total bitcoins-to-equity ratio of 3 1/3 to 1.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/libs/jquery.scrollTo.min.js') }}" ></script>
+    <script src="{{ asset('js/pages/terms.min.js') }}" ></script>
+{% endblock %}

@@ -1,0 +1,195 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    {{ include('controller/page/dashboard-header.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+    <div class="container dashboard-charts">
+        <br>
+        <div class="bg-white box-framed dashboard-charts-total_histogramm">
+            <div class="dashboard-charts-total_histogramm-header">
+                <div>
+                    <h5>Total equity histogram</h5>
+                    <p>Сlient equity and the current structure of crypto assets in the all purchased</p>
+                </div>
+                <div>
+                    <div class="big-digits dashboard-charts-total_histogramm-btc">{% if currentGainEquity is defined %}{{ currentGainEquity }}{% else %}0.00{% endif %}</div>
+                    <div class="dashboard-charts-total_histogramm-btc-small">{% if dailyGainEquity is defined %}{{ dailyGainEquity }}{% else %}0.00{% endif %}</div>
+                </div>
+            </div>
+            <div class="dashboard-charts-total_histogramm-body">
+                <div class="histogramm-menu">
+                    <span data-period="d365">1 Y</span>
+                    <span data-period="d180" class="current">6 M</span>
+                    <span data-period="d90">3 M</span>
+                    <span data-period="d30">1 M</span>
+                    <div class="active-border"></div>
+                </div>
+                <canvas id="total_histogramm"></canvas>
+            </div>
+        </div>
+        <div class="bg-white box-framed bg-white dashboard-charts-noninvested_founds">
+            <div class="dashboard-charts-noninvested_founds-header">
+                <a href="{{ path('route_product_list') }}">Products</a>
+                <h5>Non-invested funds</h5>
+            </div>
+            <div class="dashboard-charts-noninvested_founds-body">
+                <div class="big-digits {% if auth.isRateUSD() %}big-digits_inDollars{% endif %}">{% if nonInvestedFunds is defined %}{{ nonInvestedFunds }}{% else %}0.00{% endif %}</div>
+{#                <p>BTC invested in products and equivalent</p>#}
+            </div>
+        </div>
+        <div class="bg-white box-framed bg-white dashboard-charts-totalinvested_founds">
+            <div class="dashboard-charts-totalinvested_founds-header">
+                <a href="{{ path('route_deposit') }}">Deposit</a>
+                <h5>Total Funds invested</h5>
+            </div>
+            <div class="dashboard-charts-totalinvested_founds-body">
+                <div class="big-digits">{% if totalInvestedFunds is defined %}{{ (totalInvestedFunds)|number_format(8, '.', '') }}{% else %}0.00000000{% endif %}</div>
+{#                <p>BTC invested in products and equivalent</p>#}
+            </div>
+        </div>
+
+        <div class="bg-white box-framed bg-white dashboard-charts-cryptoassets">
+            <div class="dashboard-charts-cryptoassets-header">
+                <div class="dashboard-charts-cryptoassets-title">
+                    <h5>Select Product to invest</h5>
+                    <p>Choose product you want to invest from the list below</p>
+                </div>
+                <div class="dashboard-charts-cryptoassets-filter">
+                    <div class="pricing-periods">
+                        <div class="pricing-periods-indicator"></div>
+                        <div class="pricing-periods-item" data-period="d365">1 Year</div>
+                        <div class="pricing-periods-item active" data-period="d180">6 Months</div>
+                        <div class="pricing-periods-item" data-period="d90">3 Months</div>
+                        <div class="pricing-periods-item" data-period="d30">1 Month</div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-charts-cryptoassets-body">
+                <div class="dashboard-charts-cryptoassets-body-col_1">
+                    <div class="dashboard-products-title">
+                        <div class="dashboard-products-title-name">Product Name</div>
+                        <div class="dashboard-products-title-diff">Returns</div>
+                        <div class="dashboard-products-title-value">Deposit</div>
+                        <div class="dashboard-products-row-btn"></div>
+                    </div>
+                    <div class="dashboard-products-row dashboard-products-row-conservative" data-product="conservative">
+                        <div class="dashboard-products-row-name">
+                            <img src="/images/special_service1.jpg">
+                            <h6>Conservative <span>Trust</span></h6>
+                            <small>6 months</small>
+                        </div>
+                        <div class="dashboard-products-row-diff"><span class="icon-color-arrow icon-color-arrow-up"></span>+113.585</div>
+                        <div class="dashboard-products-row-value">$ 2,000</div>
+                        <div class="dashboard-products-row-btn"><button data-target-url="" data-product="conservative" class="btn">Buy</button></div>
+                    </div>
+                    <div class="dashboard-products-row dashboard-products-row-classic" data-product="classic">
+                        <div class="dashboard-products-row-name">
+                            <img src="/images/special_service2.jpg">
+                            <h6>Classic <span>Trust</span></h6>
+                            <small>6 months</small>
+                        </div>
+                        <div class="dashboard-products-row-diff"><span class="icon-color-arrow icon-color-arrow-down"></span>+3.58503429</div>
+                        <div class="dashboard-products-row-value">$ 5,500</div>
+                        <div class="dashboard-products-row-btn"><button data-target-url="/classic" data-product="classic" class="btn">Buy</button></div>
+                    </div>
+                    <div class="dashboard-products-row dashboard-products-row-confident" data-product="confident">
+                        <div class="dashboard-products-row-name">
+                            <img src="/images/special_service3.jpg">
+                            <h6>Confident <span>Trust</span></h6>
+                            <small>6 months</small>
+                        </div>
+                        <div class="dashboard-products-row-diff"><span class="icon-color-arrow icon-color-arrow-down"></span>+113.585</div>
+                        <div class="dashboard-products-row-value">$ 11,500</div>
+                        <div class="dashboard-products-row-btn"><button data-target-url="/confident" data-product="confident" class="btn">Buy</button></div>
+                    </div>
+                </div>
+                <div class="dashboard-charts-cryptoassets-body-col_2">
+                    <h5>conservative trust</h5>
+                    <div style="">
+                        <canvas id="dashboard-cryptoassets-total"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dashboard-products-individual">
+                <div class="dashboard-products-individual-name">
+                    <img src="/images/special_service4.jpg">
+                    <h6>Individual Portfolio Managment</h6>
+                    <small>Special offer for sophisticated investors who are to actively participate in managing of own wealth</small>
+                </div>
+                <div class="dashboard-products-individual-value">from $5,000</div>
+                <div class="dashboard-products-individual-btn"><a href="{{ path('route_portfolio') }}" class="btn btn_blue">Go to Build Portfolio</a></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="dashboard-footer">
+        <div class="container important_news">
+            <h5>Important news</h5>
+            {% for item in market_news %}
+                <a href="{{ path('route_newsfeed') }}" class="important_news-item {% if loop.index == 1 %}important_news-item-black{% endif %}">
+                    <div class="important_news-item-bg"></div>
+                    <div class="important_news-item-num">{{ loop.index }}</div>
+                    <div class="important_news-item-info">
+                        {{ item.title|raw }}
+                        <span class="meta-info">{{ item.date|date('m.d.Y H:i') }}</span>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+        <div class="support-block">
+            <div class="support-block-bg"></div>
+            <div class="support-block-subtitle animate-visible"><b>Do you have any Question?</b></div>
+            <div class="support-block-title animate-visible"><h2>Contact Your Account Manager</h2></div>
+            <div class="support-block-description animate-visible"><h5>Please, click to Request Button and communicate with your Personal Manager.</h5></div>
+            <div class="support-block-link animate-visible">
+                <a onclick='$("#zsiq_agtpic").click();' class="btn btn_lg">Send Request <span class="hidden-arrow-right"></span></a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+
+    <div class="box-framed bg-white popup popup-product_buy">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <div class="popup-product_buy-info">
+            <h4>Buy product</h4>
+            <div class="popup-product_buy-info-name">
+            </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>Cost</th>
+                    <th>Qty</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="popup-product_buy-cost"></td>
+                    <td class="popup-product_buy-qty"><input type="text" value="1"></td>
+                    <td class="popup-product_buy-total"></td>
+                </tr>
+                </tbody>
+            </table>
+            <button  data-link="{{ path('route_product_buy') }}" class="btn btn_blue">Confirm</button>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/libs/jquery.datepicker.min.js') }}" ></script>
+    <script src="{{ asset('js/pages/dashboard.min.js') }}?v={{ date().timestamp }}" ></script>
+{% endblock %}

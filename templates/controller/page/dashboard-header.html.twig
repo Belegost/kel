@@ -1,0 +1,37 @@
+<div class="dashboard-header page-header">
+    <div class="page-header-bg"></div>
+    <div class="container dashboard-header">
+        <div class="dashboard-header-user">
+            <div class="dashboard-header-user-ava" style="background-image: url({{ asset(avatar_url) }});"></div>
+            <div class="dashboard-header-user-info">
+                <div class="dashboard-header-user-fullname">{{ auth.getAccount().getFullName() }}</div>
+                <div class="dashboard-header-user-nicname">{{ auth.getAccount().getUsername() }}</div>
+                <div class="dashboard-header-user-invested">Trust Invested (BTC): <b>{% if totalInvested is defined and totalInvested.BTC is defined %}{{ (totalInvested.BTC)|number_format(8, '.', '') }}{% else %}0.00000000{% endif %}</b></div>
+                <div class="dashboard-header-user-invested">Trust Invested (USDT): <b>{% if totalInvested is defined and totalInvested.USDT is defined %}{{ (totalInvested.USDT)|number_format(2, '.', '') }}{% else %}0.00{% endif %}</b></div>
+            </div>
+        </div>
+
+        <div class="dashboard-header-totalbtc">
+            <div class="dashboard-header-totalbtc-title">
+                Total Equity in USDT<span class="arrow-open"></span>
+            </div>
+            <div class="big-digits dashboard-header-totalbtc-value">
+                {% if totalBalance is defined %}{{ (totalBalance)|number_format(2, '.', '') }}{% else %}0.00{% endif %}
+            </div>
+            <div class="dashboard-header-totalbtc-daychange">
+                Day Change: <b>{% if dailyGainEquity is defined %}{{ (dailyGainEquity)|number_format(2, '.', '') }}{% else %}0.00{% endif %}</b> <span class="icon-color-arrow icon-color-arrow-{% if dailyGainDirect is defined %}{{ dailyGainDirect }}{% else %}down{% endif %}"></span>
+            </div>
+        </div>
+        <div class="dashboard-header-totalpersents">
+            <div class="dashboard-header-totalpersents-title">
+                Total Equity in % <span class="arrow-open"></span>
+            </div>
+            <div class="big-digits dashboard-header-totalpersents-value">
+                {% if currentGainEquityPCT is defined %}{{ currentGainEquityPCT }}{% else %}0.00{% endif %}
+            </div>
+            <div class="dashboard-header-totalpersents-daychange">
+                Day Change: <b>{% if dailyGainEquityPCT is defined %}{{ dailyGainEquityPCT }}{% else %}0.00{% endif %}</b> <span class="icon-color-arrow icon-color-arrow-{% if dailyGainDirect is defined %}{{ dailyGainDirect }}{% else %}down{% endif %}"></span>
+            </div>
+        </div>
+    </div>
+</div>

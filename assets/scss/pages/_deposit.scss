@@ -1,0 +1,145 @@
+.deposit {
+  .bg-light-grey {
+    clear: both;
+    min-height: 475px;
+  }
+  &-main {
+    //position: relative;
+    //float: left;
+    //overflow: hidden;
+    //width: 63%;
+    //min-height: 350px;
+    padding-top: 2rem;
+    padding-left: 5rem;
+    padding-right: 5rem;
+    transition: .5s;
+    //fieldset {
+    //  padding-top: 0;
+    //}
+    //input {
+    //  height: 50px!important;
+    //  font-family: 'Montserrat', sans-serif;
+    //  font-weight: 700;
+    //  border-bottom-color: lighten($color-text-grey, 45%) !important;
+    //}
+    p {
+      //padding-top: 2rem;
+      padding-bottom: .5rem;
+      font-size: calculateRem(14px);
+    }
+    .btn {
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+
+  }
+  &-sidebar {
+    margin-left: 70%;
+    padding: 0;
+
+    &-header {
+      height: 60px;
+      padding: 15px 30px;
+      border-bottom: thin solid lighten($color-text-grey, 45%);
+      h5 {
+        font-weight: 600;
+      }
+    }
+    &-body {
+      padding: 20px 30px;
+      p {
+        max-width: 80%;
+        padding-top: 20px;
+        font-size: calculateRem(14px);
+        line-height: calculateRem(24px);
+      }
+      a {
+        padding-left: 5px;
+        color: $color-blue;
+        transition: color .2s;
+        &:hover {
+          color: $color-text-grey;
+        }
+      }
+      .big-digits {
+        position: relative;
+        font-size: 3rem;
+        color: #1fbad6;
+      }
+    }
+  }
+  .bg-light-grey {
+    overflow: hidden;
+    padding-bottom: 2rem;
+  }
+
+}
+
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 1300px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (                min-resolution: 192dpi) and (min-width: 1300px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 1300px),
+only screen and (                                             min-width: 1700px){
+  /* Large screen, retina, stuff to override above media query */
+  .homepage {
+    .mainwrap {
+      .page-header-bg {}
+    }
+  }
+
+}
+@media (max-width: 1139px) {
+  .deposit-sidebar-body .big-digits {
+    font-size: 2.5rem;
+  }
+}
+@media (max-width: 979px) {
+  .dashboard-header.page-header {
+    padding-top: 100px!important;
+  }
+  .deposit-main {
+    width: 55%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  .deposit-sidebar {
+    margin-left: 60%;
+  }
+  .deposit .verification h5 {
+    padding-bottom: 0;
+  }
+  .deposit .verification-form {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .deposit .verification-timer {
+    margin: 0;
+  }
+}
+@media (max-width: 767px) {
+  .deposit-main {
+    float: none;
+    width: 100%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+  }
+  .deposit-sidebar {
+    margin-left: 0;
+  }
+  .deposit-main .makedeposit,
+  .deposit-main .verification,
+  .deposit-main .btc-address {
+    padding: 30px;
+  }
+  .deposit .verification-timer {
+    margin:  0 0 15px;
+  }
+}
+@media (max-width: 479px) { }
+@media (max-width: 379px) { }

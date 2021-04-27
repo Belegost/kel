@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    {% block title %}
+    <title>Integrity</title>
+    {% endblock %}
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+
+    <meta property='og:site_name' content='Integrity'/>
+    <meta property='og:url' content='http://integrity.com/'/>
+    <meta property='og:title' content='Integrity'/>
+    <meta property='og:type' content='article'/>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="/css/style.css">
+    {% endblock %}
+</head>
+
+<body class="{{ body_class|default('') }}">
+
+<div class="sticky-header header-white">
+    {{ include('layout/header.html.twig', {logo: '/images/logo_black.png'}) }}
+</div>
+
+<div class="mainwrap">
+    <div class="mainwrap-overlay"></div>
+    <div class="scrollancor"></div>
+    <header class="{{ header_class|default('') }}">
+        {{ include('layout/header.html.twig', {logo: (header_class is defined) and (header_class == 'header-white') ? '/images/integrity_trust_logo.svg' : '/images/integrity_trust_logo_forDarkBG.svg'}) }}
+    </header>
+
+    {% block page_header %}{% endblock %}
+
+    {% if isLogged and submenu %}
+        {% block page_menu %}
+            {{ include('layout/menu.html.twig') }}
+        {% endblock %}
+    {% endif %}
+
+    {% block page_content %}{% endblock %}
+
+    <footer>
+        {% block footer %}
+            {{ include('layout/footer.html.twig') }}
+        {% endblock %}
+    </footer>
+</div>
+
+{% block sidebar %}
+    {{ include('layout/sidebar.html.twig') }}
+{% endblock %}
+
+{% block popups %}
+    <div class="popup-shadow"></div>
+
+    {% if not isLogged %}
+        {{ include('layout/popup-login.html.twig') }}
+    {% endif %}
+
+    <div name="popup_body" class="box-framed bg-white popup popup-msg {#{% if alerts.exist() %}visible{% endif %}#}">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <div class="popup-msg-info">
+{#            {% for type, message in alerts.list() %}#}
+{#                {{ message }}#}
+{#            {% endfor %}#}
+        </div>
+    </div>
+{% endblock %}
+
+<div hidden>
+    {% block hidden %}{% endblock %}
+</div>
+
+{# ---JavaScript--- #}
+{% block javascripts %}
+    <script type="text/javascript">
+        (function (w) {
+            w.integrityEnv = [];
+        })(window);
+    </script>
+
+    <script src="/js/libs/jquery.min.js"></script>
+    <script src="/js/libs/chart.min.js"></script>
+    <script src="/js/dropzone.js"></script>
+    <script src="/js/scripts.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/libs/jquery.datepicker.min.js"></script>
+    <script type="text/javascript">
+
+        var formName = 'contact';
+        var fieldAlert = $("#result_field");
+        var form = $("form[name=" + formName + "]");
+        form.submit(function (event) {
+            event.preventDefault();
+            $('#demo_account_send').attr('disabled', true);
+            var formData = $(this).serialize();
+            $.ajaxSetup({
+                url: "",
+                global: false,
+                type: "POST",
+                success: function (responce) {
+                    showFromError(formName, responce);
+                    if (responce === true) {
+                        form.trigger('reset');
+                        fieldAlert.attr('class', 'alert alert-success');
+                        fieldAlert.text('Thank you, your message send!');
+                    }
+                },
+                error: function (responce) {
+                    form.trigger('reset');
+                    fieldAlert.attr('class', 'alert alert-warning');
+                    fieldAlert.text('Thank you, some thing goes wrong please try again later!');
+                }
+
+            });
+            $.ajax({data: formData});
+
+        });
+
+        function showFromError(formName, error) {
+
+            for (var x = 0; x < error.length; x++) {
+                var fieldNameOrigin = formName+'_'+error[x].name;
+                var fieldName = fieldNameOrigin.split(".")[0];
+                //var fieldId = formName + "_" + error[x].name;
+                //var parent = $("#" + fieldId).closest('fieldset');
+                var parent = $("[id^=" + fieldName+ "]").closest('fieldset');
+                var className = $(parent).attr('class');
+                $(parent).attr('class', className);
+                $(parent).attr('class', className + ' has_error');
+                $(parent).children(".field-error").text(error[x].error);
+            }
+        }
+
+
+    </script>
+{#    {% set autoload_popup_login = app.session.flashbag.get('autoload_popup_login')|first %}#}
+{#    {% if autoload_popup_login %}#}
+    <script type="text/javascript">
+        (function($){
+            $('div.login').find('span.popup-toggle').click();
+        })(jQuery);
+    </script>
+{#    {% endif %}#}
+{% endblock %}
+
+{#{% if app.environment == 'prod' %}#}
+{#<script type="text/javascript">#}
+{#    var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode:"30a9d319063f4871b56e16ef75b8b5a741840ebec837f255bd546025f38e87f482b602fb7bc3f7c3e2631952043afc54", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.eu/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);d.write("<div id='zsiqwidget'></div>");#}
+{#</script>#}
+{#{% endif %}#}
+</body>
+</html>

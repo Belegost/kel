@@ -1,0 +1,140 @@
+{% set header_class = '' %}
+{% set body_class = 'deposit' %}
+{% set isLogged = true %}
+{% set isRateUSD = true %}
+
+{% set submenu = true %}
+{% set page = 'deposit' %}
+
+{% set freeze_popup = false %}
+
+{% extends 'ift-base.html.twig' %}
+
+{% block page_header %}
+    {{ include('page/dashboard-header.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey">
+        <div class="container">
+            <br>
+            <div class="bg-white box-framed deposit-main">
+                <div class="makedeposit">
+                    <button class="btn btn_md btn_blue">Make Deposit</button>
+                    <div class="makedeposit-error hidden">Error! Try again later.</div>
+                </div>
+                <div class="verification">
+                    <h5>We sent verification code to your e-mail</h5>
+                    <form name="verification_form" class="verification-form">
+                        <input id="code" name="verifying_code" type="text" placeholder="Verification code" maxlength="6" />
+                        <input type="hidden" name="verifying_token" value="">
+                        <button type="submit">Send</button>
+                    </form>
+                    <div class="verification-timer"></div>
+                    <div class="verification-msg"></div>
+                    <div class="verification-error"><br>Sorry but time is ended. The code doesn't valid already.<br>Please <a href="" class="verification-try-againe">try again</a>.</div>
+                </div>
+                <div class="deposit-addresses">
+                    <h4>BTC address</h4>
+
+                    <div class="btc-address"></div>
+                    <div class="clear"></div>
+                    <h4 style="margin-top: 30px;">USDT address</h4>
+                    <div class="usdt-address">
+                        <fieldset>
+                            <label for="usdt-link">USDT address</label>
+                        </fieldset>
+                    </div>
+                </div>
+{#                                <div class="btc-address visible">#}
+{#                                    <fieldset>#}
+{#                                        <input id="btc-link" name="wallet_address_hash" type="text" readonly />#}
+{#                                        <input id="btc-link-memo" name="wallet_address_hash_memo" type="text" readonly />#}
+{#                                        <div class="field-border"></div>#}
+{#                                        <div class="field-error">Please input BTC address</div>#}
+{#                                    </fieldset>#}
+{#                                    <p>or use QR code for transfer of BTC to fund</p>#}
+{#                                    <div class="deposit-qr"><img src="" /></div>#}
+
+{#                                    <fieldset>#}
+{#                                        <label for="usdt-link">USDT address</label>#}
+{#                                        <input id="usdt-link" name="wallet_address_hash_usdt" type="text" readonly />#}
+{#                                        <input id="usdt-link-memo" name="wallet_address_hash_usdt_memo" type="text" readonly />#}
+{#                                        <div class="field-border"></div>#}
+{#                                        <div class="field-error">Please input USDT address</div>#}
+{#                                    </fieldset>#}
+{#                                    <p>or use QR code for transfer of USDT to fund</p>#}
+{#                                    <div class="deposit-qr"><img src="" /></div>#}
+
+{#                                </div>#}
+            </div>
+            <div class="bg-white box-framed bg-white deposit-sidebar">
+                <div class="deposit-sidebar-header">
+                    <h5>Your current balance</h5>
+                </div>
+                <div class="deposit-sidebar-body">
+                    <div class="big-digits">0.00</div>
+                    <p>BTC invested in products and equivalent <a href="">Account History</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            {# @todo patch: move to stylesheet #}
+            <style>
+                .withdrawal-history {
+                    clear: both;
+                }
+            </style>
+            <div class="withdrawal-history">
+                <div class="withdrawal-history-title">
+                    <div class="withdrawal-history-amount">Amount</div>
+                    <div class="withdrawal-history-wallet">Type</div>
+                    <div class="withdrawal-history-status">Status</div>
+                    <div class="withdrawal-history-date">Date</div>
+                </div>
+                <div class="withdrawal-history-content">
+                    <div class="withdrawal-history-row">
+                        <div class="withdrawal-history-amount">20 BTC
+                            <small>0.2 transaction fee</small>
+                        </div>
+                        <div class="withdrawal-history-wallet">My main BTC Wallet</div>
+                        <div class="withdrawal-history-status"><span class="withdrawal-status-complete">Complete</span>
+                        </div>
+                        <div class="withdrawal-history-date">25.03.2021
+                            <small>15:32</small>
+                        </div>
+                    </div>
+                    {#<div class="withdrawal-history-row">#}
+                    {#<div class="withdrawal-history-amount">1.1008887 BTC#}
+                    {#<small>$10.00 transaction fee</small>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-wallet">My main BTC Wallet</div>#}
+                    {#<div class="withdrawal-history-status"><span class="withdrawal-status-complete">Complete</span>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-date">13 JAN, 2018#}
+                    {#<small>13:31</small>#}
+                    {#</div>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-row">#}
+                    {#<div class="withdrawal-history-amount">567.8769 ETH#}
+                    {#<small>no fee</small>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-wallet">Ethereum</div>#}
+                    {#<div class="withdrawal-history-status"><span class="withdrawal-status-complete">Complete</span>#}
+                    {#</div>#}
+                    {#<div class="withdrawal-history-date">30 DEC, 2017#}
+                    {#<small>13:31</small>#}
+                    {#</div>#}
+                    {#</div>#}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="/js/libs/radialIndicator.min.js" ></script>
+    <script src="/js/libs/jquery.mask.min.js" ></script>
+    <script src="/js/src/pages/deposit.js"></script>
+{% endblock %}

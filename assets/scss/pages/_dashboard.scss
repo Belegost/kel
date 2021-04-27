@@ -1,0 +1,1442 @@
+.dashboard {
+  &-footer {
+    .important_news {
+      overflow: hidden;
+      padding-top: 2rem;
+      padding-bottom: 6rem;
+      h5 {}
+      &-item {
+        float: left;
+        width: 30%;
+
+        &:nth-of-type(2) {
+          margin-left: 5%;
+          margin-right: 5%;
+        }
+      }
+    }
+  }
+}
+
+.dashboard-header.page-header {
+  position: relative;
+  height: 440px;
+  padding-top: 180px;
+  box-sizing: border-box;
+  overflow: hidden;
+  .page-header-bg {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../images/dashboard_header_bg.jpg") no-repeat 50% 0;
+    background-size: cover;
+    z-index: -1;
+  }
+  .big-digits {
+    font-size: 3.25rem;
+  }
+}
+.dashboard-menu-tabs {
+  display: block;
+  height: 95px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 0;
+
+  &-item {
+    position: relative;
+    display: inline-block;
+    height: 95px;
+    padding: 0 30px;
+    color: $color-text-grey;
+    font-size: calculateRem(18px);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    letter-spacing: .02rem;
+    line-height: 95px;
+    vertical-align: middle;
+    transition: color .35s;
+    &:hover,
+    &:active {
+      color: #000;
+    }
+    &.current {
+      color: #000;
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        left: 0;
+        bottom: -3px;
+        width: 100%;
+        border-top: 5px solid $color-blue;
+        animation: showCurrentMenuItem 1.2s;
+        //@include transform(scale(1));
+        //@include transition(transform .8s);
+      }
+    }
+    @keyframes showCurrentMenuItem {
+      from {
+        color: $color-text-grey;
+        @include transform(scale(0));
+      }
+      to {
+        color: #000;
+        @include transform(scale(1));
+      }
+    }
+  }
+  &-help {
+    float: right;
+    display: block;
+    height: 20px;
+    margin-top: 19px;
+    padding-left: 24px;
+    line-height: 21px;
+    font-size: .75rem;
+    color: #1a1a1a;
+    background-image: url(/images/icon_help.svg);
+    background-repeat: no-repeat;
+    background-size: 16px 16px;
+    background-position: 0 50%;
+    cursor: pointer;
+    transition: color .3s ease-out;
+
+    &:hover {
+      color: $color-blue;
+    }
+
+    @media (min-width: 768px) {
+      margin-top: 38px;
+      font-size: .85rem;
+    }
+  }
+}
+
+.dashboard-header {
+  display: flex;
+  line-height: calculateRem(32px);
+  color: darken(#FFF, 30%);
+  b {
+    display: inline-block;
+    margin-left: 5px;
+    color: #FFF!important;
+    font-weight: 700;
+  }
+
+  .big-digits {
+    margin-bottom: .25rem;
+  }
+  &-user {
+    display: flex;
+    width: 50%;
+    overflow: hidden;
+    &-ava {
+      flex-shrink: 0;
+      width: 130px;
+      height: 130px;
+      margin-right: calculateRem(35px);
+      border-radius: 8px;
+      background-image: url("../images/dashboard-user-nophoto.png");
+      background-repeat: no-repeat;
+      background-position:50% 50%;
+      background-size: cover;
+    }
+    &-info {
+    }
+    &-fullname {
+      font-size: calculateRem(18px);
+    }
+    &-nicname {
+      margin-bottom: .25rem;
+      color: #FFF;
+      text-indent: -.15rem;
+      font-size: calculateRem(60px);
+      font-weight: 400;
+      font-family: 'Open Sans', sans-serif;
+      line-height: calculateRem(60px);
+    }
+  }
+  &-totalbtc {
+    width: 30%;
+  }
+  &-totalpersents {
+    width: 20%;
+  }
+  &-totalbtc,
+  &-totalpersents {
+    &-title {
+      font-size: calculateRem(18px)!important;
+      font-family: 'Montserrat', sans-serif!important;
+      font-weight: 700!important;
+    }
+    &-daychange {
+      .icon-color-arrow {
+        margin: 0 0 -3px 5px;
+        &-down {
+          background-position: 0% 100%;
+        }
+        &-up {
+          background-position: -15px 0%;
+        }
+      }
+    }
+  }
+}
+.dashboard-charts {
+  &-total_histogramm {
+    float: left;
+    height: 495px;
+    width: 63%;
+    padding-top: calculateRem(35px);
+    &-header {
+      display: flex;
+      > div:first-of-type {
+        margin-right: calculateRem(50px);
+      }
+      > div:last-of-type {
+        text-align: right;
+
+        .big-digits,
+        .dashboard-charts-total_histogramm-btc-small {
+          color: $color-blue;
+        }
+        .big-digits {
+          line-height: 3.25rem;
+          font-size: 3rem;
+          &:before {
+            content: 'BTC';
+            position: absolute;
+            display: block;
+            margin-left: -1.75rem;
+            font-size: calculateRem(14px);
+            font-weight: 700;
+            line-height: 1.825rem;
+          }
+        }
+        .dashboard-charts-total_histogramm-btc-small {
+          padding-top: 5px;
+          font-size: calculateRem(18px);
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+        }
+      }
+      h5 {
+        padding-bottom: .875rem;
+        font-weight: 600;
+      }
+      p {
+        line-height: calculateRem(24px);
+      }
+    }
+    &-body {
+      padding-top: 10px;
+      height: 335px;
+      canvas {
+        width: 100%!important;
+        height: 280px!important;
+      }
+    }
+    .charts-tooltip-pointer {
+      height: 90%!important;
+      background: #f1f1f1!important;
+    }
+    .charts-tooltip-wrapper {
+      min-width: 230px;
+    }
+  }
+  &-noninvested_founds,
+  &-totalinvested_founds {
+    height: 230px;
+    margin-left: 70%;
+    padding: 0;
+
+    &-header {
+      height: 60px;
+      padding: 15px 30px;
+      border-bottom: thin solid lighten($color-text-grey, 45%);
+      h5 {
+        font-weight: 600;
+      }
+      a {
+        display: block;
+        float: right;
+        color: $color-blue;
+        font-size: calculateRem(14px);
+        transition: color .2s;
+        &:hover {
+          color: $color-text-grey;
+        }
+      }
+    }
+    &-body {
+      padding: 20px 30px;
+      p {
+        max-width: 80%;
+        padding-top: 20px;
+        font-size: calculateRem(14px);
+        line-height: calculateRem(24px);
+      }
+    }
+
+    .big-digits {
+      font-size: 3rem;
+    }
+  }
+  &-noninvested_founds {
+    margin-bottom: 35px;
+    &-body {
+      .big-digits {
+        position: relative;
+        margin-left: 30px;
+        color: darken($color-blue, 15%);
+        &:before {
+          content: 'BTC';
+          font-size: .875rem!important;
+          line-height: 1.25rem;
+          position: absolute;
+          display: block;
+          left: -30px;
+          top: .45rem;
+        }
+        &.big-digits_inDollars {
+          margin-left: 20px;
+          &:before {
+            left: -20px;
+            content: '$';
+            font-size: 1.75rem;
+            line-height: 2rem;
+          }
+        }
+      }
+    }
+  }
+  &-totalinvested_founds {
+    &-body {
+      .big-digits {
+        color: lighten($color-blue, 15%);
+      }
+    }
+  }
+  &-cryptoassets {
+    margin-top: 60px;
+    margin-bottom: 20px;
+    padding-bottom: 60px;
+
+    &-header {
+      display: flex;
+      .select {
+        height: calculateRem(36px)!important;
+        width: 150px;
+        vertical-align: top;
+        select {
+          height: calculateRem(36px)!important;
+          color: #222;
+          font-family: 'Montserrat', sans-serif;
+          font-size: calculateRem(13px);
+          font-weight: 700;
+        }
+      }
+    }
+    &-title {
+      flex: 1 1 37%;
+    }
+    &-filter {
+      flex: 3 1 63%;
+      padding-top: 30px;
+      text-align: right;
+
+      .pricing-periods {
+        border-color: lighten(#c5c5c5, 10%)!important;
+        margin: 21px 15px 0 auto!important;
+      }
+
+      .select {
+        display: inline-block;
+        text-align: right;
+        margin-right: 20px;
+        fieldset {
+          padding-top: 0!important;
+          display: inline-block;
+        }
+        .customSelect {
+          height: 2.25rem;
+          width: 120px;
+          padding-right: 1rem;
+          padding-left: 1rem;
+          border-radius: 4px;
+          color: #767676;
+          white-space: nowrap;
+          font-family: Montserrat, sans-serif;
+          font-size: .8125rem;
+          font-weight: 500;
+          vertical-align: baseline;
+          box-sizing: border-box;
+          border: thin solid #c5c5c5;
+          text-align: left;
+        }
+        select {
+          font-size: .8125rem!important;
+          font-weight: 500!important;
+        }
+      }
+
+      .btn {
+        margin-left: 10px;
+        vertical-align: top;
+        font-weight: 600;
+        letter-spacing: .5px;
+        line-height: calculateRem(24px);
+      }
+      input.framed {
+        width: 100px;
+        margin-left: 10px;
+        letter-spacing: .5px;
+        padding-left: .75rem;
+        padding-right: .75rem;
+        &:first-of-type {
+          margin-left: 20px;
+          margin-right: 10px;
+        }
+      }
+    }
+    &-body {
+      display: flex;
+      padding-top: 50px;
+      &-col_1 {
+        flex: 2 1 63%;
+      }
+      &-col_2 {
+        position: relative;
+        flex: 1 1 37%;
+        h5 {
+          text-align: center;
+          text-transform: capitalize;
+        }
+        > div {
+          margin-top: 10px;
+          height: 280px;
+        }
+        #dashboard-cryptoassets-total {
+        }
+      }
+    }
+    h5 {
+      padding-bottom: .875rem;
+      font-weight: 600;
+    }
+    p {
+      line-height: calculateRem(24px);
+    }
+    &-row {
+      position: relative;
+      display: flex;
+      padding: 10px 20px;
+      background: transparent!important;
+      border-bottom: thin solid lighten(#c5c5c5,10%);
+
+      -webkit-transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+      -ms-transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+      transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+
+      > div {
+        position: relative;
+        flex: 0 0 110px;
+        vertical-align: bottom;
+        background: transparent!important;
+        z-index: 1;
+        &:first-of-type {
+          flex: 3 1 auto;
+        }
+        &:nth-of-type(2) {
+          flex: 2 1 auto;
+        }
+        &:nth-of-type(2),
+        &:nth-of-type(3) {
+          padding-top: 12px;
+        }
+      }
+      &-diff {
+        flex: 0 1 120px!important;
+        padding-right: 60px;
+        padding-left: 20px;
+        color: #222;
+        text-align: right;
+      }
+
+      &-total {
+        -webkit-flex-wrap: wrap;
+        flex-wrap: wrap;
+        padding-right: 0;
+        padding-bottom: 20px;
+
+        > div:first-of-type {
+          width: 100%;
+          flex: 0 0 100%;
+        }
+        > div:nth-of-type(2) {
+          flex: 3 1 auto;
+          padding-top: 20px!important;
+          small {
+            max-width: 250px;
+          }
+        }
+        .dashboard-charts-cryptoassets-row-diff,
+        .dashboard-charts-cryptoassets-row-graph {
+          border-top: thin solid lighten(#c5c5c5,10%);
+        }
+        .dashboard-charts-cryptoassets-row-diff {
+          padding-top: 35px!important;
+        }
+        .dashboard-charts-cryptoassets-row-graph {
+          padding-top: 25px;
+          padding-right: 20px;
+        }
+      }
+
+      &-product_img {
+        float: left;
+        width: 64px;
+        height: 64px;
+        margin-right: 24px;
+        border-radius: 4px;
+        background: url("../images/dashboard-product.png") no-repeat 50% 50%;
+        background-size: cover;
+      }
+      h6 {
+        margin-top: 3px;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        font-weight: 700;
+        color: #222;
+      }
+      small {
+        display: block;
+        font-size: calculateRem(14px);
+        line-height: 1rem;
+      }
+      canvas {
+        width: 110px;
+        height: 50px;
+        background: #edf7f5;
+      }
+      .icon-color-arrow {
+        float: left;
+        display: block;
+        margin-top: 3px;
+      }
+
+    &:before {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: $color-blue;
+        opacity: 0;
+        z-index: 0;
+        transition: .4s ease-out;
+
+      }
+      &:hover {
+        color: #FFF;
+        .dashboard-charts-cryptoassets-row-diff,
+        h6 {
+          color: #FFF;
+        }
+        .icon-color-arrow-up {
+          background-position: -45px 50%;
+        }
+        .icon-color-arrow-down {
+          background-position: -30px 50%;
+        }
+        &:before {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+.dashboard-products-individual {
+  display: flex;
+  padding: 1.5rem 1rem;
+  border-top: thin solid #c5c5c5;
+  border-bottom: thin solid #c5c5c5;
+  clear: both;
+
+  &-name {
+    flex: 1 1;
+
+    img {
+      display: block;
+      float: left;
+      height: 66px;
+      width: 66px;
+      border-radius: 4px;
+    }
+
+    h6, small {
+      display: block;
+      margin-left: 90px;
+      vertical-align: top;
+    }
+    h6 {
+      line-height: 1.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+      span {
+        display: block;
+      }
+    }
+    small {
+      max-width: 500px;
+      margin-top: .5rem;
+      font-size: .875rem;
+      line-height: 1rem;
+      color: lighten($color-text-grey, 20%);
+    }
+  }
+  &-value {
+    flex: 1 1;
+    padding-top: 1rem;
+    text-align: center;
+    color: #000;
+    font-weight: 500;
+  }
+  &-btn {
+    flex: 0 0 180px;
+    padding-top: 1rem;
+
+    .btn {
+      display: inline-block;
+      text-align: center;
+      width: 100%;
+      min-width: 150px;
+      max-width: 180px;
+    }
+  }
+}
+
+.dashboard-pricing-periods {
+  text-align: left;
+  .pricing-periods {
+    margin-top: 3rem;
+    margin-left: 0;
+    margin-right: 0;
+    border-color: #c5c5c5;
+  }
+}
+.dashboard-products-title {
+  display: flex;
+  padding: 0 1rem .5rem;
+  font-size: calculateRem(12px);
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  color: lighten($color-text-grey, 20%);
+  &-name {
+    flex: 2 2 300px;
+  }
+  &-diff {
+    flex: 2 0 140px;
+    padding-left: 30px;
+    box-sizing: border-box;
+  }
+  &-value {
+    flex: 2 0 100px;
+    padding-left: 20px;
+    box-sizing: border-box;
+  }
+  &-qty {
+    flex: 1 0 110px;
+    padding-left: 5px;
+    box-sizing: border-box;
+  }
+}
+.dashboard-products-row {
+  display: flex;
+  padding: 1.5rem 1rem;
+  border-top: thin solid #c5c5c5;
+  cursor: pointer;
+
+  &-name {
+    flex: 2 2 300px;
+
+    img {
+      display: block;
+      float: left;
+      height: 66px;
+      width: 66px;
+      border-radius: 4px;
+    }
+    h6, small {
+      display: block;
+      margin-left: 90px;
+      vertical-align: top;
+    }
+    h6 {
+      line-height: 1.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #000;
+      span {
+        display: block;
+      }
+    }
+    small {
+      font-size: .875rem;
+      color: lighten($color-text-grey, 20%);
+    }
+  }
+  &-diff,
+  &-value {
+    padding-top: 1.25rem;
+    font-size: calculateRem(18px);
+    font-weight: 300;
+  }
+  &-diff {
+    flex: 2 0 140px;
+    color: #000;
+  }
+  &-diff .icon-color-arrow {
+    display: inline-block;
+    margin-top: 4px;
+    margin-right: 10px;
+    vertical-align: top;
+  }
+  &-value {
+    flex: 2 0 100px;
+    padding-right: 2rem;
+    font-weight: 300;
+    color: $color-text-grey;
+  }
+  &-qty {
+    flex: 0 0 50px;
+    padding-top: 1.5rem;
+    vertical-align: top;
+    input {
+      display: block;
+      width: 40px;
+      transform: translateX(-0.75rem);
+      font-size: 1rem;
+      color: $color-text-grey;
+      text-align: center;
+      background: transparent;
+      border: thin solid #FFF;
+      border-radius: 0;
+    }
+  }
+  &-btn {
+    flex: 0 0 60px;
+    padding-top: 1.25rem;
+    vertical-align: top;
+    .btn {
+      color: #FFF;
+      &:hover,
+      &:active,
+      &:focus {
+        background: rgba(255,255,255,.8)!important;
+      }
+    }
+  }
+
+  &.active,
+  &:hover {
+    background: $color-blue;
+
+    .dashboard-products-row-name h6,
+    .dashboard-products-row-diff,
+    .dashboard-products-row-value,
+    .dashboard-products-row-qty input {
+      color: #FFF;
+    }
+    .dashboard-products-row-btn .btn {
+      color: $color-blue;
+    }
+    .dashboard-products-row-name small {
+      color: rgba(255,255,255,.8);
+    }
+  }
+}
+
+.popup-product_buy {
+  width: 98%;
+  max-width: 450px;
+  &-info {
+    min-width: 230px;
+
+    &-name {
+      padding-top: 2rem;
+      padding-bottom: .5rem;
+      img {
+        display: block;
+        float: left;
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+        box-shadow: 0px 2px 4px -1px rgba(0,0,0,.15);
+      }
+      h6, small {
+        display: block;
+        margin-left: 60px;
+        vertical-align: top;
+      }
+      h6 {
+        line-height: 1.25rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #000;
+        span {
+          display: inline;
+        }
+      }
+      small {
+        font-size: .875rem;
+        color: lighten($color-text-grey, 20%);
+      }
+    }
+    table {
+      width: 100%;
+      border: 0;
+      border-collapse: collapse;
+
+      th, td {
+        text-align: left;
+        &:nth-of-type(2) {
+          padding-left: .5rem;
+          padding-right: .5rem;
+        }
+      }
+      th {
+        font-size: .75rem;
+        font-family: 'Montserrat', sans-serif;
+        color: lighten($color-text-grey, 20%);
+        border-bottom: thin solid #c5c5c5;
+      }
+      td {
+        padding-top: .5rem;
+      }
+    }
+    input[type=text] {
+      width: 40px;
+      border: thin solid #f1f1f1;
+      color: $color-text-grey;
+      font-size: .875rem;
+      text-align: center;
+    }
+    .btn {
+      display: block;
+      width: 120px;
+      margin: 2rem auto 0;
+    }
+  }
+}
+
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (   min--moz-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (     -o-min-device-pixel-ratio: 2/1)    and (min-width: 1300px),
+only screen and (        min-device-pixel-ratio: 2)      and (min-width: 1300px),
+only screen and (                min-resolution: 192dpi) and (min-width: 1300px),
+only screen and (                min-resolution: 2dppx)  and (min-width: 1300px),
+only screen and (                                             min-width: 1700px){
+  /* Large screen, retina, stuff to override above media query */
+  .homepage {
+    .mainwrap {
+      .page-header-bg {
+        background-image: url("../images/mainpage_bg@2x.jpg")!important;
+        background-size: cover;
+      }
+    }
+  }
+
+}
+@media (max-width: 1139px) {
+  .dashboard {
+    &-header {
+      &-user {
+        width: 51%!important;
+        &-nicname {
+          font-size: calculateRem(45px)!important;
+        }
+      }
+      &-totalbtc {
+        width: 28%!important;
+      }
+    }
+    &-menu-tabs {
+      .container {
+        max-width: 98%;
+        padding-left: 0;
+        padding-right: 0;
+        text-align: center;
+      }
+      &-item {
+        padding: 0 20px;
+      }
+    }
+    &-charts {
+      &-total_histogramm {
+        width: 66%;
+        &-body {
+          canvas {
+            height: 261px !important;
+          }
+        }
+      }
+      &-totalinvested_founds,
+      &-noninvested_founds {
+        &-header {
+          height: 70px;
+          h5 {
+            line-height: calculateRem(20px);
+          }
+        }
+        &-body {
+          p {
+            padding-top: 15px;
+          }
+        }
+      }
+      &-noninvested_founds {
+        &-body .big-digits:before {
+          top: .55rem;
+        }
+      }
+      &-cryptoassets {
+        &-header {
+          .select {
+            width: 120px;
+            margin-right: 10px;
+          }
+        }
+        &-filter {
+          input.framed {
+            width: 90px;
+            margin-left: 5px;
+            &:first-of-type {
+              margin-left: 10px;
+              margin-right: 5px;
+            }
+          }
+        }
+        &-body {
+          &-col_1 {
+            flex: 2 1 80%;
+          }
+          &-col_2 {
+            flex: 1 1 20%;
+            > div {
+              padding-left: 10px;
+              height: 200px;
+            }
+          }
+        }
+        &-row {
+          &-diff {
+            flex: 0 0 140px !important;
+            padding-right: 30px;
+          }
+        }
+      }
+    }
+    &-footer {
+      .important_news {
+        overflow: hidden;
+        padding-top: 2rem;
+        padding-bottom: 6rem;
+        &-item {
+          float: left;
+          width: 32%;
+
+          &:nth-of-type(2) {
+            margin-left: 2%;
+            margin-right: 2%;
+          }
+        }
+      }
+    }
+  }
+  .dashboard-charts-total_histogramm-header>div:last-of-type .big-digits {
+    line-height: 2.55rem;
+  }
+  .dashboard-header.page-header .big-digits,
+  .dashboard-charts-total_histogramm-header>div:last-of-type .big-digits,
+  .dashboard-charts-noninvested_founds .big-digits,
+  .dashboard-charts-totalinvested_founds .big-digits {
+    font-size: 2rem;
+  }
+  .dashboard-charts-cryptoassets-body-col_2 h5 {
+    padding-top: 2rem;
+  }
+  .dashboard-products-row:last-of-type {
+    border-bottom: thin solid #c5c5c5;
+  }
+  .dashboard-charts .dashboard-charts-cryptoassets-body {
+    display: block;
+  }
+  .dashboard-products-individual {
+    margin-top: 3rem;
+  }
+
+}
+@media (max-width: 979px) {
+  .dashboard-header.page-header {
+      padding-top: 100px;
+  }
+  .dashboard {
+    .page-header {
+      padding-top: 100px;
+    }
+    &-header {
+      flex-wrap: wrap;
+      &-user {
+        width: 100% !important;
+        margin-bottom: 45px;
+      }
+      &-totalbtc,
+      &-totalpersents {
+        width: 50% !important;
+      }
+    }
+    .dashboard-charts-cryptoassets-filter {
+      display: inline-block;
+    }
+    .dashboard-charts-cryptoassets-filter .select {
+      text-align: left;
+      .customSelect {
+        line-height: .8125rem;
+      }
+    }
+    &-menu-tabs {
+      &-item {
+        padding: 0 10px;
+      }
+    }
+
+    &-charts {
+      &-total_histogramm {
+        float: none;
+        width: 100%;
+      }
+      &-noninvested_founds,
+      &-totalinvested_founds {
+        width: 48%;
+        &-header {
+          height: 60px;
+          h5 {
+            line-height: calculateRem(30px);
+          }
+        }
+      }
+      &-noninvested_founds {
+        float: left;
+        margin-top: 0;
+        margin-left: 0;
+      }
+      &-totalinvested_founds {
+        margin-left: 52%;
+      }
+      &-cryptoassets {
+        &-header {
+          display: block;
+        }
+        &-filter {
+          text-align: left;
+        }
+        &-body {
+          display: block;
+        }
+        &-row-value {
+          text-align: right;
+        }
+      }
+    }
+
+    &-footer {
+      .important_news {
+        overflow: hidden;
+        padding-bottom: 4rem;
+        &-item {
+          float: none;
+          width: 100%;
+          margin-bottom: 1.5rem;
+
+          &:nth-of-type(2) {
+            margin-left: 0;
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 767px) {
+  .dashboard {
+    &-header {
+      max-width: 100%;
+      &-user {
+        &-ava {
+          width: 110px!important;
+          height: 110px!important;
+        }
+        &-nicname {
+          font-size: calculateRem(36px)!important;
+          line-height: calculateRem(45px)!important;
+        }
+      }
+      &-totalbtc {
+        width: 55%!important;
+      }
+      &-totalpersents {
+        width: 45%!important;
+      }
+    }
+    &-menu-tabs {
+      height: auto;
+      padding-top: 15px;
+      padding-bottom: 15px;
+      .container {
+        text-align: left;
+      }
+      &-item {
+        height: 60px;
+        padding: 0;
+        margin-left: 10px;
+        margin-right: 10px;
+        font-size: 1rem;
+        letter-spacing: .01rem;
+        line-height: 60px;
+        &.current {
+          &:after {
+            bottom: 10px!important;
+            border-top-width: 3px;
+          }
+        }
+      }
+    }
+    &-charts {
+      max-width: 100%;
+
+      &-total_histogramm {
+        height: auto;
+        &-header {
+          display: block!important;
+          > div:first-of-type {
+            margin-right: 0;
+          }
+          > div:last-of-type {
+            margin-left: 1.75rem;
+            text-align: left;
+          }
+          .dashboard-charts-total_histogramm-btc {
+            margin-top: 20px;
+          }
+        }
+        &-body {
+          canvas {
+            height: 261px !important;
+          }
+        }
+      }
+      &-totalinvested_founds,
+      &-noninvested_founds {
+        float: none;
+        height: auto;
+        width: 100%;
+        margin-left: 0!important;
+      }
+      &-noninvested_founds {
+        &-body .big-digits:before {
+          top: .55rem;
+          font-size: 1.5rem;
+          line-height: 1.25rem;
+        }
+      }
+      &-cryptoassets {
+        &-header {
+          .select {
+            width: 100%;
+            max-width: 305px;
+          }
+        }
+        &-filter {
+          input.framed {
+            &:first-of-type {
+              margin-left: 0;
+            }
+          }
+          span {
+            display: block;
+            padding-top: 5px;
+            padding-bottom: 5px;
+          }
+          button {
+          }
+        }
+        &-body {
+          &-col_1 {
+          }
+          &-col_2 {
+            > div {
+              padding-left: 10px;
+              height: 200px;
+            }
+          }
+        }
+        &-row {
+          flex-wrap: wrap;
+          > div:first-of-type {
+            width: 100%;
+          }
+          &-value {
+            text-align: left;
+          }
+          &-diff {
+          }
+          &-total {
+            overflow: hidden;
+            display: block!important;
+            .dashboard-charts-cryptoassets-row-diff,
+            .dashboard-charts-cryptoassets-row-graph {
+              margin-top: 20px;
+            }
+            .dashboard-charts-cryptoassets-row-diff {
+              clear: both;
+              float: left;
+              width: calc(100% - 130px)!important;
+            }
+            .dashboard-charts-cryptoassets-row-graph {
+              float: right;
+            }
+          }
+        }
+      }
+    }
+  }
+  .dashboard-products-row {
+    display: block;
+    font-size: 0;
+  }
+  .dashboard-products-individual-name,
+  .dashboard-products-row-name {
+    width: 100%;
+    display: block;
+
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    h6, small {
+      margin-left: 60px;
+    }
+    h6 span {
+      display: inline;
+    }
+  }
+  .dashboard-products-row-diff,
+  .dashboard-products-row-value,
+  .dashboard-products-row-qty,
+  .dashboard-products-row-btn {
+    display: inline-block;
+  }
+  .dashboard-products-row-diff,
+  .dashboard-products-row-value {
+    width: 35%;
+    text-align: left;
+  }
+  .dashboard-products-row-qty {
+    width: 15%;
+  }
+  .dashboard-products-row-btn {
+    width: 15%;
+  }
+
+  .dashboard-products-title {
+    display: block;
+    font-size: 0;
+  }
+  .dashboard-products-title-name {
+    display: none;
+  }
+  .dashboard-products-title-diff,
+  .dashboard-products-title-value,
+  .dashboard-products-title-qty,
+  .dashboard-products-title-btn {
+    display: inline-block;
+    font-size: .875rem;
+  }
+  .dashboard-products-title-diff,
+  .dashboard-products-title-value {
+    width: 35%;
+    padding-left: 5px;
+    text-align: left;
+  }
+  .dashboard-products-title-qty,
+  .dashboard-products-title-btn {
+    width: 15%;
+  }
+  .dashboard-products-individual {
+    display: block;
+    font-size: 0;
+  }
+  .dashboard-products-individual-value,
+  .dashboard-products-individual-btn {
+    display: inline-block;
+    width: 50%;
+    font-size: 1rem;
+  }
+  .dashboard-products-individual-btn {
+    min-width: 150px;
+  }
+  .dashboard-products-individual-value {
+    padding-left: 60px;
+    text-align: left;
+  }
+  .dashboard-products-individual-btn {
+    text-align: right;
+  }
+}
+@media (max-width: 479px) {
+
+  .dashboard {
+    &-header {
+      b {
+        display: block!important;
+        margin-left: 0!important;
+      }
+    }
+    &-charts {
+      &-totalinvested_founds,
+      &-noninvested_founds {
+        &-header {
+          padding-left: 20px!important;
+          padding-right: 20px!important;
+        }
+        &-body {
+          padding-left: 20px!important;
+          padding-right: 20px!important;
+        }
+      }
+      &-cryptoassets {
+        &-filter {
+          button {
+            display: block;
+            margin-left: 0!important;
+            margin-top: 20px;
+          }
+        }
+        &-row {
+          flex-wrap: wrap;
+          padding-left: 0!important;
+          padding-right: 0!important;
+          &-value {
+            text-align: left;
+          }
+          &-graph {
+            margin-top: 10px;
+          }
+          &-total {
+            overflow: hidden;
+            display: block!important;
+            .dashboard-charts-cryptoassets-row-diff {
+              border-top: 0!important;
+            }
+            .dashboard-charts-cryptoassets-row-graph {
+              width: 110px;
+              border-top: 0!important;
+              canvas {
+                width: 110px!important;
+                height: 50px!important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .dashboard-products-individual,
+  .dashboard-products-title {
+    padding-left: .5rem;
+    padding-right: .5rem;
+  }
+  .dashboard-products-row {
+    padding: 1rem .5rem;
+    position: relative;
+  }
+  .dashboard-products-row-name {
+    padding-right: 60px;
+  }
+
+  .dashboard-products-title-diff,
+  .dashboard-products-title-value,
+  .dashboard-products-row-diff,
+  .dashboard-products-row-value {
+    width: 40%;
+  }
+  .dashboard-products-title-qty,
+  .dashboard-products-row-qty {
+    width: 20%;
+  }
+
+  .dashboard-products-row-diff,
+  .dashboard-products-row-value,
+  .dashboard-products-row-qty,
+  .dashboard-products-row-btn {
+    font-size: 1rem;
+  }
+
+  .dashboard-products-row-btn {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 20px;
+  }
+  .dashboard-products-row-diff .icon-color-arrow.icon-color-arrow-up {
+    background-position: -10px 50%;
+  }
+  .dashboard-products-row-diff .icon-color-arrow {
+    height: 12px;
+    width: 9px;
+    margin-top: 8px;
+    margin-right: 3px;
+  }
+  .dashboard-products-row-qty input {
+    width: 30px;
+  }
+  .dashboard-products-individual-value {
+    padding-left: 0;
+    width: 36%;
+  }
+}
+@media (max-width: 379px) {
+  .dashboard-charts-cryptoassets-row-graph {
+    flex: 0 0 100%!important;
+    canvas {
+      width: 110px!important;
+      height: 50px!important;
+    }
+  }
+  .dashboard-charts-cryptoassets-row-total .dashboard-charts-cryptoassets-row-diff {
+    width: 100%!important;
+    margin-top: 0!important;
+    margin-bottom: -40px;
+  }
+  .dashboard-charts-cryptoassets-row-total .dashboard-charts-cryptoassets-row-graph {
+    float: none;
+    width: 110px;
+    margin-top: 0!important;
+    canvas {
+      width: 110px!important;
+      height: 50px!important;
+    }
+  }
+  .dashboard-pricing-periods .pricing-periods {
+    width: 280px!important;
+    margin-left: -1rem!important;
+  }
+}

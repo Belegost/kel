@@ -1,0 +1,97 @@
+<div class="box-framed bg-white popup popup-login visible">
+    <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+    </div>
+    <h2>Sign In</h2>
+
+    <div class="popup-login-errors dn flash-error"></div>
+
+    <form name="sign_in" method="post" siq_id="autopick_6694">
+
+        <fieldset class="popup-login-username ">
+            <label for="sign_in_username" class="required">Username</label>
+            <input type="text" id="sign_in_username" name="sign_in[username]" required="required">
+            <div class="field-border"></div>
+            <div class="field-error"></div>
+        </fieldset>
+
+        <fieldset class="popup-login-password ">
+            <label for="sign_in_password" class="required">Password</label>
+            <input type="password" id="sign_in_password" name="sign_in[password]" required="required">
+            <div class="field-border"></div>
+            <div class="field-error"></div>
+        </fieldset>
+
+        <a href="" class="popup-toggle popup-login-fogot" data-target="popup-forgot">Do you forgot password?</a>
+        <fieldset class="popup-login-keepsigned">
+            <label for="sign_in_keepsigned" class="checkbox checked"><input type="checkbox" id="sign_in_keepsigned" name="sign_in[keepsigned]" checked="checked" value="1">Keep
+                signed in</label>
+        </fieldset>
+
+        <button class="btn btn_blue">Continue</button>
+        <div class="popup-login-newhere">New here?<br><a href="/signup">Create an account</a></div>
+
+        <input type="hidden" id="sign_in__token" name="sign_in[_token]" value="RbPzXNQUh-y4oyrHL5OO7pEgOorbRwdnUxbxH2Pm0kQ">
+    </form>
+</div>
+
+<div class="box-framed bg-white popup popup-forgot">
+    <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+    </div>
+    <h2>Forgot password?</h2>
+    <p>Enter your username and we will send you instructions on how to reset your password</p>
+
+    <div class="popup-forgot-errors dn flash-error"></div>
+
+    <form name="reset_password" method="post" siq_id="autopick_2500">
+
+        <fieldset class="popup-forgot-email ">
+            <label for="reset_password_for_username" class="required">Username</label>
+            <input type="text" id="reset_password_for_username" name="reset_password[for_username]" required="required">
+            <div class="field-border"></div>
+            <div class="field-error"></div>
+        </fieldset>
+        <button class="btn btn_blue btn_md">Reset Password</button>
+        <a href="" class="popup-toggle" data-target="popup-login">← Back</a>
+
+        <input type="hidden" id="reset_password__token" name="reset_password[_token]" value="J8_0IlHOu-IXzMMVaTEGxW5ZCzU_AE6kpAcReKN389I">
+    </form>
+</div>
+
+<div class="box-framed bg-white popup popup-product_buy">
+    <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+    </div>
+    <div class="popup-product_buy-info">
+        <h4>Buy product</h4>
+        <div class="popup-product_buy-info-name">
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th>Cost</th>
+                <th>Qty</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="popup-product_buy-cost"></td>
+                <td class="popup-product_buy-qty"><input type="text" value="1"></td>
+                <td class="popup-product_buy-total"></td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn_blue">Confirm</button>
+    </div>
+</div>

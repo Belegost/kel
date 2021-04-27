@@ -1,0 +1,112 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    <div class="page-header short-header">
+        <div class="page-header-bg"></div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="dashboard-menu-tabs">
+        <div class="container">
+            <a href="javascript:void(0);" class="dashboard-menu-tabs-item current">Crypto News</a>
+            <a href="{{ path('route_newsfeed') }}" class="dashboard-menu-tabs-item">Market News</a>
+            <a href="{{ path('route_integrityfeed') }}" class="dashboard-menu-tabs-item">Integrity News</a>
+        </div>
+    </div>
+
+    <div class="bg-light-grey">
+        <div class="newsfeed-tab">
+            <div class="crypto-resourses">
+                <div class="container">
+                    <div class="crypto-resourses-leftcol">
+                        {#<h5>Tags</h5>#}
+                        {#<div class="marketnews-tags">#}
+                        {#<a href="">Trump</a>#}
+                        {#<a href="">Crypto Trust</a>#}
+                        {#<a href="">Google</a>#}
+                        {#<a href="">Bitcoin</a>#}
+                        {#<a href="">Forex</a>#}
+                        {#<a href="">Microsoft</a>#}
+                        {#</div>#}
+                        <h5>Hot news</h5>
+                        <div class="important_news">
+                            {% for item in top_news %}
+                                {% if loop.index == 1 %}
+                                    {% set news_link = 'javascript:void(0);' %}
+                                {% elseif loop.index == 2 %}
+                                    {% set news_link = path('route_newsfeed') %}
+                                {% elseif loop.index == 3 %}
+                                    {% set news_link = path('route_integrityfeed') %}
+                                {% endif %}
+                                    <a href="{{ news_link }}" class="important_news-item {% if loop.index == 1 %}important_news-item-black{% endif %}">
+                                        <div class="important_news-item-bg"></div>
+                                        <div class="important_news-item-num">{{ loop.index }}</div>
+                                        <div class="important_news-item-info">
+                                        {{ item.title|raw }}
+                                        <span class="meta-info">{{ item.date|date('m.d.Y H:i') }}</span>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="crypto-resourses-main">
+                        <h5>News Feed</h5>
+                        {% for item in crypto_news %}
+                            <div class="crypto-resourses-feed" {% if loop.index > 3 %}style="display: none;"{% endif %}>
+                                <div class="crypto-resourses-feed-date">{{ item.date|date('m.d.Y') }}</div>
+                                <h4>{{ item.title|raw }}</h4>
+                                {{ item.description|raw }}
+                                <br><br>
+                                <div class="crypto-resourses-feed-sourse">Crypto news</div>
+                            </div>
+                        {% endfor %}
+                        <button class="btn btn_blue load-more-news" id="js-load-more-crypto-news" data-offset="1">Load more ...</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="block-spesial_service">
+        <h4>See our Special Services for Investors</h4>
+        <div class="container">
+            <a href="{{ path('route_product_item', {'name':'conservative'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service1.jpg') }}"/>
+                <h6>Conservative Trust</h6>
+                <p>TOP-5 cryptocurrencies and classic money market fixed income instruments</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'classic'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service2.jpg') }}"/>
+                <h6>Classic Trust</h6>
+                <p>TOP-10 cryptocurrencies and most prospect ICO tokens</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'confident'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service3.jpg') }}"/>
+                <h6>Confident Trust</h6>
+                <p>Risky ICO of utility tokens and top-10 cryptocurrencies</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'individual'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service4.jpg') }}"/>
+                <h6>Individual Portfolio</h6>
+                <p>Combined ESP with some exclusive tokens carefully selected by our analysts</p>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var load_more = $('#js-load-more-crypto-news');
+
+        $(load_more).click(function () {
+            for ($i = 0; $i < 3; $i++) {
+                // console.log($i);
+                $('.crypto-resourses-main').find('div.crypto-resourses-feed:visible').last().next().show();
+            }
+        });
+    </script>
+{% endblock %}

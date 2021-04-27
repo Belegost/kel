@@ -1,0 +1,48 @@
+.newsfeed {
+  .newsfeed-tab {
+    padding-top: 3rem;
+  }
+}
+.marketnews-tags {
+  max-width: 300px;
+  a {
+    display: inline-block;
+    padding: .25rem .5rem;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+    line-height: 1rem;
+    font-size: .875rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    color: $color-text-grey;
+    white-space: nowrap;
+    border: thin solid lighten($color-text-grey, 20%);
+    border-radius: 4px;
+    transition: color .3s;
+    &:hover {
+      color: $color-blue;
+    }
+  }
+}
+
+@media (max-width: 1139px) {
+}
+@media (max-width: 979px) {
+  .newsfeed {
+    .crypto-resourses-leftcol {
+      width: 100%;
+      padding-bottom: 45px;
+      float: none;
+    }
+    .crypto-resourses-main{
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 479px) {
+}
+@media (max-width: 360px) {
+}

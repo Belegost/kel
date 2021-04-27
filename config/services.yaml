@@ -1,0 +1,271 @@
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    locale: 'en'
+    zoho_desk_token: 'bc2610794132e796bbd0d84b0af92df3'
+    zoho_organization_id: '20063793627'
+    public_dir:
+        avatar: '%kernel.project_dir%/public/upload/avatar'
+    # Amazon S3 parameters
+    amazon.s3.key:    AKIAJSAYURCJBZPVKMOA
+    amazon.s3.secret: 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
+    amazon.s3.bucket: whatifbitcoin
+    amazon.s3.region: eu-central-1
+    amazon.s3.version: "2006-03-01"
+    google.2fa.enabled: false
+
+
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        public: false       # Allows optimizing the container by removing unused services; this also means
+                            # fetching services directly from the container via $container->get() won't work.
+                            # The best practice is to be explicit about your dependencies anyway.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{Entity,Migrations,Tests}'
+
+    # controllers are imported separately to make sure services can be injected
+    # as action arguments even if you don't extend any base controller class
+    App\Controller\:
+        resource: '../src/Controller'
+        calls:
+          - ['setContainer', ['@service_container']]
+          - ['setLogger', ['@logger']]
+        tags: ['controller.service_arguments']
+        
+    App\Lib\MenuManager\Builder:
+        calls:
+            - ['setContainer', ['@service_container']]
+        
+    App\EventsListener\MenuBuilderListener:
+        arguments:
+            $builder: '@App\Lib\MenuManager\Builder'
+        tags:
+            - { name: kernel.event_listener, event: view.render.parameters.event }
+        
+    app.mailer:
+        alias: 'mailer.mailer'
+        public: true
+    
+    app.event_dispatcher:
+        alias: 'debug.event_dispatcher.inner'
+        public: true
+
+    app.service.zoho_client:
+        class: App\Service\CRM\IntegrityZohoClient
+        arguments:
+            $url: '%env(ZOHO_URL)%'
+            $publicDir: '%public_dir%'
+            $cache: '@main_cache_pool'
+        public: true
+
+    App\Service\CRM\IntegrityZohoClient: '@app.service.zoho_client'
+
+    App\Service\Token:
+        arguments:
+            $tkid: '%env(APP_SECRET)%'
+
+    app.service.token_manager:
+        class: App\Service\TokenManager
+        public: true
+        calls:
+            - ['setDoctrine', ['@doctrine']]
+    App\Service\TokenManager: '@app.service.token_manager'
+
+    App\Lib\JSONHelper:
+        calls:
+            - ['setContainer', ['@service_container']]
+
+
+    parameter_bag:
+      class: Symfony\Component\DependencyInjection\ParameterBag\ContainerBag
+      arguments: ['@service_container']
+      public: true
+
+    http.client:
+      class: GuzzleHttp\Client
+
+    app.rss:
+        alias: App\Service\RSSFeed
+        public: true
+
+    App\Service\RSSFeed:
+        calls:
+           - ['setContainer', ['@service_container']]
+
+    app.last_rss:
+        alias: App\Service\LastRSS
+        public: true
+
+
+    # Start Validation service
+
+    App\Service\AjaxValidator:
+       calls:
+          - ['setContainer', ['@service_container']]
+
+    validator.is.can.use.email:
+            class: App\Service\CustomValidator\IsCanUseEmailValidator
+            public: true
+            tags:
+               - { name: validator.constraint_validator, alias: is_can_use_email_validator }
+            calls:
+               - ['setEntityManager', ['@doctrine.orm.entity_manager']]
+
+    validator.is.can.use.username:
+            class: App\Service\CustomValidator\IsCanUseUsernameValidator
+            public: true
+            tags:
+              - { name: validator.constraint_validator, alias: is_can_use_email_validator }
+            calls:
+              - ['setEntityManager', ['@doctrine.orm.entity_manager']]
+
+    validator.is.can.use.phone:
+            class: App\Service\CustomValidator\IsCanUsePhoneValidator
+            public: true
+            tags:
+              - { name: validator.constraint_validator, alias: is_can_use_email_validator }
+            calls:
+              - ['setEntityManager', ['@doctrine.orm.entity_manager']]
+
+    # End Validation Service
+
+    #Start Amazon S3 service
+#    amazon_s3:
+#            class: Aws\S3\S3Client
+#            public: true
+#            factory: [Aws\S3\S3Client, 'factory']
+#            arguments:
+#                 -
+#                  version: latest
+#                  region: "%amazon.s3.region%"
+#                  credentials:
+#                  key: "%amazon.s3.key%"
+#                  secret: "%amazon.s3.secret%"
+
+#    imagine.cache.resolver.amazon_s3:
+#            class: Liip\ImagineBundle\Imagine\Cache\Resolver\AwsS3Resolver
+#            public: true
+#            arguments:
+#                - "@amazon_s3"
+#                - "%amazon.s3.bucket%"
+#            tags:
+#                - { name: "liip_imagine.cache.resolver", resolver: "cache.amazon_s3" }
+
+#    acme.liip_imagine.binary.loader.stream.profile:
+#            class: Liip\ImagineBundle\Binary\Loader\StreamLoader
+#            public: true
+#            arguments:
+#                - 'gaufrette://dev'
+#            tags:
+#                - { name: 'liip_imagine.binary.loader', loader: 'stream.profile' }
+
+#    amazon.s3.storage:
+#            class: App\Service\AWS\AmazonS3Service
+#            public: true
+#            arguments:
+#                  $bucket : "%amazon.s3.bucket%"
+#                  $s3arguments:
+#                      credentials:
+#                            key: "%amazon.s3.key%"
+#                            secret: "%amazon.s3.secret%"
+#                      region: "%amazon.s3.region%"
+#                      version: "2006-03-01"
+
+#    upload.file:
+#            class: App\Service\AWS\UploadService
+#            public: true
+#            calls:
+#               - ['setContainer', ['@service_container']]
+
+    #End Amazon S3 service
+
+    app.service.mrm_client:
+      class: App\Service\MRMClient
+      arguments:
+        - '@logger'
+      public: true
+
+    app.service.sum_sub_client:
+      class: App\Service\SumSubClient
+      public: true
+      arguments:
+        $baseUrl: '%env(SUMSUB_API_URL)%'
+        $apiKey: '%env(SUMSUB_APP_TOKEN)%'
+        $apiSecret: '%env(SUMSUB_SECRET_KEY)%'
+      calls:
+        - ['setHttpClient', ['@http.client']]
+    App\Service\SumSubClient: '@app.service.sum_sub_client'
+
+    app.model.binance.sub_account:
+      class: App\Model\Binance\SubAccount
+      public: true
+      calls:
+        - ['setMrmMessenger', ['@app.service.mrm.messenger']]
+        - ['setCache', ['@main_cache_pool']]
+        - ['setLogger', ['@logger']]
+        - ['setDoctrine', ['@doctrine']]
+    App\Model\Binance\SubAccount: '@app.model.binance.sub_account'
+
+    app.model.product:
+      class: App\Model\Product
+      public: true
+      calls:
+        - ['setMRMClient', ['@app.service.mrm_client']]
+        - ['setCache', ['@main_cache_pool']]
+    App\Model\Product: '@app.model.product'
+
+    app.service.model:
+        class: App\Service\Model
+        public: true
+        calls:
+            - ['setDoctrine', ['@doctrine']]
+    App\Service\Model: '@app.service.model'
+
+    App\Service\Messenger\:
+      resource: '../src/Service/Messenger'
+      calls:
+        - ['setBus', ['@messenger.default_bus']]
+
+    App\MessageHandler\:
+      resource: '../src/MessageHandler'
+      calls:
+        - ['setContainer', ['@service_container']]
+
+    app.service.mrm.messenger:
+      alias: App\Service\Messenger\MRM
+      public: true
+
+    app.stats:
+        alias: App\Service\Analytics\Stats
+        public: true
+
+    app.command.integrity.lucky_number:
+      class: App\Command\IntegrityLuckyNumberCommand
+      calls:
+        - ['setBus', ['@messenger.default_bus']]
+
+    App\Service\BitGoWallet:
+        calls:
+            - ['setLogger', ['@monolog.logger']]
+            - ['setRedis', ['@snc_redis.cache']]
+
+    App\Service\CryptCompare:
+        calls:
+            - ['setLogger', ['@monolog.logger']]
+            - ['setRedis', ['@snc_redis.cache']]
+
+    app.lib.mc_module:
+        class: App\Lib\MCModule
+        calls:
+          - ['setDoctrine', ['@doctrine']]
+          - ['setCache', ['@main_cache_pool']]
+    App\Lib\MCModule: '@app.lib.mc_module'
+

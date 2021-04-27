@@ -1,0 +1,42 @@
+<div class="container">
+    <div class="logo"><a href="/"><img src="{{ logo }}" /></a></div>
+    <nav>
+        {#<a href="https://integrity.trade/">Trade</a>#}
+        {#<a href="{{ path('route_analytics_index') }}">Analytics</a>#}
+        <a href="/cryptofeed" class="menu-crypto">Crypto Trust</a>
+        <a href="/product-list" class="menu-products">Products</a>
+        <a href="" class="menu-market">Market News</a>
+    </nav>
+    <div class="mobile-burger"><span></span><span></span><span></span></div>
+    {% if not isLogged %}
+    <a href="/signup" class="btn btn_transparent">Open Account <span class="hidden-arrow-right"></span></a>
+    {% endif %}
+    <div class="login">
+        {% if isLogged %}
+            <span class="show-user-menu">Gezlev</span>
+            <div class="header-user-menu">
+                <div class="header-user-menu-rate">
+                    <div>Current rate:</div>
+                    <div>0.00</div>
+                </div>
+                <div class="header-user-menu-links">
+                    <a href="/dashboard">User Dashboard</a>
+                    <a href="/my-products">My Products</a>
+                    <a href="/portfolio">Build My Portfolio</a>
+                    <a href="/profile">Profile settings</a>
+                    <a href="/deposit">Deposit</a>
+                    <a href="/withdrawal">Withdrawal</a>
+                    <a href="/documents">Documents</a>
+                    <a href="/api-dashboard">API Dashboard</a>
+                </div>
+                <div class="header-user-menu-switcher-wrap header-user-menu-links">
+                    <div>View all Rates in USD</div>
+                    <div class="header-user-menu-switcher {{ isRateUSD ? 'active' : '' }}" data-rate-usd="{{ isRateUSD ? 'on' : 'off' }}"><div></div></div>
+                </div>
+                <a href="/signout" class="header-user-menu-logout">Log Out</a>
+            </div>
+        {% else %}
+            <span class="popup-toggle" data-target="popup-login">Sign In</span>
+        {% endif %}
+    </div>
+</div>

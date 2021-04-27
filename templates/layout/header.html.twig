@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="logo"><a href="/"><img src="{{ logo }}" /></a></div>
+    <nav>
+        {% if siteNavBars.headerMenu is not empty %}
+            {% for item in siteNavBars.headerMenu %}
+                <a href="{{ item.link }}" {{ item.attributes|raw }}>{{ item.title }}</a>
+            {% endfor %}
+        {% endif %}
+    </nav>
+    <div class="mobile-burger"><span></span><span></span><span></span></div>
+    {% if not auth.isLogged() %}
+    <a href="{{ path('route_signup') }}" class="btn btn_transparent">Open Account <span class="hidden-arrow-right"></span></a>
+    {% endif %}
+    <div class="login">
+        {% if auth.isLogged() %}
+            <span class="show-user-menu">{{ auth.getAccount().getFullName() }}</span>
+            <div class="header-user-menu">
+                <div class="header-user-menu-rate">
+                    <div>Current rate:</div>
+                    <div>{% if totalBalance is defined %}{{ totalBalance }}{% else %}0.00{% endif %}</div>
+                </div>
+                <div class="header-user-menu-links">
+                    {% if siteNavBars.userMenu is not empty %}
+                        {% for item in siteNavBars.userMenu %}
+                            <a href="{{ item.link }}" {{ item.attributes|raw }}>{{ item.title }}</a>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="header-user-menu-switcher-wrap header-user-menu-links">
+                    <div>View all Rates in USD</div>
+                    <div class="header-user-menu-switcher {{ auth.isRateUSD() ? 'active' : '' }}" data-rate-usd="{{ auth.isRateUSD() ? 'on' : 'off' }}"><div></div></div>
+                </div>
+                <a href="{{ path('route_signout') }}" class="header-user-menu-logout">Log Out</a>
+            </div>
+        {% else %}
+            <span class="popup-toggle" data-target="popup-login">Sign In</span>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,120 @@
+<div class="dashboard-menu-tabs">
+    <div class="container">
+        <a href="javascript:{}" class="dashboard-menu-tabs-item current">Crypto</a>
+        <a href="javascript:{}" class="dashboard-menu-tabs-item">Fiat</a>
+        <div class="dashboard-menu-tabs-help">Need help?</div>
+    </div>
+</div>
+
+<div class="deposit-cf-crypto">
+    <div class="deposit-cf-crypto-col">
+        <fieldset class="crypto-coin">
+            <label for="crypto-coin" class="focused">Coin</label>
+            <div class="select-cf deposit-cf-select">
+                <div></div>
+                <ul>
+                    {% for coin in addresses %}
+                        <li data-value="{{ coin.code }}">
+                            <img src="{{ coin.logo }}" loading="lazy" decoding="async" />{{ coin.code }} <small>{{ coin.label }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <input type="hidden" name="crypto-coin" id="crypto-coin" value="" />
+            </div>
+        </fieldset>
+
+{#        <div class="deposit-cf-crypto-balance" data-coin="">#}
+{#            <small>Total balance:</small>#}
+{#        </div>#}
+        <div class="deposit-cf-crypto-balance" data-coin="BTC">
+            <small>Total balance:</small> <span class="deposit-cf-crypto-balance-value">0.000</span>
+        </div>
+        {% for coin in addresses %}
+            <input type="hidden" name="balance_{{ coin.code }}" value="{{ coin.balance }}">
+        {% endfor %}
+
+    </div>
+
+    <div class="deposit-cf-crypto-col deposit-cf-crypto-payinfo">
+        <div class="deposit-cf-crypto-payinfo-title">Deposit network</div>
+        <div class="deposit-cf-crypto-networks">
+            {% for coin in addresses %}
+                <div class="deposit-cf-crypto-network" id="crypto-{{ coin.code }}">
+                    <div class="dashboard-menu-tabs">
+                        <div class="container">
+                            {% for index, network in coin.networks %}
+                                <a href="#" class="dashboard-menu-tabs-item {{ index == 0 ? 'current' : '' }}" data-tab="{{ index + 1 }}">{{ network.network }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <small>Average arrival time: 1 minutes</small>
+                    <div class="deposit-cf-crypto-addresses">
+                        <div class="deposit-cf-crypto-addresses-container">
+                            {% for network in coin.networks %}
+                                <div class="deposit-cf-crypto-address {{ network.tag != '' ? 'with-tag' : '' }}">
+                                    {% if network.tag != '' %}
+                                        <div class="address">
+                                            <h3 class="deposit-cf-crypto-address-title">{{ network.coin }} Address</h3>
+                                            <img src="{{ network.qr }}" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">{{ network.address }}</div>
+
+                                        </div>
+                                        <div class="address-tag">
+                                            <h3 class="deposit-cf-crypto-address-title">Tag/Memo</h3>
+                                            <img src="{{ network.qr_tag }}" loading="lazy" decoding="async">
+                                            <div class="deposit-cf-crypto-address-link">{{ network.tag }}</div>
+                                        </div>
+                                    {% else %}
+                                        <h3 class="deposit-cf-crypto-address-title">{{ network.coin }} Address</h3>
+                                        <img src="{{ network.qr }}" loading="lazy" decoding="async">
+                                        <div class="deposit-cf-crypto-address-link">{{ network.address }}</div>
+                                    {% endif %}
+
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="deposit-cf-crypto-payinfo-desc">
+                        <b>Send only {{ coin.code }} to this deposit address</b>
+                        <p>Sending coin or token other than {{ coin.code }} to this address may result in the loss of your deposit.</p>
+                    </div>
+                    <div class="deposit-cf-crypto-payinfo-icon"><img src="{{ coin.logo }}" loading="lazy" decoding="async"></div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="deposit-cf-crypto-col">
+        <div class="deposit-cf-tips">
+            <b class="deposit-cf-tips-title">Tips:</b>
+            <ul>
+                <li>If you have deposited, please pay attention to the text messages, site letters and emails we send to you.</li>
+                <li>Coins will be deposited after 1 network confirmations.</li>
+                <li>Until 2 confirmations are made, an equivalent amount of your assets will be temporarily unavailable for withdrawals.</li>
+            </ul>
+        </div>
+
+        <div class="deposit-cf-gotrade">
+            <a href="{{ path('route_product_item', {'name':'careful'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service1.jpg') }}"/>
+                <h6>Conservative Trust</h6>
+                <p>TOP-5 cryptocurrencies and classic money market fixed income instruments</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'classic'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service2.jpg') }}"/>
+                <h6>Classic Trust</h6>
+                <p>TOP-10 cryptocurrencies and most prospect ICO tokens</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'confident'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service3.jpg') }}"/>
+                <h6>Confident Trust</h6>
+                <p>Risky ICO of utility tokens and top-10 cryptocurrencies</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'individual'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service4.jpg') }}"/>
+                <h6>Individual Portfolio</h6>
+                <p>Combined ESP with some exclusive tokens carefully selected by our analysts</p>
+            </a>
+        </div>
+    </div>
+</div>

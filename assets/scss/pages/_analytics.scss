@@ -1,0 +1,389 @@
+.analytics {
+  .cabinet-product-title-digits-percent .big-digits span {
+    position: absolute;
+    display: block;
+    margin: 11px 0 0 -30px;
+  }
+  .dashboard-menu-tabs .container {
+  }
+  .dashboard-menu-tabs .btn {
+    float: right;
+    margin-top: 30px;
+    margin-left: 1px;
+  }
+  &-total_histogram {
+    height: 440px!important;
+    width: 100%;
+    margin-top: 30px!important;
+    clear: both;
+    canvas {
+      height: 300px!important;
+    }
+  }
+  &-total_pie,
+  &-total_cap {
+    float: left;
+    width: 48%;
+    padding-top: 15px;
+    margin-top: 30px!important;
+    margin-bottom: 45px;
+
+    h5 {
+      padding: 0 30px 15px;
+      margin: 0 -30px 30px;
+      border-bottom: thin solid lighten($color-text-grey, 45%);
+      font-weight: 600;
+    }
+  }
+
+  &-total_pie {
+    margin-right: 4%;
+  }
+  &-total_cap {
+  }
+
+  .charts-tooltip-pointer {
+    background: #BBBBBB;
+    height: 94%;
+  }
+
+  &-row {
+    clear: both;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding: 25px 20px 5px;
+    background: transparent !important;
+    border-bottom: thin solid lighten(#c5c5c5, 10%);
+
+    -webkit-transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+    -ms-transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+    transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+
+    > div {
+      position: relative;
+      vertical-align: bottom;
+      box-sizing: border-box;
+      z-index: 1;
+    }
+    &-title,
+    &-value,
+    &-diff,
+    &-show {
+      float: left;
+      padding-bottom: 15px;
+    }
+    &-title {
+      width: 23%;
+      h6 {
+        line-height: 1.875rem;
+        font-weight: 700;
+        color: #000;
+      }
+      small {
+        display: block;
+        line-height: 1rem;
+        font-size: calculateRem(14px);
+      }
+    }
+    &-value {
+      width: 17%;
+      padding-top: .5rem;
+    }
+    &-diff {
+      width: 20%;
+      padding-top: 0px;
+      color: #222;
+      span {
+        display: block;
+        float: left;
+        margin-right: 15px;
+        margin-top: 12px;
+      }
+      small {
+        display: block;
+        margin-left: 30px;
+        font-size: calculateRem(14px);
+        line-height: 1rem;
+        color: $color-text-grey;
+      }
+    }
+    &-show {
+      float: left;
+      width: 6%;
+      text-align: right;
+      div {
+        display: inline-block;
+        position: relative;
+        height: 34px;
+        width: 34px;
+        margin-top: 5px;
+        border: 2px solid lighten($color-text-grey, 20%);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      span {
+        position: absolute;
+        display: block;
+        width: 2px;
+        height: 16px;
+        left: 50%;
+        top: 50%;
+        margin-left: -1px;
+        margin-top: -8px;
+        background: lighten($color-text-grey, 20%);
+        transition: transform .3s;
+        transform-origin: 50% 50%;
+        &:first-of-type {
+          transform: rotate(90deg);
+        }
+      }
+      &:hover {
+        span {
+          transform: rotate(90deg);
+          &:first-of-type {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    &-more {
+      display: none;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding: 15px 15px 30px;
+      clear: both;
+      background: #f1f1f1;
+
+      .histogramm-menu {
+        margin: 0 0 30px;
+        .active-border {
+          width: 45px;
+          margin-left: 87px;
+        }
+      }
+      canvas {
+        height: 300px!important;
+      }
+    }
+  }
+}
+.analytics-row .analytics-row {
+  padding-left: 0;
+  padding-right: 0;
+  &:last-of-type {
+    border-bottom-color: transparent!important;
+  }
+
+  .analytics-row-title {
+    h6 {
+      line-height: 1.875rem;
+      font-size: calculateRem(14px);
+      font-weight: 700;
+      color: #000;
+    }
+    small {
+      display: block;
+      line-height: 1rem;
+      font-size: calculateRem(12px);
+    }
+  }
+}
+.analytics-title {
+  clear: both;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  padding: 25px 20px 5px;
+  background: transparent !important;
+  border-bottom: thin solid lighten(#c5c5c5, 10%);
+
+  -webkit-transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+  -ms-transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+  transition: all .4s cubic-bezier(0.2, 0, 0.15, 1);
+
+  > div {
+    padding-top: 1rem!important;
+    padding-bottom: .5rem!important;
+    font-size: .8125rem!important;
+    font-weight: 700!important;
+    color: $color-text-grey!important;
+  }
+  .analytics-row-diff {
+    padding-left: 30px;
+  }
+}
+
+.popup-bitfinex {
+  width: 98%;
+  max-width: 400px;
+  h4 {
+    font-weight: 600;
+    padding-bottom: 1rem;
+  }
+  .btn {
+    display: block;
+    width: 200px;
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 700;
+  }
+}
+.popup-bitfinex form,
+.popupbitfinex-list {
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+.popupbitfinex-list {
+  max-height: 55vh;
+  width: calc(100% + 30px);
+  min-width: calc(100% + 30px);
+  margin-bottom: 1rem;
+  overflow-y: auto;
+  border-top: thin solid lighten(#c5c5c5,10%);
+  border-bottom: thin solid lighten(#c5c5c5,10%);
+}
+.popupbitfinex-row {
+  display: flex;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: thin solid lighten(#c5c5c5,10%);
+
+  &:last-of-type {
+    border-bottom: none!important;
+  }
+
+  h6 {
+    margin-top: 3px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-weight: 700;
+    color: #222;
+  }
+  small {
+    display: block;
+    font-size: calculateRem(14px);
+    line-height: 1rem;
+  }
+
+  > div {
+    &:first-of-type {
+      flex: 1 1 auto;
+    }
+    &:last-of-type {
+      flex: 0 0 50px;
+      padding-right: 30px;
+      fieldset {
+        padding-top: 15px;
+      }
+    }
+  }
+}
+
+@media (max-width: 1139px) {
+  .analytics .dashboard-menu-tabs .container {
+    text-align: left!important;
+  }
+  .analytics .cabinet-product-title-digits-percent .big-digits span {
+    margin-left: -25px;
+  }
+}
+@media (max-width: 979px) {
+  .analytics .cabinet-product-title-digits-percent .big-digits span {
+    position: static;
+    display: inline-block;
+    margin: 8px 0 0;
+    vertical-align: top;
+  }
+}
+@media (max-width: 767px) {
+  .analytics .dashboard-menu-tabs .container {
+    text-align: center!important;
+  }
+  .analytics .dashboard-menu-tabs .btn {
+    float: none;
+    display: block;
+    width: 160px;
+    margin: 30px auto 10px;
+    text-align: center;
+  }
+  .analytics-title .analytics-row-title {
+    display: none;
+  }
+  .analytics-row-title h6,
+  .analytics-row-title small {
+    display: inline-block;
+  }
+  .analytics-row-title h6 {
+    margin-right: .5rem;
+  }
+  .analytics-row-title {
+    width: 100%;
+    float: none;
+  }
+  .analytics-row-value {
+    width: 22%;
+  }
+  .analytics-row-diff {
+    width: 24%;
+  }
+  .analytics-row-show {
+    width: 7%;
+  }
+  .analytics-total_cap, .analytics-total_pie {
+    float: none;
+    width: 100%;
+    margin-right: 0!important;
+  }
+}
+@media (max-width: 585px) {
+  .analytics-title>div:nth-of-type(4),
+  .analytics-row>div:nth-of-type(4),
+  .analytics-title .analytics-row-title {
+    display: none;
+  }
+  .analytics-row-title {
+    width: 100%;
+    float: none;
+  }
+  .analytics-row-value {
+    width: 29%;
+  }
+  .analytics-row-diff {
+    width: 31%;
+  }
+  .analytics-row-show {
+    width: 8%;
+  }
+}
+@media (max-width: 479px) {
+  .analytics-title>div:nth-of-type(5),
+  .analytics-row>div:nth-of-type(5),
+  .analytics-title .analytics-row-title {
+    display: none;
+  }
+  .analytics-row-title {
+    width: 100%;
+    float: none;
+  }
+  .analytics-row-value {
+    width: 39%;
+  }
+  .analytics-row-diff {
+    width: 41%;
+  }
+  .analytics-row-show {
+    width: 17%;
+  }
+  .analytics .cabinet-product-title-digits-percent .big-digits span {
+    margin: 6px 0 0;
+  }
+}
+@media (max-width: 360px) {
+  .analytics .cabinet-product-title-digits-percent .big-digits span {
+    margin: 3px 0 0;
+  }
+}

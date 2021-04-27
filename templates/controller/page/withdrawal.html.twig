@@ -1,0 +1,180 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    {{ include('controller/page/dashboard-header.html.twig') }}
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey">
+
+        <div class="container">
+            <br>
+            <div class="bg-white box-framed withdrawal-sidebar">
+                <div class="withdrawal-sidebar-header">
+                    <h5>Your current balance</h5>
+                </div>
+                <div class="withdrawal-sidebar-body">
+                    <div class="big-digits">{% if totalBalance is defined %}{{ totalBalance }}{% else %}0.00{% endif %}</div>
+                    <p>BTC invested in products and equivalent</p>
+                </div>
+            </div>
+            <div class="bg-white box-framed withdrawal-main">
+                <div class="withdrawal-main-header">
+                    <h5>Select Wallet</h5>
+                </div>
+                <div class="withdrawal-wallets">
+                    {% for wlt in wallets %}
+
+                        <div class="withdrawal-wallet">
+                            <div class="withdrawal-wallet-icon">
+                                <img src="{{ wlt.image }}"/>
+                            </div>
+                            <div class="withdrawal-wallet-info">
+                                <div class="withdrawal-wallet-name">{{ wlt.name }}</div>
+                                <div class="withdrawal-wallet-num">
+                                    <small>&bull;&bull;&bull;&bull;&nbsp;&bull;&bull;&bull;&bull;&nbsp;&bull;&bull;&bull;&bull;</small>&nbsp;anG4
+                                </div>
+                            </div>
+                            <div class="withdrawal-wallet-output">
+                                <button class="btn btn_transparent btn_black">Withdrawal</button>
+
+                                <div class="withdrawal-wallet-edit">
+                                    <button class="btn btn_blue">Edit</button>
+                                    <button class="btn btn_red">Delete</button>
+                                </div>
+                            </div>
+                            <div class="withdrawal-wallet-proceed">
+                                <div class="withdrawal-wallet-icon"></div>
+                                <div class="withdrawal-wallet-amount">
+                                    <div class="withdrawal-wallet-amount-field">
+                                        <fieldset>
+                                            <label for="withdrawalAmount">Amount</label>
+                                            <input type="text" id="withdrawal-amount-{{ wlt.currency|lower }}"
+                                                   name="amount"
+                                                   value="546.5674" data-rate="{{ wlt.rate }}" data-fee="{{ wlt.fee }}"
+                                                   data-currency="{{ wlt.currency }}" data-wallet-id="{{ wlt.id }}"/>
+                                            <div class="field-border"></div>
+                                            <div class="field-error">Enter amount to withdrawal</div>
+                                        </fieldset>
+                                    </div>
+                                    <div class="withdrawal-wallet-amount-type">{{ wlt.currency }}</div>
+                                </div>
+                                <div class="withdrawal-wallet-inbtc"><i>120000.5674</i> BTC</div>
+                                <div class="withdrawal-wallet-additional">
+                                    <div class="withdrawal-wallet-icon"></div>
+                                    <div class="withdrawal-wallet-additional-takefee">
+                                        <fieldset class="userregistration-receivealerts">
+                                            <label for="alerts_on_email" class="checkbox">
+                                                <input type="checkbox" id="alerts_on_email" name="alerts_on_email"
+                                                       checked="">Take fee from amount
+                                            </label>
+                                        </fieldset>
+                                    </div>
+                                    <div class="withdrawal-wallet-additional-taxfee">
+                                        Tax Fee: <i>0.0004</i> BTC <span title="Some text">?</span>
+                                    </div>
+                                </div>
+                                <div class="withdrawal-wallet-proceed-btn">
+                                    <div class="btn btn_md btn_blue"
+                                         data-amount="#withdrawal-amount-{{ wlt.currency|lower }}">PROCEED
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+                <div class="add-wallet popup-toggle" data-target="popup-addwallet"><span>+</span> Add New Wallet</div>
+            </div>
+            <div class="withdrawal-sidebar">
+                <h5>Withdrawal history</h5>
+                {#<p>Current structure of crypto assets in the all purchased Structure Product</p>#}
+            </div>
+            <div class="withdrawal-main">
+                <div class="select">
+                    <fieldset>
+                        <select id="withdrawalPeriod" data-link="/change-withdrawal-period">
+                            <option value="all">All time</option>
+                            <option value="month">Month</option>
+                            <option value="week">Week</option>
+                        </select>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="withdrawal-history">
+                <div class="withdrawal-history-title">
+                    <div class="withdrawal-history-amount">Amount</div>
+                    <div class="withdrawal-history-wallet">Wallet</div>
+                    <div class="withdrawal-history-status">Status</div>
+                    <div class="withdrawal-history-date">Date</div>
+                </div>
+                <div class="withdrawal-history-content">
+                    {% for wth in withdrawal_list %}
+                        <div class="withdrawal-history-row">
+                            <div class="withdrawal-history-amount">{{ wth.amount }} {{ wth.currency }}
+                                <small>&#3647; {{ wth.fee_btc }} transaction fee</small>
+                            </div>
+                            <div class="withdrawal-history-wallet">{{ wth.wallet_name }}</div>
+                            <div class="withdrawal-history-status">
+                                <span class="withdrawal-status-{{ wth.status|lower }}">{{ wth.status }}</span>
+                            </div>
+                            <div class="withdrawal-history-date">{{ wth.transaction_date }}
+                                <small>{{ wth.transaction_time }}</small>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+    <div class="box-framed bg-white popup popup-addwallet">
+        <div class="popup-close">
+        <span class="close-wrap">
+            <span class="close-line close-line1"></span>
+            <span class="close-line close-line2"></span>
+        </span>
+        </div>
+        <h4>New Wallet</h4>
+        <form action="" name="addwalletform" data-link="{{ path('route_add_wallet') }}">
+            <fieldset class="popup-addwallet-name">
+                <label for="walletname">Wallet name</label>
+                <input type="text" id="walletname" name="name"/>
+                <div class="field-border"></div>
+                <div class="field-error">Please type wallet name</div>
+            </fieldset>
+            <fieldset class="popup-addwallet-address">
+                <label for="walletaddress">Address</label>
+                <input type="text" id="walletaddress" name="address"/>
+                <div class="field-border"></div>
+                <div class="field-error">Please type wallet address</div>
+            </fieldset>
+            <fieldset class="popup-addwallet-currency">
+                <label for="walletcurrency">Currency</label>
+                <select id="walletcurrency" name="currency">
+                    <option value=""></option>
+                    {% for item in currencies %}
+                        <option value="{{ item.Symbol }}">{{ item.FullName }}</option>
+                    {% endfor %}
+                </select>
+                <div class="field-border"></div>
+                <div class="field-error">Please type wallet currency</div>
+            </fieldset>
+
+            <button type="submit" class="btn btn_md btn_blue">Add</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/libs/radialIndicator.min.js') }}?v={{ auth.getVersion() }}"></script>,
+    <script src="{{ asset('js/libs/jquery.mask.min.js') }}?v={{ auth.getVersion() }}"></script>,
+    <script src="{{ asset('js/pages/withdrawal.min.js') }}?v={{ auth.getVersion() }}"></script>
+{% endblock %}

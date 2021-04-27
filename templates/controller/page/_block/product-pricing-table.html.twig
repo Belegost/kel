@@ -1,0 +1,134 @@
+<div class="container full-pricing-plans-wrap">
+    <h3>Pricing Plans</h3>
+    <p>Mielstones can be displayed in any size you specify, this example shows how creative you can get</p>
+
+    <div class="full-pricing-plans">
+        <div class="full-pricing-plans-titles">
+            <table>
+                <tr><td>Terms (in month)</td></tr>
+                <tr><td>Cost ($)</td></tr>
+                <tr><td>Setup fee (%&nbsp;of cost)</td></tr>
+                <tr><td>Closing on time (%&nbsp;of cost)</td></tr>
+                <tr><td>Penalty for closing early (%&nbsp;of cost)</td></tr>
+                <tr><td>Share of the fund in profit (%&nbsp;of the increase in value)</td></tr>
+            </table>
+        </div>
+        <div class="full-pricing-plans-item">
+            <div class="full-pricing-plans-item-wrapper">
+                <table>
+                    <tr>
+                        <td>{{ productPricing.period.month_12 }}</td>
+                        <td>{{ productPricing.period.month_6 }}</td>
+                        <td>{{ productPricing.period.month_3 }}</td>
+                        <td>{{ productPricing.period.month_1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ productPricing.price.month_12 }}</td>
+                        <td>{{ productPricing.price.month_6 }}</td>
+                        <td>{{ productPricing.price.month_3 }}</td>
+                        <td>{{ productPricing.price.month_1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ productPricing.setup_fee.month_12 }}</td>
+                        <td>{{ productPricing.setup_fee.month_6 }}</td>
+                        <td>{{ productPricing.setup_fee.month_3 }}</td>
+                        <td>{{ productPricing.setup_fee.month_1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ productPricing.closing_fee.month_12 }}</td>
+                        <td>{{ productPricing.closing_fee.month_6 }}</td>
+                        <td>{{ productPricing.closing_fee.month_3 }}</td>
+                        <td>{{ productPricing.closing_fee.month_1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ productPricing.penalty.month_12 }}</td>
+                        <td>{{ productPricing.penalty.month_6 }}</td>
+                        <td>{{ productPricing.penalty.month_3 }}</td>
+                        <td>{{ productPricing.penalty.month_1 }}</td>
+                    </tr>
+                    <tr>
+                        <td>{{ productPricing.share_profit.month_12 }}</td>
+                        <td>{{ productPricing.share_profit.month_6 }}</td>
+                        <td>{{ productPricing.share_profit.month_3 }}</td>
+                        <td>{{ productPricing.share_profit.month_1 }}</td>
+                    </tr>
+                    <tr>
+                        {#<td>
+                            <!-- If User Logged -->
+                            {% if auth.isLogged %}
+                                <a href="{{ path('route_user_dashboard') }}" class="btn btn_blue">Invest</a>
+                            {% else %}
+                                <!-- If Not Logged -->
+                                <button class="btn btn_blue popup-toggle" data-target="popup-login">Invest</button>
+                            {% endif %}
+                            <!-- END -->
+                        </td>
+                        <td>
+                            <!-- If User Logged -->
+                            {% if auth.isLogged %}
+                                <a href="{{ path('route_user_dashboard') }}" class="btn btn_blue">Invest</a>
+                            {% else %}
+                                <!-- If Not Logged -->
+                                <button class="btn btn_blue popup-toggle" data-target="popup-login">Invest</button>
+                            {% endif %}
+                            <!-- END -->
+                        </td>
+                        <td>
+                            <!-- If User Logged -->
+                            {% if auth.isLogged %}
+                                <a href="{{ path('route_user_dashboard') }}" class="btn btn_blue">Invest</a>
+                            {% else %}
+                                <!-- If Not Logged -->
+                                <button class="btn btn_blue popup-toggle" data-target="popup-login">Invest</button>
+                            {% endif %}
+                            <!-- END -->
+                        </td>
+                        <td>
+                            <!-- If User Logged -->
+                            {% if auth.isLogged %}
+                                <a href="{{ path('route_user_dashboard') }}" class="btn btn_blue">Invest</a>
+                            {% else %}
+                                <!-- If Not Logged -->
+                                <button class="btn btn_blue popup-toggle" data-target="popup-login">Invest</button>
+                            {% endif %}
+                            <!-- END -->
+                        </td>#}
+
+                        <td>
+                            <button class="popup-toggle btn btn_blue btn-invest"
+                                    data-product-code="{{ productType|upper }}_12MO"
+                                    data-product-name="{{ productType|capitalize }} Trust ( 12 Months )"
+                                    data-target="{{ popup_target }}">Invest
+                            </button>
+                        </td>
+                        <td>
+                            <button class="popup-toggle btn btn_blue btn-invest"
+                                    data-product-code="{{ productType|upper }}_6MO"
+                                    data-product-name="{{ productType|capitalize }} Trust ( 6 Months )"
+                                    data-target="{{ popup_target }}">Invest
+                            </button>
+                        </td>
+                        <td>
+                            <button class="popup-toggle btn btn_blue btn-invest"
+                                    data-product-code="{{ productType|upper }}_3MO"
+                                    data-product-name="{{ productType|capitalize }} Trust ( 3 Months )"
+                                    data-target="{{ popup_target }}">Invest
+                            </button>
+                        </td>
+                        <td>
+                            <button class="popup-toggle btn btn_blue btn-invest"
+                                    data-product-code="{{ productType|upper }}_1MO"
+                                    data-product-name="{{ productType|capitalize }} Trust ( 1 Month )"
+                                    data-target="{{ popup_target }}">Invest
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="full-pricing-plans-item-shadow"></div>
+        </div>
+    </div>
+    <small>For all products in the event of early withdrawal of the deposit all profit on the product +3% of the
+        deposit
+    </small>
+</div>

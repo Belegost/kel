@@ -1,0 +1,263 @@
+{% extends "ift-base.html.twig" %}
+
+{% block page_header %}
+    <div class="page-header short-header">
+        <div class="page-header-bg"></div>
+    </div>
+{% endblock %}
+
+{% block page_content %}
+    <div class="bg-light-grey">
+        <div class="container">
+            {% if account.id is defined %}
+            <h1>Upload</h1>
+            <p class="description">For receiving full access to CryptoFund functions, please complete the compliance procedure.
+                Choose one type of presented and upload</p>
+            {% endif %}
+
+            <table class="documents-table">
+                {% for key, document_type in document_types %}
+                    <tr>
+                        {% if documents[key] is defined %}
+                            <td><h6>{{ documents[key].state.name }}</h6></td>
+                            <td>{{ documents[key].type.name }}</td>
+                            <td><button class="popup-toggle btn btn_transparent btn_black" data-target="popup-showexample-{{ key }}">View example</button></td>
+                            {% if documents[key].state.id != constant('App\\Entity\\MRM\\DocumentState::APPROVED') %}
+                                <td><button id="drop_zone_{{ key }}" class="btn btn_transparent btn_black">Select another</button></td>
+                            {% endif %}
+                        {% else %}
+                            <td><h6>Not submitted</h6></td>
+                            <td>{{ document_type.name }}</td>
+                            <td><button class="popup-toggle btn btn_transparent btn_black" data-target="popup-showexample-{{ key }}">View example</button></td>
+                            <td><button id="drop_zone_{{ key }}" class="btn btn_transparent btn_black">Select</button></td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+
+            <h1>Documents</h1>
+            <p class="description">In this next wave of the digital revolution, digital currencies are emerging as what many believe to be the greatest innovation since the advent of the internet.</p>
+
+            <table class="documents-table">
+                <tr>
+                    <td><h6>MAY, 2018</h6></td>
+                    <td>Some Name of the Document, Some Name of the Document</td>
+                    <td><h6>PDF</h6></td>
+                    <td><a {% if not auth.isLogged() %}class="popup-toggle btn btn_transparent btn_black" data-target="popup-login" {% else %}href="" class="btn btn_transparent btn_black"{% endif %}>Download</a></td>
+                </tr>
+                <tr>
+                    <td><h6>JAN, 2018</h6></td>
+                    <td>Name of the Document Analitics</td>
+                    <td><h6>DOC</h6></td>
+                    <td><a {% if not auth.isLogged() %}class="popup-toggle btn btn_transparent btn_black" data-target="popup-login" {% else %}href="" class="btn btn_transparent btn_black"{% endif %}>Download</a></td>
+                </tr>
+                <tr>
+                    <td><h6>DEC, 2017</h6></td>
+                    <td>Some Name of the Document</td>
+                    <td><h6>PDF</h6></td>
+                    <td><a {% if not auth.isLogged() %}class="popup-toggle btn btn_transparent btn_black" data-target="popup-login" {% else %}href="" class="btn btn_transparent btn_black"{% endif %}>Download</a></td>
+                </tr>
+                <tr>
+                    <td><h6>DEC, 2017</h6></td>
+                    <td>Name of the Document</td>
+                    <td><h6>PDF</h6></td>
+                    <td><a {% if not auth.isLogged() %}class="popup-toggle btn btn_transparent btn_black" data-target="popup-login" {% else %}href="" class="btn btn_transparent btn_black"{% endif %}>Download</a></td>
+                </tr>
+                <tr>
+                    <td><h6>NOV, 2017</h6></td>
+                    <td>Document</td>
+                    <td><h6>DOC</h6></td>
+                    <td><a {% if not auth.isLogged() %}class="popup-toggle btn btn_transparent btn_black" data-target="popup-login" {% else %}href="" class="btn btn_transparent btn_black"{% endif %}>Download</a></td>
+                </tr>
+                <tr>
+                    <td><h6>MAY, 2017</h6></td>
+                    <td>Some Name of the Document</td>
+                    <td><h6>EXL</h6></td>
+                    <td><a {% if not auth.isLogged() %}class="popup-toggle btn btn_transparent btn_black" data-target="popup-login" {% else %}href="" class="btn btn_transparent btn_black"{% endif %}>Download</a></td>
+                </tr>
+                <tr>
+            </table>
+
+        </div>
+    </div>
+
+    <div class="block-spesial_service">
+        <h4>See our Special Services for Investors</h4>
+        <div class="container">
+            <a href="{{ path('route_product_item', {'name':'conservative'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service1.jpg') }}" />
+                <h6>Conservative Trust</h6>
+                <p>TOP-5 cryptocurrencies and classic money market fixed income instruments</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'classic'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service2.jpg') }}" />
+                <h6>Classic Trust</h6>
+                <p>TOP-10 cryptocurrencies and most prospect ICO tokens</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'confident'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service3.jpg') }}" />
+                <h6>Confident Trust</h6>
+                <p>Risky ICO of utility tokens and top-10 cryptocurrencies</p>
+            </a>
+            <a href="{{ path('route_product_item', {'name':'individual'}) }}" class="block-spesial_service-item">
+                <img class="block-spesial_service-item-img" src="{{ asset('images/special_service4.jpg') }}" />
+                <h6>Individual Portfolio</h6>
+                <p>Combined ESP with some exclusive tokens carefully selected by our analysts</p>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block popups %}
+    {{ parent() }}
+
+    {% for key, document_type in document_types %}
+    <div class="box-framed bg-white popup popup-showexample-{{ key }}">
+        <div class="popup-close">
+            <span class="close-wrap">
+                <span class="close-line close-line1"></span>
+                <span class="close-line close-line2"></span>
+            </span>
+        </div>
+        <h4>{{ document_type.name }} example</h4><br>
+        <img src="/images/compliance/{{ document_type.alias }}.png" /><br><br>
+        <button class="btn btn_blue popup-toggle" data->Got it</button>
+    </div>
+    {% endfor %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+
+        var zone_one = new Dropzone('#drop_zone_1', {
+            method: "post",
+            autoQueue: true,
+            autoProcessQueue: true,
+            autoDiscover: false,
+            createImageThumbnails: false,
+            url: "{{ path('route_revision_create') }}",
+            paramName: "file",
+            maxFilesize: 10,
+            previewTemplate : '<div style="display:none"></div>',
+            init: function () {
+                this.on("sending", function (file, xhr, formData) {
+                    formData.append('type', 1);
+                });
+                this.on("success", function (file, response) {
+                    // if (response === true) console.log(1);
+                    window.location.reload();
+                    //zone_one.removeFile(file);
+                });
+            }
+        });
+
+        var zone_two = new Dropzone('#drop_zone_2', {
+            method: "post",
+            autoQueue: true,
+            autoProcessQueue: true,
+            autoDiscover: false,
+            createImageThumbnails: false,
+            url: "{{ path('route_revision_create') }}",
+            paramName: "file",
+            maxFilesize: 10,
+            previewTemplate : '<div style="display:none"></div>',
+            init: function () {
+                this.on("sending", function (file, xhr, formData) {
+                    formData.append('type', 2);
+                });
+                this.on("success", function (file, response) {
+                    window.location.reload();
+                    //zone_two.removeFile(file);
+                });
+            }
+        });
+
+        var zone_three = new Dropzone('#drop_zone_3', {
+            method: "post",
+            autoQueue: true,
+            autoProcessQueue: true,
+            autoDiscover: false,
+            createImageThumbnails: false,
+            url: "{{ path('route_revision_create') }}",
+            paramName: "file",
+            maxFilesize: 10,
+            previewTemplate : '<div style="display:none"></div>',
+            init: function () {
+                this.on("sending", function (file, xhr, formData) {
+                    formData.append('type', 3);
+                });
+                this.on("success", function (file, response) {
+                    window.location.reload();
+                    //zone_three.removeFile(file);
+                });
+            }
+        });
+
+        var zone_four = new Dropzone('#drop_zone_4', {
+            method: "post",
+            autoQueue: true,
+            autoProcessQueue: true,
+            autoDiscover: false,
+            createImageThumbnails: false,
+            url: "{{ path('route_revision_create') }}",
+            paramName: "file",
+            maxFilesize: 10,
+            previewTemplate : '<div style="display:none"></div>',
+            init: function () {
+                this.on("sending", function (file, xhr, formData) {
+                    formData.append('type', 4);
+                });
+                this.on("success", function (file, response) {
+                    window.location.reload();
+                    //zone_four.removeFile(file);
+                });
+            }
+        });
+
+        var zone_five = new Dropzone('#drop_zone_5', {
+            method: "post",
+            autoQueue: true,
+            autoProcessQueue: true,
+            autoDiscover: false,
+            createImageThumbnails: false,
+            url: "{{ path('route_revision_create') }}",
+            paramName: "file",
+            maxFilesize: 10,
+            previewTemplate : '<div style="display:none"></div>',
+            init: function () {
+                this.on("sending", function (file, xhr, formData) {
+                    formData.append('type', 5);
+                });
+                this.on("success", function (file, response) {
+                    window.location.reload();
+                    //zone_five.removeFile(file);
+                });
+            }
+        });
+
+        var zone_six = new Dropzone('#drop_zone_6', {
+            method: "post",
+            autoQueue: true,
+            autoProcessQueue: true,
+            autoDiscover: false,
+            createImageThumbnails: false,
+            url: "{{ path('route_revision_create') }}",
+            paramName: "file",
+            maxFilesize: 10,
+            previewTemplate : '<div style="display:none"></div>',
+            init: function () {
+                this.on("sending", function (file, xhr, formData) {
+                    formData.append('type', 6);
+                });
+                this.on("success", function (file, response) {
+                    window.location.reload();
+                    //zone_six.removeFile(file);
+                });
+            }
+        });
+
+
+
+    </script>
+{% endblock %}

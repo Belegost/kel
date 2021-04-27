@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,700,800|Open+Sans:400,600,700,800');
+
+html {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: calculateRem(30px);
+}
+h1 {
+  font-size: calculateRem(52px);
+  line-height: calculateRem(60px);
+}
+h2 {
+  font-size: calculateRem(45px);
+  font-weight: normal;
+  line-height: calculateRem(60px);
+}
+h3 {
+  font-size: calculateRem(36px);
+  font-weight: normal;
+  line-height: calculateRem(45px);
+}
+h4 {
+  font-size: calculateRem(24px);
+  font-weight: normal;
+  line-height: calculateRem(36px);
+}
+h5 {
+  font-size: calculateRem(18px);
+  font-weight: normal;
+  line-height: calculateRem(30px);
+}
+h6 {
+  font-size: calculateRem(16px);
+  font-weight: normal;
+  line-height: calculateRem(24px);
+}
+.btn {
+  font-weight: normal;
+  font-size: calculateRem(14px);
+  font-family: 'Montserrat', sans-serif;
+  line-height: calculateRem(36px);
+}
+.btn_lg {
+  font-weight: bold;
+  font-size: calculateRem(18px);
+  line-height: calculateRem(64px);
+}
+
+@media (max-width: 1139px) {
+  h2 {
+    font-size: calculateRem(36px);
+    font-weight: normal!important;
+    line-height: calculateRem(45px);
+  }
+}
+@media (max-width: 979px) {
+  h2 {
+    font-size: calculateRem(30px);
+    font-weight: normal!important;
+    line-height: calculateRem(40px);
+  }
+}
+@media (max-width: 767px) {
+}
+@media (max-width: 479px) {
+  html {
+    font-size: 14px;
+  }
+  h2 {
+    font-size: calculateRem(27px);
+    font-weight: normal!important;
+    line-height: calculateRem(36px);
+  }
+}
+@media (max-width: 360px) {
+  html {
+    font-size: 12px!important;
+  }
+}

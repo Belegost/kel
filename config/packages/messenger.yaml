@@ -1,0 +1,45 @@
+framework:
+    messenger:
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+#        failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            # async: '%env(MESSENGER_TRANSPORT_DSN)%'
+            # sync: 'sync://'
+
+            failed:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%?queue_name=failed'
+                retry_strategy:
+                    max_retries: 20
+                    delay: 300000
+                    max_delay: 86400000 #1d
+                    multiplier: 3
+
+            async_high:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue_name: high
+                retry_strategy:
+                    max_retries: 4
+                    delay: 1000
+                    multiplier: 2
+
+            async_normal:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    queue_name: low
+                retry_strategy:
+                    max_retries: 4
+                    delay: 1000
+                    multiplier: 4
+
+        routing:
+#             Route your messages to the transports
+#             'App\Message\YourMessage': async
+            App\Message\Zoho\AddContactMessage:  async_high
+            App\Message\LuckyNumberMessage: async_high
+            App\Message\Binance\ConvertCurrencyMessage: async_high
+            App\Message\MRM\BuyProductMessage: async_high
+            App\Message\Zoho\UpdateContactMessage: async_high
+            App\Message\MRM\CloseProductMessage: async_high

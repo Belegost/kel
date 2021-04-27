@@ -1,0 +1,35 @@
+
+<div id="result_field"></div>
+{{ form_start(contact_form) }}
+
+<fieldset class="block-anyquetions-name">
+    {{ form_label(contact_form.username) }}
+    {{ form_widget(contact_form.username) }}
+    <div class="field-border"></div>
+    <div class="field-error">Please type your name</div>
+</fieldset>
+
+<fieldset class="block-anyquetions-email">
+    {{ form_label(contact_form.email) }}
+    {{ form_widget(contact_form.email) }}
+    <div class="field-border"></div>
+    <div class="field-error">Please type your last name</div>
+</fieldset>
+
+<fieldset class="block-anyquetions-subject">
+    {{ form_label(contact_form.phone) }}
+    {{ form_widget(contact_form.phone) }}
+    <div class="field-border"></div>
+    <div class="field-error">Please type your last name</div>
+</fieldset>
+
+<fieldset class="block-anyquetions-message">
+    {{ form_label(contact_form.message) }}
+    {{ form_widget(contact_form.message) }}
+    <div class="field-border"></div>
+    <div class="field-error">Please type your message</div>
+</fieldset>
+
+{{ form_widget(contact_form.save) }}
+{{ form_end(contact_form) }}
+

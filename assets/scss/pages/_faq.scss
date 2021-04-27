@@ -1,0 +1,200 @@
+.faq {
+  h1 {
+    padding-top: 5rem;
+    padding-bottom: 1rem;
+    font-weight: 400;
+  }
+  p.description {
+    padding-bottom: 5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: calculateRem(18px);
+    font-weight: 500;
+    line-height: calculateRem(30px);
+  }
+  &-menu {
+    &-wrap {
+      top:0;
+      width: 20%;
+      float: left;
+      transition: transform .4s ease-out;
+      p {
+        padding-bottom: 2rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+      }
+      .btn {
+        text-transform: uppercase;
+        font-weight: 800;
+      }
+    }
+    padding-bottom: 5rem;
+    > div {
+      cursor: pointer;
+      padding: 20px 30px;
+      line-height: calculateRem(18px);
+      font-size: calculateRem(18px);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      color: #2b2b2b;
+      background: lighten($color-text-grey, 45%);
+      transition: .5s;
+      &:hover {
+        color: $color-text-grey;
+      }
+      &.active {
+        cursor: default;
+        color: #FFF;
+        background: $color-blue;
+        &:hover {
+          color: #FFF;
+        }
+      }
+    }
+  }
+  &-content {
+    margin-left: 20%;
+    padding-left: 45px;
+    h2 {
+      padding: .5rem 5px 2rem;
+      font-size: calculateRem(30px);
+      font-weight: 600;
+      line-height: calculateRem(30px);
+    }
+    &-section {
+      padding-bottom: 5rem;
+    }
+  }
+  &-item {
+    padding: 30px 5px;
+    border-bottom: thin solid lighten($color-text-grey, 45%);
+    &:first-of-type {
+      border-top: thin solid lighten($color-text-grey, 45%);
+    }
+
+    h3 {
+      font-size: calculateRem(24px);
+      font-weight: normal;
+      line-height: calculateRem(36px);
+      transition: color .3s;
+    }
+    &-btn {
+      position: relative;
+      float: right;
+      width: 34px;
+      height: 34px;
+      border: 2px solid lighten($color-text-grey, 20%);
+      border-radius: 50%;
+      cursor: pointer;
+      span {
+        position: absolute;
+        display: block;
+        width: 2px;
+        height: 16px;
+        left: 50%;
+        top: 50%;
+        margin-left: -1px;
+        margin-top: -8px;
+        background: lighten($color-text-grey, 20%);
+        transition: transform .3s;
+        transform-origin: 50% 50%;
+        &:first-of-type {
+          transform: rotate(90deg);
+        }
+      }
+      &:hover {
+        span {
+          transform: rotate(90deg);
+          &:first-of-type {
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    .faq-item-info p {
+      width: 100%;
+      padding-top: 30px;
+      display: none;
+      box-sizing: border-box;
+    }
+    &.active {
+      h3 {
+        color: $color-blue;
+      }
+      .faq-item-btn {
+        border-color: $color-blue;
+        span {
+          background: $color-blue;
+          transform: rotate(90deg)!important;
+        }
+      }
+    }
+  }
+  .block-anyquetions {
+    h2 {
+      padding-top: 5rem;
+      padding-bottom: 1rem;
+      max-width: calculateRem(660px);
+    }
+    h2 + p {
+      max-width: calculateRem(450px);
+      margin-left: auto;
+      margin-right: auto;
+      font-size: calculateRem(18px);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      text-align: center;
+    }
+  }
+}
+@media (max-width: 1139px) {
+  .faq {
+    &-menu {
+      &-wrap {
+        width: 25%;
+      }
+    }
+    &-content {
+      margin-left: 25%;
+    }
+  }
+}
+@media (max-width: 979px) {
+  .faq {
+    &-menu {
+      &-wrap {
+        width: 27%;
+      }
+    }
+    &-content {
+      margin-left: 27%;
+      padding-left: 30px;
+    }
+  }
+}
+@media (max-width: 767px) {
+  .faq {
+    p.description {
+      padding-bottom: 3rem;
+    }
+    &-menu {
+      &-wrap {
+        width: 100%;
+        margin-bottom: 5rem;
+        p {
+          padding-bottom: 1rem;
+        }
+      }
+      padding-bottom: 2rem;
+    }
+    &-content {
+      margin-left: 0;
+      padding-left: 0;
+    }
+  }
+}
+@media (max-width: 600px) {
+  .faq {
+  }
+}
+@media (max-width: 479px) {
+}
